@@ -1,9 +1,9 @@
 #include "Date.h"
 
-Date::Date() {
-	this->_jour = gcnew int(1);
-	this->_mois = gcnew int(1);
-	this->_annee = gcnew int(2020);
+Date::Date(void) {
+	this->_jour = 1;
+	this->_mois = 1;
+	this->_annee = 2020;
 }
 
 void Date::set_jour(int^ jour) {
