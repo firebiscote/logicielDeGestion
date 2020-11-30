@@ -38,7 +38,7 @@ void Adresse::set_numeroDeVoie(String^ numeroDeVoie) {
 			throw gcnew String("Un numéro de voie ne peut pas être en dessous de 1 !");
 		}
 	}
-	catch (System::FormatException^) {
+	catch (FormatException^) {
 		throw gcnew String("Un numéro de voie doit être numérique !");
 	}
 }
