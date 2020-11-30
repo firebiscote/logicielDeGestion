@@ -3,6 +3,7 @@
 
 ref class Adresse {
 public:
+	Adresse();
 	void set_numeroDeVoie(int^);
 	void set_complementDeNumero(String^);
 	void set_typeDeVoie(String^);

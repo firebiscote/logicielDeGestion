@@ -121,11 +121,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Adresse.cpp" />
+    <ClCompile Include="Date.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapEmploye.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adresse.h" />
+    <ClInclude Include="Date.h" />
     <ClInclude Include="MapEmploye.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Menu.h">

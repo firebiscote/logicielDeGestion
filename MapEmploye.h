@@ -1,6 +1,7 @@
 #pragma once
 #include "pch.h"
 #include "Adresse.h"
+#include "Date.h"
 
 ref class MapEmploye {
 public:
@@ -15,6 +16,7 @@ private:
 	String^ _prenom;
 	String^ _nomSuperieur;
 	String^ _prenomSuperieur;
-	Adresse^ _adresse;
+	Date^ _dateEmbauche;
+	Adresse^ _adresseDomicile;
 };
 
