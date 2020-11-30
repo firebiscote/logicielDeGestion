@@ -10,10 +10,10 @@ namespace Services {
 		DataSet^ listeEmploye(void);
 		void ajouter(String^, String^, String^, String^, DateTime^, Adresse^);
 		void supprimer(String^, String^);
-		void modifier(MapEmploye^);
+		void modifier(Composants::MapEmploye^);
 	private:
-		CAD^ _cad;
-		MapEmploye^ _employe;
+		Composants::CAD^ _cad;
+		Composants::MapEmploye^ _employe;
 		DataSet^ _ds;
 	};
 }

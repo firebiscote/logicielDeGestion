@@ -1,34 +1,35 @@
 #include "MapEmploye.h"
 
-MapEmploye::MapEmploye(void) {
-	this->_ID = -1;
-	this->_nom = "";
-	this->_prenom = "";
-	this->_nomSuperieur = "";
-	this->_prenomSuperieur = "";
-	this->_dateEmbauche = gcnew DateTime();
-	this->_adresseDomicile = gcnew Adresse();
-}
+namespace Composants {
+	MapEmploye::MapEmploye(void) {
+		this->_ID = -1;
+		this->_nom = "";
+		this->_prenom = "";
+		this->_nomSuperieur = "";
+		this->_prenomSuperieur = "";
+		this->_dateEmbauche = gcnew DateTime();
+		this->_adresseDomicile = gcnew Adresse();
+	}
 
-MapEmploye::MapEmploye(String^ nom, String^ prenom, String^ nomSuperieur, String^ prenomSuperieur, DateTime^ dateEmbauche, Adresse^ adresseDomicile) {
-	this->set_nom(nom);
-	this->set_prenom(prenom);
-	this->set_nomSuperieur(nomSuperieur);
-	this->set_prenomSuperieur(prenomSuperieur);
-	this->set_dateEmbauche(dateEmbauche);
-	this->set_adresseDomicile(adresseDomicile);
-}
+	MapEmploye::MapEmploye(String^ nom, String^ prenom, String^ nomSuperieur, String^ prenomSuperieur, DateTime^ dateEmbauche, Adresse^ adresseDomicile) {
+		this->set_nom(nom);
+		this->set_prenom(prenom);
+		this->set_nomSuperieur(nomSuperieur);
+		this->set_prenomSuperieur(prenomSuperieur);
+		this->set_dateEmbauche(dateEmbauche);
+		this->set_adresseDomicile(adresseDomicile);
+	}
 
-String^ MapEmploye::SELECT(void) {
-	return	"SELECT " + 
-			"CONCAT(employe.prenom, ' ', employe.nom) AS employe, CONCAT(superieur.prenom, ' ', superieur.nom) AS superieur, date.date AS embauche, CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero, ' ', adresse.typeDeVoie, ' ', adresse.nomDeVoie, ' ', adresse.codePostal, ' ', adresse.nomDeCommune) AS domicile " + 
-			"FROM employe LEFT JOIN employe AS superieur ON employe.ID_employe = superieur.ID " + 
+	String^ MapEmploye::SELECT(void) {
+		return	"SELECT " +
+			"CONCAT(employe.prenom, ' ', employe.nom) AS employe, CONCAT(superieur.prenom, ' ', superieur.nom) AS superieur, date.date AS embauche, CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero, ' ', adresse.typeDeVoie, ' ', adresse.nomDeVoie, ' ', adresse.codePostal, ' ', adresse.nomDeCommune) AS domicile " +
+			"FROM employe LEFT JOIN employe AS superieur ON employe.ID_employe = superieur.ID " +
 			"LEFT JOIN adresse ON employe.ID_adresse = adresse.ID " +
 			"LEFT JOIN date ON employe.ID_date = date.ID";
-}
+	}
 
-String^ MapEmploye::INSERT(void) {
-	return	"BEGIN TRANSACTION; DECLARE @idSuperieur INT; DECLARE @idDate INT; DECLARE @idAdresse INT;" +
+	String^ MapEmploye::INSERT(void) {
+		return	"BEGIN TRANSACTION; DECLARE @idSuperieur INT; DECLARE @idDate INT; DECLARE @idAdresse INT;" +
 			"SET @idSuperieur = (SELECT employe.ID FROM employe WHERE employe.nom = '" + this->get_nomSuperieur() + "' AND employe.prenom = '" + this->get_prenomSuperieur() + "');" +
 			"IF '" + this->get_dateEmbauche() + "' NOT IN (SELECT date.date FROM date) BEGIN" +
 			"	INSERT INTO date (date.date) VALUES('" + this->get_dateEmbauche() + "');\nEND\n" +
@@ -39,101 +40,107 @@ String^ MapEmploye::INSERT(void) {
 			"IF CONCAT('" + this->get_nom() + "', '" + this->get_prenom() + "') NOT IN (SELECT CONCAT(employe.nom, employe.prenom) FROM employe) BEGIN" +
 			"	INSERT INTO employe (employe.nom, employe.prenom, employe.ID_employe, employe.ID_adresse, employe.ID_date) VALUES('" + this->get_nom() + "', '" + this->get_prenom() + "', @idSuperieur, @idAdresse, @idDate);\nEND\n" +
 			"COMMIT";
-}
+	}
 
-String^ MapEmploye::DELETE(void) {
-	return	"BEGIN TRANSACTION; DECLARE @idEmploye INT;" +
+	String^ MapEmploye::DELETE(void) {
+		return	"BEGIN TRANSACTION; DECLARE @idEmploye INT;" +
 			"SET @idEmploye = (SELECT ID FROM employe WHERE nom = '" + this->get_nom() + "' AND prenom = '" + this->get_prenom() + "');" +
 			"DELETE FROM employe WHERE ID = @idEmploye;" +
 			"DELETE FROM adresse WHERE ID NOT IN (SELECT ID_adresse FROM employe);" +
 			"DELETE FROM date WHERE ID NOT IN (SELECT ID_date FROM employe);" +
 			"COMMIT";
-}
-
-String^ MapEmploye::UPDATE(MapEmploye^ employe) {
-	return "";
-}
-
-void MapEmploye::set_ID(int ID) {
-	if (ID > 0) {
-		this->_ID = ID;
-	} else {
-		throw ("Un ID ne peut pas être négatif !");
 	}
-}
 
-void MapEmploye::set_nom(String^ nom) {
-	if (nom != "") {
-		this->_nom = nom;
-	} else {
-		throw ("Un nom ne peut pas être vide !");
+	String^ MapEmploye::UPDATE(MapEmploye^ employe) {
+		return "";
 	}
-}
 
-void MapEmploye::set_prenom(String^ prenom) {
-	if (prenom != "") {
-		this->_prenom = prenom;
-	} else {
-		throw ("Un prenom ne peut pas être vide !");
+	void MapEmploye::set_ID(int ID) {
+		if (ID > 0) {
+			this->_ID = ID;
+		}
+		else {
+			throw gcnew String("Un ID ne peut pas être négatif !");
+		}
 	}
-}
 
-void MapEmploye::set_nomSuperieur(String^ nomSuperieur) {
-	if (nomSuperieur != "") {
-		this->_nomSuperieur = nomSuperieur;
-	} else {
-		throw ("Le nom du superieur doit être spécifié !");
+	void MapEmploye::set_nom(String^ nom) {
+		if (nom != "") {
+			this->_nom = nom;
+		}
+		else {
+			throw gcnew String("Le nom de l'employé doit être spécifié !");
+		}
 	}
-}
 
-void MapEmploye::set_prenomSuperieur(String^ prenomSuperieur) {
-	if (prenomSuperieur != "") {
-		this->_prenomSuperieur = prenomSuperieur;
-	} else {
-		throw ("Le prénom du supérieur doit être spécifié !");
+	void MapEmploye::set_prenom(String^ prenom) {
+		if (prenom != "") {
+			this->_prenom = prenom;
+		}
+		else {
+			throw gcnew String("Le prénom de l'employé doit être spécifié !");
+		}
 	}
-}
 
-void MapEmploye::set_dateEmbauche(DateTime^ dateEmbauche) {
-	this->_dateEmbauche = dateEmbauche;
-}
+	void MapEmploye::set_nomSuperieur(String^ nomSuperieur) {
+		if (nomSuperieur != "") {
+			this->_nomSuperieur = nomSuperieur;
+		}
+		else {
+			throw gcnew String("Le nom du superieur doit être spécifié !");
+		}
+	}
 
-void MapEmploye::set_adresseDomicile(String^ numeroDeVoie, String^ typeDeVoie, String^ nomDeVoie, String^ codePostal, String^ nomDeCommune) {
-	this->set_adresseDomicile(gcnew Adresse(numeroDeVoie, "", typeDeVoie, nomDeVoie, codePostal, nomDeCommune));
-}
+	void MapEmploye::set_prenomSuperieur(String^ prenomSuperieur) {
+		if (prenomSuperieur != "") {
+			this->_prenomSuperieur = prenomSuperieur;
+		}
+		else {
+			throw gcnew String("Le prénom du supérieur doit être spécifié !");
+		}
+	}
 
-void MapEmploye::set_adresseDomicile(String^ numeroDeVoie, String^ complementDeNumero, String^ typeDeVoie, String^ nomDeVoie, String^ codePostal, String^ nomDeCommune) {
-	this->set_adresseDomicile(gcnew Adresse(numeroDeVoie, complementDeNumero, typeDeVoie, nomDeVoie, codePostal, nomDeCommune));
-}
+	void MapEmploye::set_dateEmbauche(DateTime^ dateEmbauche) {
+		this->_dateEmbauche = dateEmbauche;
+	}
 
-void MapEmploye::set_adresseDomicile(Adresse^ adresseDomicile) {
-	this->_adresseDomicile = adresseDomicile;
-}
+	void MapEmploye::set_adresseDomicile(String^ numeroDeVoie, String^ typeDeVoie, String^ nomDeVoie, String^ codePostal, String^ nomDeCommune) {
+		this->set_adresseDomicile(gcnew Adresse(numeroDeVoie, "", typeDeVoie, nomDeVoie, codePostal, nomDeCommune));
+	}
 
-int^ MapEmploye::get_ID(void) {
-	return this->_ID;
-}
+	void MapEmploye::set_adresseDomicile(String^ numeroDeVoie, String^ complementDeNumero, String^ typeDeVoie, String^ nomDeVoie, String^ codePostal, String^ nomDeCommune) {
+		this->set_adresseDomicile(gcnew Adresse(numeroDeVoie, complementDeNumero, typeDeVoie, nomDeVoie, codePostal, nomDeCommune));
+	}
 
-String^ MapEmploye::get_nom(void) {
-	return this->_nom;
-}
+	void MapEmploye::set_adresseDomicile(Adresse^ adresseDomicile) {
+		this->_adresseDomicile = adresseDomicile;
+	}
 
-String^ MapEmploye::get_prenom(void) {
-	return this->_prenom;
-}
+	int^ MapEmploye::get_ID(void) {
+		return this->_ID;
+	}
 
-String^ MapEmploye::get_nomSuperieur(void) {
-	return this->_nomSuperieur;
-}
+	String^ MapEmploye::get_nom(void) {
+		return this->_nom;
+	}
 
-String^ MapEmploye::get_prenomSuperieur(void) {
-	return this->_prenomSuperieur;
-}
+	String^ MapEmploye::get_prenom(void) {
+		return this->_prenom;
+	}
 
-DateTime^ MapEmploye::get_dateEmbauche(void) {
-	return this->_dateEmbauche;
-}
+	String^ MapEmploye::get_nomSuperieur(void) {
+		return this->_nomSuperieur;
+	}
 
-Adresse^ MapEmploye::get_adresseDomicile(void) {
-	return this->_adresseDomicile;
+	String^ MapEmploye::get_prenomSuperieur(void) {
+		return this->_prenomSuperieur;
+	}
+
+	DateTime^ MapEmploye::get_dateEmbauche(void) {
+		return this->_dateEmbauche;
+	}
+
+	Adresse^ MapEmploye::get_adresseDomicile(void) {
+		return this->_adresseDomicile;
+	}
 }

@@ -28,10 +28,18 @@ Adresse::Adresse(Adresse^ adresse) {
 }
 
 void Adresse::set_numeroDeVoie(String^ numeroDeVoie) {
-	if (Convert::ToInt32(numeroDeVoie) > 0) {
-		this->_numeroDeVoie = numeroDeVoie;
-	} else {
-		throw ("Un numéro de voie ne peut pas être en dessous de 1 !");
+	if (numeroDeVoie == "") {
+		throw gcnew String("Le numéro de voie doit être rempli !");
+	}
+	try {
+		if (Convert::ToInt32(numeroDeVoie) > 0) {
+			this->_numeroDeVoie = numeroDeVoie;
+		} else {
+			throw gcnew String("Un numéro de voie ne peut pas être en dessous de 1 !");
+		}
+	}
+	catch (System::FormatException^) {
+		throw gcnew String("Un numéro de voie doit être numérique !");
 	}
 }
 
@@ -43,7 +51,7 @@ void Adresse::set_typeDeVoie(String^ typeDeVoie) {
 	if (typeDeVoie != "") {
 		this->_typeDeVoie = typeDeVoie;
 	} else {
-		throw ("Il doit y avoir un type de voie !");
+		throw gcnew String("Il doit y avoir un type de voie !");
 	}
 }
 
@@ -51,7 +59,7 @@ void Adresse::set_nomDeVoie(String^ nomDeVoie) {
 	if (nomDeVoie != "") {
 		this->_nomDeVoie = nomDeVoie;
 	} else {
-		throw ("Il doit y avoir un nom de voie !");
+		throw gcnew String("Il doit y avoir un nom de voie !");
 	}
 }
 
@@ -60,10 +68,10 @@ void Adresse::set_codePostal(String^ codePostal) {
 		if ((codePostal->Length).CompareTo(5) == 0) {
 			this->_codePostal = codePostal;
 		} else {
-			throw ("Un code postal doit comporter 5 chiffres !");
+			throw gcnew String("Un code postal doit comporter 5 chiffres !");
 		}
 	} else {
-		throw ("Un code postal ne peut pas être alpahnumérique, vide ou négatif !");
+		throw gcnew String("Un code postal ne peut pas être alpahnumérique, vide ou négatif !");
 	}
 }
 
@@ -71,7 +79,7 @@ void Adresse::set_nomDeCommune(String^ nomDeCommune) {
 	if (nomDeCommune != "") {
 		this->_nomDeCommune = nomDeCommune;
 	} else {
-		throw ("Un nom de commune ne peut pas être vide !");
+		throw gcnew String("Un nom de commune ne peut pas être vide !");
 	}
 }
 

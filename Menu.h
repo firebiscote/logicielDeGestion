@@ -4,6 +4,18 @@
 
 namespace logicielDeGestion {
 
+	#define checkErreur catch (String^ e) {\
+							this->errorProviderAjouter->SetError(this->bAjouter, e);\
+						}\
+						catch (bool^ e) {\
+							if (e) {\
+								this->tBoxReponse->Text = "opération réussie !";\
+							}\
+							else {\
+								this->tBoxReponse->Text = "opération échouée !";\
+							}\
+						}
+
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -36,7 +48,10 @@ namespace logicielDeGestion {
 	private: System::Windows::Forms::TextBox^ tCodePostal;
 	private: System::Windows::Forms::TextBox^ tNomDeCommune;
 	private: System::Windows::Forms::Button^ bSupprimer;
-	private: System::ComponentModel::Container^ components;
+	private: System::ComponentModel::IContainer^ components;
+	private: System::Windows::Forms::ErrorProvider^ errorProviderAjouter;
+	private: System::Windows::Forms::RichTextBox^ tBoxReponse;
+
 	private: Services::GestionEmploye^ gestionEmploye;
 
 #pragma region Windows Form Designer generated code
@@ -46,6 +61,7 @@ namespace logicielDeGestion {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			this->bAjouter = (gcnew System::Windows::Forms::Button());
 			this->dataGrid = (gcnew System::Windows::Forms::DataGridView());
 			this->tEmployeNom = (gcnew System::Windows::Forms::TextBox());
@@ -59,7 +75,10 @@ namespace logicielDeGestion {
 			this->tCodePostal = (gcnew System::Windows::Forms::TextBox());
 			this->tNomDeCommune = (gcnew System::Windows::Forms::TextBox());
 			this->bSupprimer = (gcnew System::Windows::Forms::Button());
+			this->errorProviderAjouter = (gcnew System::Windows::Forms::ErrorProvider(this->components));
+			this->tBoxReponse = (gcnew System::Windows::Forms::RichTextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGrid))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->errorProviderAjouter))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// bAjouter
@@ -84,31 +103,31 @@ namespace logicielDeGestion {
 			// 
 			// tEmployeNom
 			// 
-			this->tEmployeNom->Location = System::Drawing::Point(13, 13);
+			this->tEmployeNom->Location = System::Drawing::Point(119, 14);
 			this->tEmployeNom->Name = L"tEmployeNom";
 			this->tEmployeNom->Size = System::Drawing::Size(100, 22);
-			this->tEmployeNom->TabIndex = 2;
+			this->tEmployeNom->TabIndex = 3;
 			// 
 			// tEmployePrenom
 			// 
-			this->tEmployePrenom->Location = System::Drawing::Point(119, 14);
+			this->tEmployePrenom->Location = System::Drawing::Point(13, 14);
 			this->tEmployePrenom->Name = L"tEmployePrenom";
 			this->tEmployePrenom->Size = System::Drawing::Size(100, 22);
-			this->tEmployePrenom->TabIndex = 3;
+			this->tEmployePrenom->TabIndex = 2;
 			// 
 			// tSuperieurNom
 			// 
-			this->tSuperieurNom->Location = System::Drawing::Point(13, 42);
+			this->tSuperieurNom->Location = System::Drawing::Point(119, 42);
 			this->tSuperieurNom->Name = L"tSuperieurNom";
 			this->tSuperieurNom->Size = System::Drawing::Size(100, 22);
-			this->tSuperieurNom->TabIndex = 4;
+			this->tSuperieurNom->TabIndex = 5;
 			// 
 			// tSuperieurPrenom
 			// 
-			this->tSuperieurPrenom->Location = System::Drawing::Point(120, 42);
+			this->tSuperieurPrenom->Location = System::Drawing::Point(13, 42);
 			this->tSuperieurPrenom->Name = L"tSuperieurPrenom";
 			this->tSuperieurPrenom->Size = System::Drawing::Size(100, 22);
-			this->tSuperieurPrenom->TabIndex = 5;
+			this->tSuperieurPrenom->TabIndex = 4;
 			// 
 			// tNumeroDeVoie
 			// 
@@ -162,11 +181,24 @@ namespace logicielDeGestion {
 			this->bSupprimer->UseVisualStyleBackColor = true;
 			this->bSupprimer->Click += gcnew System::EventHandler(this, &Menu::bSupprimer_Click);
 			// 
+			// errorProviderAjouter
+			// 
+			this->errorProviderAjouter->ContainerControl = this;
+			// 
+			// tBoxReponse
+			// 
+			this->tBoxReponse->Location = System::Drawing::Point(13, 364);
+			this->tBoxReponse->Name = L"tBoxReponse";
+			this->tBoxReponse->Size = System::Drawing::Size(298, 67);
+			this->tBoxReponse->TabIndex = 14;
+			this->tBoxReponse->Text = L"";
+			// 
 			// Menu
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(760, 443);
+			this->Controls->Add(this->tBoxReponse);
 			this->Controls->Add(this->bSupprimer);
 			this->Controls->Add(this->tNomDeCommune);
 			this->Controls->Add(this->tCodePostal);
@@ -184,6 +216,7 @@ namespace logicielDeGestion {
 			this->Text = L"Menu";
 			this->Load += gcnew System::EventHandler(this, &Menu::Menu_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGrid))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->errorProviderAjouter))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -199,13 +232,26 @@ namespace logicielDeGestion {
 		this->dataGrid->DataMember = "Employe";
 	}
 
+	private: void resetForm(void) {
+		this->errorProviderAjouter->Clear();
+		this->tBoxReponse->Text = "";
+	}
+
 	private: System::Void bAjouter_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->gestionEmploye->ajouter(this->tEmployeNom->Text, this->tEmployePrenom->Text, this->tSuperieurNom->Text, this->tSuperieurPrenom->Text, DateTime::Today, gcnew Adresse(this->tNumeroDeVoie->Text, this->tComplementDeNumero->Text, this->tTypeDeVoie->Text, this->tNomDeVoie->Text, this->tCodePostal->Text, this->tNomDeCommune->Text));
+		this->resetForm();
+		try {
+			this->gestionEmploye->ajouter(this->tEmployeNom->Text->Trim(), this->tEmployePrenom->Text->Trim(), this->tSuperieurNom->Text->Trim(), this->tSuperieurPrenom->Text->Trim(), DateTime::Today, gcnew Adresse(this->tNumeroDeVoie->Text->Trim(), this->tComplementDeNumero->Text->Trim(), this->tTypeDeVoie->Text->Trim(), this->tNomDeVoie->Text->Trim(), this->tCodePostal->Text->Trim(), this->tNomDeCommune->Text->Trim()));
+		}
+		checkErreur
 		this->loadDataGridView();
 	}
 
 	private: System::Void bSupprimer_Click(System::Object^ sender, System::EventArgs^ e) {
-		this->gestionEmploye->supprimer(this->tEmployeNom->Text, this->tEmployePrenom->Text);
+		this->resetForm();
+		try {
+			this->gestionEmploye->supprimer(this->tEmployeNom->Text, this->tEmployePrenom->Text);
+		}
+		checkErreur
 		this->loadDataGridView();
 	}
 };
