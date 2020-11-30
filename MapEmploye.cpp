@@ -21,23 +21,23 @@ MapEmploye::MapEmploye(String^ nom, String^ prenom, String^ nomSuperieur, String
 
 String^ MapEmploye::SELECT(void) {
 	return	"SELECT " + 
-			"CONCAT(employe.prenom, employe.nom) AS employe, CONCAT(superieur.prenom, superieur.nom) AS superieur, date.date AS embauche, CONCAT(adresse.numeroDeVoie, adresse.complementDeNumero, adresse.typeDeVoie, adresse.nomDeVoie, adresse.codePostal, adresse.nomDeCommune) AS domicile " + 
+			"CONCAT(employe.prenom, ' ', employe.nom) AS employe, CONCAT(superieur.prenom, ' ', superieur.nom) AS superieur, date.date AS embauche, CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero, ' ', adresse.typeDeVoie, ' ', adresse.nomDeVoie, ' ', adresse.codePostal, ' ', adresse.nomDeCommune) AS domicile " + 
 			"FROM employe LEFT JOIN employe AS superieur ON employe.ID_employe = superieur.ID " + 
 			"LEFT JOIN adresse ON employe.ID_adresse = adresse.ID " +
 			"LEFT JOIN date ON employe.ID_date = date.ID";
 }
 
 String^ MapEmploye::INSERT(void) {
-	return	"BEGIN TRANSACTION; DECLARE @idSuperieur INT; DELCARE @idDate INT; DECLARE @idAdresse INT;" +
-			"SET @idSuperieur = (SELECT ID FROM employe WHERE nom = '" + this->get_nomSuperieur() + "' AND prenom = '" + this->get_prenomSuperieur() + "');" +
-			"IF '" + this->get_dateEmbauche() + "' NOT IN (SELECT date FROM date) BEGIN" +
-			"	INSERT INTO date (date) VALUES('" + this->get_dateEmbauche() + "');\nEND\n" +
-			"SET @idDate = (SELECT ID FROM date WHERE date = '" + this->get_dateEmbauche() + "');" +
-			"IF CONCAT('" + this->get_adresseDomicile()->get_numeroDeVoie() + "', '" + this->get_adresseDomicile()->get_complementDeNumero() + "', '" + this->get_adresseDomicile()->get_typeDeVoie() + "', '" + this->get_adresseDomicile()->get_nomDeVoie() + "', '" + this->get_adresseDomicile()->get_codePostal() + "', '" + this->get_adresseDomicile()->get_nomDeCommune() + "') NOT IN (SELECT CONCAT(numeroDeVoie, complementDeNumero, typeDeVoie, nomDeVoie, codePostal, nomDeCommune) FROM adresse) BEGIN" +
-			"	INSERT INTO adresse (numeroDeVoie, complementDeNumero, typeDeVoie, nomDeVoie, codePostal, nomDeCommune) VALUES('" + this->get_adresseDomicile()->get_numeroDeVoie() + "', '" + this->get_adresseDomicile()->get_complementDeNumero() + "', '" + this->get_adresseDomicile()->get_typeDeVoie() + "', '" + this->get_adresseDomicile()->get_nomDeVoie() + "', '" + this->get_adresseDomicile()->get_codePostal() + "', '" + this->get_adresseDomicile()->get_nomDeCommune() + "');\nEND\n" +
-			"SET @idAdresse = (SELECT ID FROM adresse WHERE numeroDeVoie = '" + this->get_adresseDomicile()->get_numeroDeVoie() + "' AND complementDeNumero = '" + this->get_adresseDomicile()->get_complementDeNumero() + "' AND typeDeVoie = '" + this->get_adresseDomicile()->get_typeDeVoie() + "' AND nomDeVoie = '" + this->get_adresseDomicile()->get_nomDeVoie() + "' and codePostal = '" + this->get_adresseDomicile()->get_codePostal() + "' AND nomDeCommune = '" + this->get_adresseDomicile()->get_nomDeCommune() + "');" +
-			"IF CONCAT('" + this->get_nom() + "', '" + this->get_prenom() + ") NOT IN (SELECT CONCAT(nom, prenom) FROM employe) BEGIN" +
-			"	INSERT INTO employe (nom, prenom, ID_employe, ID_adresse, ID_date) VALUES('" + this->get_nom() + "', '" + this->get_prenom() + "', @idSuperieur, @idAdresse, @idDate);\nEND\n" +
+	return	"BEGIN TRANSACTION; DECLARE @idSuperieur INT; DECLARE @idDate INT; DECLARE @idAdresse INT;" +
+			"SET @idSuperieur = (SELECT employe.ID FROM employe WHERE employe.nom = '" + this->get_nomSuperieur() + "' AND employe.prenom = '" + this->get_prenomSuperieur() + "');" +
+			"IF '" + this->get_dateEmbauche() + "' NOT IN (SELECT date.date FROM date) BEGIN" +
+			"	INSERT INTO date (date.date) VALUES('" + this->get_dateEmbauche() + "');\nEND\n" +
+			"SET @idDate = (SELECT date.ID FROM date WHERE date.date = '" + this->get_dateEmbauche() + "');" +
+			"IF CONCAT('" + this->get_adresseDomicile()->get_numeroDeVoie() + "', '" + this->get_adresseDomicile()->get_complementDeNumero() + "', '" + this->get_adresseDomicile()->get_typeDeVoie() + "', '" + this->get_adresseDomicile()->get_nomDeVoie() + "', '" + this->get_adresseDomicile()->get_codePostal() + "', '" + this->get_adresseDomicile()->get_nomDeCommune() + "') NOT IN (SELECT CONCAT(adresse.numeroDeVoie, adresse.complementDeNumero, adresse.typeDeVoie, adresse.nomDeVoie, adresse.codePostal, adresse.nomDeCommune) FROM adresse) BEGIN" +
+			"	INSERT INTO adresse (adresse.numeroDeVoie, adresse.complementDeNumero, adresse.typeDeVoie, adresse.nomDeVoie, adresse.codePostal, adresse.nomDeCommune) VALUES('" + this->get_adresseDomicile()->get_numeroDeVoie() + "', '" + this->get_adresseDomicile()->get_complementDeNumero() + "', '" + this->get_adresseDomicile()->get_typeDeVoie() + "', '" + this->get_adresseDomicile()->get_nomDeVoie() + "', '" + this->get_adresseDomicile()->get_codePostal() + "', '" + this->get_adresseDomicile()->get_nomDeCommune() + "');\nEND\n" +
+			"SET @idAdresse = (SELECT adresse.ID FROM adresse WHERE adresse.numeroDeVoie = '" + this->get_adresseDomicile()->get_numeroDeVoie() + "' AND adresse.complementDeNumero = '" + this->get_adresseDomicile()->get_complementDeNumero() + "' AND adresse.typeDeVoie = '" + this->get_adresseDomicile()->get_typeDeVoie() + "' AND adresse.nomDeVoie = '" + this->get_adresseDomicile()->get_nomDeVoie() + "' and adresse.codePostal = '" + this->get_adresseDomicile()->get_codePostal() + "' AND adresse.nomDeCommune = '" + this->get_adresseDomicile()->get_nomDeCommune() + "');" +
+			"IF CONCAT('" + this->get_nom() + "', '" + this->get_prenom() + "') NOT IN (SELECT CONCAT(employe.nom, employe.prenom) FROM employe) BEGIN" +
+			"	INSERT INTO employe (employe.nom, employe.prenom, employe.ID_employe, employe.ID_adresse, employe.ID_date) VALUES('" + this->get_nom() + "', '" + this->get_prenom() + "', @idSuperieur, @idAdresse, @idDate);\nEND\n" +
 			"COMMIT";
 }
 
