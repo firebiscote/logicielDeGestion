@@ -1,11 +1,11 @@
 #include "Adresse.h"
 
 Adresse::Adresse(void) {
-	this->_numeroDeVoie = 0;
+	this->_numeroDeVoie = "";
 	this->_complementDeNumero = "";
 	this->_typeDeVoie = "";
 	this->_nomDeVoie = "";
-	this->_codePostal = 1;
+	this->_codePostal = "";
 	this->_nomDeCommune = "";
 }
 
@@ -13,7 +13,7 @@ void Adresse::set_numeroDeVoie(String^ numeroDeVoie) {
 	if (Convert::ToInt32(numeroDeVoie) > 0) {
 		this->_numeroDeVoie = numeroDeVoie;
 	} else {
-		throw ("Un numéro de voie ne peut pas être en dessous de 1 ! ");
+		throw ("Un numéro de voie ne peut pas être en dessous de 1 !");
 	}
 }
 
