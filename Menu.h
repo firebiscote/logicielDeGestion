@@ -51,7 +51,6 @@ namespace logicielDeGestion {
 	private: System::ComponentModel::IContainer^ components;
 	private: System::Windows::Forms::ErrorProvider^ errorProviderAjouter;
 	private: System::Windows::Forms::RichTextBox^ tBoxReponse;
-
 	private: Services::GestionEmploye^ gestionEmploye;
 
 #pragma region Windows Form Designer generated code

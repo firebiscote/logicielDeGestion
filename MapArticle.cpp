@@ -33,7 +33,7 @@ namespace Composants {
 		return "";
 	}
 
-	String^ MapArticle::UPDATE(void) {
+	String^ MapArticle::UPDATE(MapArticle^ article) {
 		return "";
 	}
 

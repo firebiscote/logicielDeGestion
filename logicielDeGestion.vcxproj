@@ -122,17 +122,21 @@
   <ItemGroup>
     <ClCompile Include="Adresse.cpp" />
     <ClCompile Include="CAD.cpp" />
+    <ClCompile Include="Gestion.cpp" />
     <ClCompile Include="GestionArticle.cpp" />
     <ClCompile Include="GestionEmploye.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapArticle.cpp" />
     <ClCompile Include="MapEmploye.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adresse.h" />
     <ClInclude Include="CAD.h" />
+    <ClInclude Include="Gestion.h" />
     <ClInclude Include="GestionArticle.h" />
     <ClInclude Include="GestionEmploye.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="MapArticle.h" />
     <ClInclude Include="MapEmploye.h" />
     <ClInclude Include="pch.h" />

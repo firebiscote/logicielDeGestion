@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include "Map.h"
 
 namespace Composants {
 	ref class MapArticle {
@@ -9,7 +10,7 @@ namespace Composants {
 		String^ SELECT(void);
 		String^ INSERT(void);
 		String^ DELETE(void);
-		String^ UPDATE(void);
+		String^ UPDATE(MapArticle^);
 		void set_ID(int);
 		void set_reference(String^);
 		void set_designation(String^);

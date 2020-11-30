@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include "Map.h"
 #include "Adresse.h"
 
 namespace Composants {

@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include "Gestion.h"
 #include "CAD.h"
 #include "MapEmploye.h"
 
