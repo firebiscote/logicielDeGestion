@@ -3,7 +3,9 @@
 
 ref class Adresse {
 public:
-	Adresse();
+	Adresse(void);
+	Adresse(String^, String^, String^, String^, String^, String^);
+	Adresse(Adresse^);
 	void set_numeroDeVoie(String^);
 	void set_complementDeNumero(String^);
 	void set_typeDeVoie(String^);

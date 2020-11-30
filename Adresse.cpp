@@ -9,6 +9,24 @@ Adresse::Adresse(void) {
 	this->_nomDeCommune = "";
 }
 
+Adresse::Adresse(String^ numeroDeVoie, String^ complementDeNumero, String^ typeDeVoie, String^ nomDeVoie, String^ codePostal, String^ nomDeCommune) {
+	this->set_numeroDeVoie(numeroDeVoie);
+	this->set_complementDeNumero(complementDeNumero);
+	this->set_typeDeVoie(typeDeVoie);
+	this->set_nomDeVoie(nomDeVoie);
+	this->set_codePostal(codePostal);
+	this->set_nomDeCommune(nomDeCommune);
+}
+
+Adresse::Adresse(Adresse^ adresse) {
+	this->set_numeroDeVoie(adresse->get_numeroDeVoie());
+	this->set_complementDeNumero(adresse->get_complementDeNumero());
+	this->set_typeDeVoie(adresse->get_typeDeVoie());
+	this->set_nomDeVoie(adresse->get_nomDeVoie());
+	this->set_codePostal(adresse->get_codePostal());
+	this->set_nomDeCommune(adresse->get_nomDeCommune());
+}
+
 void Adresse::set_numeroDeVoie(String^ numeroDeVoie) {
 	if (Convert::ToInt32(numeroDeVoie) > 0) {
 		this->_numeroDeVoie = numeroDeVoie;
