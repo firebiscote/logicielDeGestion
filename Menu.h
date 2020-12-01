@@ -60,6 +60,19 @@ namespace logicielDeGestion {
 		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
 		/// le contenu de cette méthode avec l'éditeur de code.
 		/// </summary>
+		void InitializeFenetreEmploye(void) {
+			this->Controls->Clear();
+			this->SuspendLayout();
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(760, 443);
+			
+			// utiliser les this->Controls->Add()
+
+			this->ResumeLayout(false);
+			this->PerformLayout();
+		}
+
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());

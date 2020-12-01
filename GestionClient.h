@@ -9,7 +9,7 @@ namespace Services {
 	public:
 		GestionClient(void);
 		GestionClient(String^, String^);
-		GestionClient(String^, String^, String^);
+		GestionClient(String^, String^, DateTime^);
 		virtual DataSet^ liste(void) override;
 		virtual void ajouter(void) override;
 		virtual void supprimer(void) override;

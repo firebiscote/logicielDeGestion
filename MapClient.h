@@ -12,6 +12,9 @@ namespace Composants {
 		virtual String^ DELETE(void) override;
 		virtual String^ UPDATE(int^) override;
 	private:
-
+		int^ _ID;
+		String^ _nom;
+		String^ _prenom;
+		DateTime^ _dateNaissance;
 	};
 }
