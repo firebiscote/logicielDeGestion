@@ -19,8 +19,6 @@ namespace Composants {
 		void set_nomSuperieur(String^);
 		void set_prenomSuperieur(String^);
 		void set_dateEmbauche(DateTime^);
-		void set_adresseDomicile(String^, String^, String^, String^, String^);
-		void set_adresseDomicile(String^, String^, String^, String^, String^, String^);
 		void set_adresseDomicile(Adresse^);
 		int get_ID(void);
 		String^ get_nom(void);

@@ -7,8 +7,10 @@ namespace Composants {
 		this->_nomClient = "";
 	}
 
-	MapCommande::MapCommande(String^ reference) {
+	MapCommande::MapCommande(String^ reference, String^ nomClient, String^ prenomClient) {
 		this->set_reference(reference);
+		this->set_nomClient(nomClient);
+		this->_prenomClient(prenomClient);
 	}
 
 	MapCommande::MapCommande(String^ reference, String^ nomClient) {

@@ -8,7 +8,7 @@ namespace Services {
 	ref class GestionArticle : public Gestion {
 	public:
 		GestionArticle(void);
-		GestionArticle(String^, String^);
+		GestionArticle(String^);
 		GestionArticle(String^, String^, String^, String^, String^, String^);
 		virtual DataSet^ liste(int) override;
 		virtual void ajouter(void) override;

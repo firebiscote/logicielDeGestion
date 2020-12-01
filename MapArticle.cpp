@@ -11,10 +11,9 @@ namespace Composants {
 		this->_tauxDeTVA = "";
 	}
 
-	MapArticle::MapArticle(String^ reference, String^ designation) {
+	MapArticle::MapArticle(String^ reference) {
 		this->_ID = -1;
 		this->set_reference(reference);
-		this->set_designation(designation);
 	}
 
 	MapArticle::MapArticle(String^ reference, String^ designation, String^ stock, String^ seuilDeReapprovisionnement, String^ prixHT, String^ tauxDeTVA) {
@@ -28,15 +27,20 @@ namespace Composants {
 	}
 
 	String^ MapArticle::SELECT(int choix) {
-		return "";
+		return "SELECT * FROM article";
 	}
 
 	String^ MapArticle::INSERT(void) {
-		return "";
+		return "BEGIN TRANSACTION;" + 
+			"IF '" + this->get_reference() + "' NOT IN (SELECT article.reference FROM article) BEGIN" +
+			"	INSERT INTO article (reference, designation, stock, seuilDeReapprovisionnement, prixHT, tauxDeTVA) VALUES ('" + this->get_reference() + "', '" + this->get_designation() + "', '" + this->get_stock() + "', '" + this->get_seuilDeReapprovisionnement() + "', '" + this->get_prixHT() + "', '" + this->get_tauxDeTVA() + "');\nEND\n" + 
+			"COMMIT";
 	}
 
 	String^ MapArticle::DELETE(void) {
-		return "";
+		return "BEGIN TRANSACTION;" + 
+			"DELETE FROM article WHERE article.reference = '" + this->get_reference() + "';" +
+			"COMMIT";
 	}
 
 	String^ MapArticle::UPDATE(int^ article) {

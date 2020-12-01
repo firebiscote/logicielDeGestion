@@ -23,13 +23,13 @@ namespace Composants {
 	String^ MapClient::SELECT(int choix) {
 		switch (choix) {
 		case 0:
-			return "SELECT client.ID, CONCAT(client.nom, ' ', client.prenom) AS client, date.date AS naissance FROM client LEFT JOIN date ON client.ID_date = date.ID";
+			return "SELECT client.ID, CONCAT(client.nom, ' ', client.prenom) AS client, date.date AS naissance FROM client LEFT JOIN daterClient ON client.ID = daterClient.ID_client LEFT JOIN date ON daterClient.ID_date = date.ID";
 			break;
 		case 1:
-			return "SELECT client.ID, CONCAT(client.nom, ' ', client.prenom) AS client, date.date AS naissance FROM client LEFT JOIN date ON client.ID_date = date.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "')";
+			return "SELECT client.ID, CONCAT(client.nom, ' ', client.prenom) AS client, date.date AS naissance FROM client LEFT JOIN daterClient ON client.ID = daterClient.ID_client LEFT JOIN date ON daterClient.ID_date = date.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "'";
 			break;
 		case 2:
-			return "SELECT CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero) AS numero, CONCAT(adresse.typeDeVoie, ' ', adresse.nomDeVoie) AS voie, CONCAT(adresse.codePostal, ' ', adresse.nomDeCommune) AS ville FROM client LEFT JOIN localiserClient ON client.ID = localiserClient.ID_client LEFT JOIN adresse ON localiserClient.ID_adresse = adresse.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "')";
+			return "SELECT CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero) AS numero, CONCAT(adresse.typeDeVoie, ' ', adresse.nomDeVoie) AS voie, CONCAT(adresse.codePostal, ' ', adresse.nomDeCommune) AS ville FROM client LEFT JOIN localiserClient ON client.ID = localiserClient.ID_client LEFT JOIN adresse ON localiserClient.ID_adresse = adresse.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "'";
 			break;
 		}
 		
@@ -56,11 +56,11 @@ namespace Composants {
 	String^ MapClient::DELETE(void) {
 		return	"BEGIN TRANSACTION; DECLARE @idClient INT;" +
 			"SET @idClient = (SELECT ID FROM client WHERE nom = '" + this->get_nom() + "' AND prenom = '" + this->get_prenom() + "');" +
-			"DELETE FROM client WHERE ID = @idClient;" +
 			"DELETE FROM localiserClient WHERE ID_client = @idClient;" +
-			"DELETE FROM adresse WHERE ID NOT IN (SELECT ID_adresse FROM localiserClient);" +
+			"DELETE FROM adresse WHERE ID NOT IN (SELECT ID_adresse FROM localiserClient) AND ID NOT IN (SELECT employe.ID_adresse FROM employe);" +
 			"DELETE FROM daterClient WHERE ID_client = @idClient;" +
-			"DELETE FROM date WHERE ID NOT IN (SELECT ID_date FROM daterClient);" +
+			"DELETE FROM date WHERE ID NOT IN (SELECT ID_date FROM daterClient) AND ID NOT IN (SELECT employe.ID_date FROM employe);" +
+			"DELETE FROM client WHERE ID = @idClient;" +
 			"COMMIT";
 	}
 
@@ -97,14 +97,6 @@ namespace Composants {
 
 	void MapClient::set_dateNaissance(DateTime^ dateNaissance) {
 		this->_dateNaissance = dateNaissance;
-	}
-
-	void MapClient::set_adresse(String^ numeroDeVoie, String^ typeDeVoie, String^ nomDeVoie, String^ codePostal, String^ nomDeCommune) {
-		this->set_adresse(gcnew Adresse(numeroDeVoie, "", typeDeVoie, nomDeVoie, codePostal, nomDeCommune));
-	}
-
-	void MapClient::set_adresse(String^ numeroDeVoie, String^ complementDeNumero, String^ typeDeVoie, String^ nomDeVoie, String^ codePostal, String^ nomDeCommune) {
-		this->set_adresse(gcnew Adresse(numeroDeVoie, complementDeNumero, typeDeVoie, nomDeVoie, codePostal, nomDeCommune));
 	}
 
 	void MapClient::set_adresse(Adresse^ adresse) {

@@ -6,7 +6,7 @@ namespace Composants {
 	ref class MapArticle : public Map {
 	public:
 		MapArticle(void);
-		MapArticle(String^, String^);
+		MapArticle(String^);
 		MapArticle(String^, String^, String^, String^, String^, String^);
 		virtual String^ SELECT(int) override;
 		virtual String^ INSERT(void) override;

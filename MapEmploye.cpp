@@ -109,14 +109,6 @@ namespace Composants {
 		this->_dateEmbauche = dateEmbauche;
 	}
 
-	void MapEmploye::set_adresseDomicile(String^ numeroDeVoie, String^ typeDeVoie, String^ nomDeVoie, String^ codePostal, String^ nomDeCommune) {
-		this->set_adresseDomicile(gcnew Adresse(numeroDeVoie, "", typeDeVoie, nomDeVoie, codePostal, nomDeCommune));
-	}
-
-	void MapEmploye::set_adresseDomicile(String^ numeroDeVoie, String^ complementDeNumero, String^ typeDeVoie, String^ nomDeVoie, String^ codePostal, String^ nomDeCommune) {
-		this->set_adresseDomicile(gcnew Adresse(numeroDeVoie, complementDeNumero, typeDeVoie, nomDeVoie, codePostal, nomDeCommune));
-	}
-
 	void MapEmploye::set_adresseDomicile(Adresse^ adresseDomicile) {
 		this->_adresseDomicile = adresseDomicile;
 	}

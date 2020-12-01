@@ -6,9 +6,9 @@ namespace Services {
 		this->_article = gcnew Composants::MapArticle();
 	}
 
-	GestionArticle::GestionArticle(String^ reference, String^ designation) {
+	GestionArticle::GestionArticle(String^ reference) {
 		this->initGestion();
-		this->_article = gcnew Composants::MapArticle(reference, designation);
+		this->_article = gcnew Composants::MapArticle(reference);
 	}
 
 	GestionArticle::GestionArticle(String^ reference, String^ designation, String^ stock, String^ seuilDeReapprovisionnement, String^ prixHT, String^ tauxDeTVA) {
@@ -36,11 +36,11 @@ namespace Services {
 	}
 
 	void GestionArticle::supprimer(void) {
-		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + this->_article->get_reference() + "' AND Article.designation = '" + this->_article->get_designation() + "'") == 0) {
+		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + this->_article->get_reference() + "'") == 0) {
 			throw gcnew String("Cet article n\'existe pas !");
 		}
 		this->_cad->actionRows(this->_article->DELETE());
-		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + this->_article->get_reference() + "' AND Article.designation = '" + this->_article->get_designation() + "'") == 0) {
+		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + this->_article->get_reference() + "'") == 0) {
 			throw gcnew bool(1);
 		}
 		else {

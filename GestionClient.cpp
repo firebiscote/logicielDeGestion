@@ -11,9 +11,9 @@ namespace Services {
 		this->_client = gcnew Composants::MapClient(nom, prenom);
 	}
 
-	GestionClient::GestionClient(String^ nom, String^ prenom, DateTime^ dateNaissance) {
+	GestionClient::GestionClient(String^ nom, String^ prenom, DateTime^ dateNaissance, Adresse^ adresse) {
 		this->initGestion();
-		this->_client = gcnew Composants::MapClient(nom, prenom, dateNaissance);
+		this->_client = gcnew Composants::MapClient(nom, prenom, dateNaissance, adresse);
 	}
 
 	DataSet^ GestionClient::liste(int choix) {

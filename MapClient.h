@@ -17,8 +17,6 @@ namespace Composants {
 		void set_nom(String^);
 		void set_prenom(String^);
 		void set_dateNaissance(DateTime^);
-		void set_adresse(String^, String^, String^, String^, String^);
-		void set_adresse(String^, String^, String^, String^, String^, String^);
 		void set_adresse(Adresse^);
 		int get_ID(void);
 		String^ get_nom(void);
