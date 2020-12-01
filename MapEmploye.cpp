@@ -25,9 +25,9 @@ namespace Composants {
 		this->set_adresseDomicile(adresseDomicile);
 	}
 
-	String^ MapEmploye::SELECT(void) {
+	String^ MapEmploye::SELECT(int choix) {
 		return	"SELECT " +
-			"CONCAT(employe.prenom, ' ', employe.nom) AS employe, CONCAT(superieur.prenom, ' ', superieur.nom) AS superieur, date.date AS embauche, CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero, ' ', adresse.typeDeVoie, ' ', adresse.nomDeVoie, ' ', adresse.codePostal, ' ', adresse.nomDeCommune) AS domicile " +
+			"CONCAT(employe.nom, ' ', employe.prenom) AS employe, CONCAT(superieur.nom, ' ', superieur.prenom) AS superieur, date.date AS embauche, CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero) AS numero, CONCAT(adresse.typeDeVoie, ' ', adresse.nomDeVoie) AS voie, CONCAT(adresse.codePostal, ' ', adresse.nomDeCommune) AS ville " +
 			"FROM employe LEFT JOIN employe AS superieur ON employe.ID_employe = superieur.ID " +
 			"LEFT JOIN adresse ON employe.ID_adresse = adresse.ID " +
 			"LEFT JOIN date ON employe.ID_date = date.ID";

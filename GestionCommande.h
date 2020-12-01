@@ -10,7 +10,7 @@ namespace Services {
 		GestionCommande(void);
 		GestionCommande(String^);
 		GestionCommande(String^, String^);
-		virtual DataSet^ liste(void) override;
+		virtual DataSet^ liste(int) override;
 		virtual void ajouter(void) override;
 		virtual void supprimer(void) override;
 		virtual void modifier(int^) override;

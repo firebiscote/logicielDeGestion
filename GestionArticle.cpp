@@ -16,9 +16,9 @@ namespace Services {
 		this->_article = gcnew Composants::MapArticle(reference, designation, stock, seuilDeReapprovisionnement, prixHT, tauxDeTVA);
 	}
 
-	DataSet^ GestionArticle::liste(void) {
+	DataSet^ GestionArticle::liste(int choix) {
 		this->_ds = gcnew DataSet();
-		this->_ds = this->_cad->getRows(this->_article->SELECT(), "Article");
+		this->_ds = this->_cad->getRows(this->_article->SELECT(choix), "Article");
 		return this->_ds;
 	}
 

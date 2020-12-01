@@ -6,7 +6,7 @@
 namespace Services {
 	ref class Gestion {
 	public:
-		virtual DataSet^ liste(void) abstract;
+		virtual DataSet^ liste(int) abstract;
 		virtual void ajouter(void) abstract;
 		virtual void supprimer(void) abstract;
 		virtual void modifier(int^) abstract;

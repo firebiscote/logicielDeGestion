@@ -8,7 +8,7 @@ namespace Composants {
 		MapArticle(void);
 		MapArticle(String^, String^);
 		MapArticle(String^, String^, String^, String^, String^, String^);
-		virtual String^ SELECT(void) override;
+		virtual String^ SELECT(int) override;
 		virtual String^ INSERT(void) override;
 		virtual String^ DELETE(void) override;
 		virtual String^ UPDATE(int^) override;

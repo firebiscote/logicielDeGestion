@@ -16,23 +16,23 @@ namespace Services {
 		this->_commande = gcnew Composants::MapCommande(reference, nomClient);
 	}
 
-	DataSet^ GestionCommande::liste(void) {
+	DataSet^ GestionCommande::liste(int choix) {
 		this->_ds = gcnew DataSet();
-		this->_ds = this->_cad->getRows(this->_commande->SELECT(), "commande");
+		this->_ds = this->_cad->getRows(this->_commande->SELECT(choix), "commande");
 		return this->_ds;
 	}
 
 	void GestionCommande::ajouter(void) {
-		if (this->_cad->actionRowsID("SELECT * FROM commande WHERE commande.nom = '" + this->_commande->get_nom() + "' AND commande.prenom = '" + this->_commande->get_prenom() + "'") != 0) {
+		/*if (this->_cad->actionRowsID("SELECT * FROM commande WHERE commande.nom = '" + this->_commande->get_nom() + "' AND commande.prenom = '" + this->_commande->get_prenom() + "'") != 0) {
 			throw gcnew String("Cette commande existe deja !");
-		}
+		}*/
 		this->_cad->actionRows(this->_commande->INSERT());
-		if (this->_cad->actionRowsID("SELECT * FROM commande WHERE commande.nom = '" + this->_commande->get_nom() + "' AND commande.prenom = '" + this->_commande->get_prenom() + "'") != 0) {
+		/*if (this->_cad->actionRowsID("SELECT * FROM commande WHERE commande.nom = '" + this->_commande->get_nom() + "' AND commande.prenom = '" + this->_commande->get_prenom() + "'") != 0) {
 			throw gcnew bool(1);
 		}
 		else {
 			throw gcnew bool(0);
-		}
+		}*/
 	}
 
 	void GestionCommande::supprimer(void) {

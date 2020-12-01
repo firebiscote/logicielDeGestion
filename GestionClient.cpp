@@ -16,9 +16,9 @@ namespace Services {
 		this->_client = gcnew Composants::MapClient(nom, prenom, dateNaissance);
 	}
 
-	DataSet^ GestionClient::liste(void) {
+	DataSet^ GestionClient::liste(int choix) {
 		this->_ds = gcnew DataSet();
-		this->_ds = this->_cad->getRows(this->_client->SELECT(), "client");
+		this->_ds = this->_cad->getRows(this->_client->SELECT(choix), "client");
 		return this->_ds;
 	}
 

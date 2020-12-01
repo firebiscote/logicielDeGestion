@@ -9,7 +9,7 @@ namespace Composants {
 		MapEmploye(void);
 		MapEmploye(String^, String^);
 		MapEmploye(String^, String^, String^, String^, DateTime^, Adresse^);
-		virtual String^ SELECT(void) override;
+		virtual String^ SELECT(int) override;
 		virtual String^ INSERT(void) override;
 		virtual String^ DELETE(void) override;
 		virtual String^ UPDATE(int^) override;

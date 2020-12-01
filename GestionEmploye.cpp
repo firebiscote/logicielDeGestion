@@ -16,9 +16,9 @@ namespace Services {
 		this->_employe = gcnew Composants::MapEmploye(nom, prenom, nomSupperieur, prenomSupperieur, dateEmbauche, adresseDomicile);
 	}
 
-	DataSet^ GestionEmploye::liste(void) {
+	DataSet^ GestionEmploye::liste(int choix) {
 		this->_ds = gcnew DataSet();
-		this->_ds = this->_cad->getRows(this->_employe->SELECT(), "employe");
+		this->_ds = this->_cad->getRows(this->_employe->SELECT(choix), "employe");
 		return this->_ds;
 	}
 

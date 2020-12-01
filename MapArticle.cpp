@@ -27,7 +27,7 @@ namespace Composants {
 		this->set_tauxDeTVA(tauxDeTVA);
 	}
 
-	String^ MapArticle::SELECT(void) {
+	String^ MapArticle::SELECT(int choix) {
 		return "";
 	}
 

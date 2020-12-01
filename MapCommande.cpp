@@ -16,7 +16,7 @@ namespace Composants {
 		this->set_nomClient(nomClient);
 	}
 
-	String^ MapCommande::SELECT(void) {
+	String^ MapCommande::SELECT(int choix) {
 		return "";
 	}
 

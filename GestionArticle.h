@@ -10,7 +10,7 @@ namespace Services {
 		GestionArticle(void);
 		GestionArticle(String^, String^);
 		GestionArticle(String^, String^, String^, String^, String^, String^);
-		virtual DataSet^ liste(void) override;
+		virtual DataSet^ liste(int) override;
 		virtual void ajouter(void) override;
 		virtual void supprimer(void) override;
 		virtual void modifier(int^) override;
