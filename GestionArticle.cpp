@@ -2,24 +2,32 @@
 
 namespace Services {
 	GestionArticle::GestionArticle(void) {
-		this->_cad = gcnew Composants::CAD();
+		this->initGestion();
 		this->_article = gcnew Composants::MapArticle();
-		this->_ds = nullptr;
 	}
 
-	DataSet^ GestionArticle::listeArticle(void) {
+	GestionArticle::GestionArticle(String^ reference, String^ designation) {
+		this->initGestion();
+		this->_article = gcnew Composants::MapArticle(reference, designation);
+	}
+
+	GestionArticle::GestionArticle(String^ reference, String^ designation, String^ stock, String^ seuilDeReapprovisionnement, String^ prixHT, String^ tauxDeTVA) {
+		this->initGestion();
+		this->_article = gcnew Composants::MapArticle(reference, designation, stock, seuilDeReapprovisionnement, prixHT, tauxDeTVA);
+	}
+
+	DataSet^ GestionArticle::liste(void) {
 		this->_ds = gcnew DataSet();
 		this->_ds = this->_cad->getRows(this->_article->SELECT(), "Article");
 		return this->_ds;
 	}
 
-	void GestionArticle::ajouter(String^ reference, String^ designation, String^ stock, String^ seuilDeReapprovisionnement, String^ prixHT, String^ tauxDeTVA) {
-		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + reference + "' AND Article.designation = '" + designation + "'") != 0) {
+	void GestionArticle::ajouter() {
+		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + this->_article->get_reference() + "' AND Article.designation = '" + this->_article->get_designation() + "'") != 0) {
 			throw gcnew String("Cet article existe deja !");
 		}
-		this->_article = gcnew Composants::MapArticle(reference, designation, stock, seuilDeReapprovisionnement, prixHT, tauxDeTVA);
 		this->_cad->actionRows(this->_article->INSERT());
-		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + reference + "' AND Article.designation = '" + designation + "'") != 0) {
+		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + this->_article->get_reference() + "' AND Article.designation = '" + this->_article->get_designation() + "'") != 0) {
 			throw gcnew bool(1);
 		}
 		else {
@@ -27,14 +35,12 @@ namespace Services {
 		}
 	}
 
-	void GestionArticle::supprimer(String^ reference, String^ designation) {
-		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + reference + "' AND Article.designation = '" + designation + "'") == 0) {
+	void GestionArticle::supprimer(void) {
+		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + this->_article->get_reference() + "' AND Article.designation = '" + this->_article->get_designation() + "'") == 0) {
 			throw gcnew String("Cet article n\'existe pas !");
 		}
-		this->_article->set_reference(reference);
-		this->_article->set_designation(designation);
 		this->_cad->actionRows(this->_article->DELETE());
-		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + reference + "' AND Article.designation = '" + designation + "'") == 0) {
+		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + this->_article->get_reference() + "' AND Article.designation = '" + this->_article->get_designation() + "'") == 0) {
 			throw gcnew bool(1);
 		}
 		else {
@@ -42,7 +48,7 @@ namespace Services {
 		}
 	}
 
-	void GestionArticle::modifier(Composants::MapArticle^ article) {
-		this->_cad->actionRows(this->_article->UPDATE(article));
+	void GestionArticle::modifier(int^ id) {
+		this->_cad->actionRows(this->_article->UPDATE(id));
 	}
 }

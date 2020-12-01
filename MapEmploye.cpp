@@ -11,6 +11,11 @@ namespace Composants {
 		this->_adresseDomicile = gcnew Adresse();
 	}
 
+	MapEmploye::MapEmploye(String^ nom, String^ prenom) {
+		this->set_nom(nom);
+		this->set_prenom(prenom);
+	}
+
 	MapEmploye::MapEmploye(String^ nom, String^ prenom, String^ nomSuperieur, String^ prenomSuperieur, DateTime^ dateEmbauche, Adresse^ adresseDomicile) {
 		this->set_nom(nom);
 		this->set_prenom(prenom);
@@ -51,7 +56,7 @@ namespace Composants {
 			"COMMIT";
 	}
 
-	String^ MapEmploye::UPDATE(MapEmploye^ employe) {
+	String^ MapEmploye::UPDATE(int^ employe) {
 		return "";
 	}
 

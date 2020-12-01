@@ -4,14 +4,15 @@
 #include "Adresse.h"
 
 namespace Composants {
-	ref class MapEmploye {
+	ref class MapEmploye : public Map {
 	public:
 		MapEmploye(void);
+		MapEmploye(String^, String^);
 		MapEmploye(String^, String^, String^, String^, DateTime^, Adresse^);
-		String^ SELECT(void);
-		String^ INSERT(void);
-		String^ DELETE(void);
-		String^ UPDATE(MapEmploye^);
+		virtual String^ SELECT(void) override;
+		virtual String^ INSERT(void) override;
+		virtual String^ DELETE(void) override;
+		virtual String^ UPDATE(int^) override;
 		void set_ID(int);
 		void set_nom(String^);
 		void set_prenom(String^);

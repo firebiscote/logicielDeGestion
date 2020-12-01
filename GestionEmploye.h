@@ -5,16 +5,16 @@
 #include "MapEmploye.h"
 
 namespace Services {
-	ref class GestionEmploye {
+	ref class GestionEmploye : public Gestion {
 	public:
 		GestionEmploye(void);
-		DataSet^ listeEmploye(void);
-		void ajouter(String^, String^, String^, String^, DateTime^, Adresse^);
-		void supprimer(String^, String^);
-		void modifier(Composants::MapEmploye^);
+		GestionEmploye(String^, String^);
+		GestionEmploye(String^, String^, String^, String^, DateTime^, Adresse^);
+		virtual DataSet^ liste(void) override;
+		virtual void ajouter(void) override;
+		virtual void supprimer(void) override;
+		virtual void modifier(int^) override;	
 	private:
-		Composants::CAD^ _cad;
 		Composants::MapEmploye^ _employe;
-		DataSet^ _ds;
 	};
 }

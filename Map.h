@@ -4,9 +4,9 @@
 namespace Composants {
 	ref class Map {
 	public:
-		virtual String^ SELECT(void) = 0;
-		virtual String^ INSERT(void) = 0;
-		virtual String^ DELETE(void) = 0;
-		virtual String^ UPDATE(Map^);
+		virtual String^ SELECT(void) abstract;
+		virtual String^ INSERT(void) abstract;
+		virtual String^ DELETE(void) abstract;
+		virtual String^ UPDATE(int^) abstract;
 	};
 }

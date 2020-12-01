@@ -5,17 +5,17 @@
 #include "MapArticle.h"
 
 namespace Services {
-	ref class GestionArticle {
+	ref class GestionArticle : public Gestion {
 	public:
 		GestionArticle(void);
-		DataSet^ listeArticle(void);
-		void ajouter(String^, String^, String^, String^, String^, String^);
-		void supprimer(String^, String^);
-		void modifier(Composants::MapArticle^);
+		GestionArticle(String^, String^);
+		GestionArticle(String^, String^, String^, String^, String^, String^);
+		virtual DataSet^ liste(void) override;
+		virtual void ajouter(void) override;
+		virtual void supprimer(void) override;
+		virtual void modifier(int^) override;
 	private:
-		Composants::CAD^ _cad;
 		Composants::MapArticle^ _article;
-		DataSet^ _ds;
 	};
 
 }

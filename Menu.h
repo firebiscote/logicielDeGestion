@@ -1,5 +1,7 @@
 #pragma once
 #include "pch.h"
+#include "Gestion.h"
+#include "GestionArticle.h"
 #include "GestionEmploye.h"
 
 namespace logicielDeGestion {
@@ -51,7 +53,7 @@ namespace logicielDeGestion {
 	private: System::ComponentModel::IContainer^ components;
 	private: System::Windows::Forms::ErrorProvider^ errorProviderAjouter;
 	private: System::Windows::Forms::RichTextBox^ tBoxReponse;
-	private: Services::GestionEmploye^ gestionEmploye;
+	private: Services::Gestion^ gestion;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -222,12 +224,12 @@ namespace logicielDeGestion {
 		}
 #pragma endregion
 	private: System::Void Menu_Load(System::Object^ sender, System::EventArgs^ e) {
-		this->gestionEmploye = gcnew Services::GestionEmploye();
+		this->gestion = gcnew Services::GestionEmploye();
 		this->loadDataGridView();
 	}
 
 	private: void loadDataGridView(void) {
-		this->dataGrid->DataSource = this->gestionEmploye->listeEmploye();
+		this->dataGrid->DataSource = this->gestion->liste();
 		this->dataGrid->DataMember = "Employe";
 	}
 
@@ -239,7 +241,8 @@ namespace logicielDeGestion {
 	private: System::Void bAjouter_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->resetForm();
 		try {
-			this->gestionEmploye->ajouter(this->tEmployeNom->Text->Trim(), this->tEmployePrenom->Text->Trim(), this->tSuperieurNom->Text->Trim(), this->tSuperieurPrenom->Text->Trim(), DateTime::Today, gcnew Adresse(this->tNumeroDeVoie->Text->Trim(), this->tComplementDeNumero->Text->Trim(), this->tTypeDeVoie->Text->Trim(), this->tNomDeVoie->Text->Trim(), this->tCodePostal->Text->Trim(), this->tNomDeCommune->Text->Trim()));
+			this->gestion = gcnew Services::GestionEmploye(this->tEmployeNom->Text->Trim(), this->tEmployePrenom->Text->Trim(), this->tSuperieurNom->Text->Trim(), this->tSuperieurPrenom->Text->Trim(), DateTime::Today, gcnew Adresse(this->tNumeroDeVoie->Text->Trim(), this->tComplementDeNumero->Text->Trim(), this->tTypeDeVoie->Text->Trim(), this->tNomDeVoie->Text->Trim(), this->tCodePostal->Text->Trim(), this->tNomDeCommune->Text->Trim()));
+			this->gestion->ajouter();
 		}
 		checkErreur
 		this->loadDataGridView();
@@ -248,7 +251,8 @@ namespace logicielDeGestion {
 	private: System::Void bSupprimer_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->resetForm();
 		try {
-			this->gestionEmploye->supprimer(this->tEmployeNom->Text, this->tEmployePrenom->Text);
+			this->gestion = gcnew Services::GestionEmploye(this->tEmployeNom->Text, this->tEmployePrenom->Text);
+			this->gestion->supprimer();
 		}
 		checkErreur
 		this->loadDataGridView();

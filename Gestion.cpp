@@ -1,12 +1,8 @@
 #include "Gestion.h"
 
 namespace Services {
-	void Gestion::ajouter(void) {
-	}
-
-	void Gestion::supprimer(void) {
-	}
-
-	void Gestion::modifier(Composants::Map^) {
+	void Gestion::initGestion(void) {
+		this->_cad = gcnew Composants::CAD();
+		this->_ds = nullptr;
 	}
 }

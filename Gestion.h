@@ -6,13 +6,13 @@
 namespace Services {
 	ref class Gestion {
 	public:
-		virtual DataSet^ liste(void) = 0;
-		virtual void ajouter(void);
-		virtual void supprimer(void);
-		virtual void modifier(Composants::Map^);
+		virtual DataSet^ liste(void) abstract;
+		virtual void ajouter(void) abstract;
+		virtual void supprimer(void) abstract;
+		virtual void modifier(int^) abstract;
 	protected:
+		void initGestion(void);
 		Composants::CAD^ _cad;
-		Composants::Map^ _objet;
 		DataSet^ _ds;
 	};
 }

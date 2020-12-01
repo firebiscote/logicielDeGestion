@@ -11,6 +11,12 @@ namespace Composants {
 		this->_tauxDeTVA = "";
 	}
 
+	MapArticle::MapArticle(String^ reference, String^ designation) {
+		this->_ID = -1;
+		this->set_reference(reference);
+		this->set_designation(designation);
+	}
+
 	MapArticle::MapArticle(String^ reference, String^ designation, String^ stock, String^ seuilDeReapprovisionnement, String^ prixHT, String^ tauxDeTVA) {
 		this->_ID = -1;
 		this->set_reference(reference);
@@ -33,7 +39,7 @@ namespace Composants {
 		return "";
 	}
 
-	String^ MapArticle::UPDATE(MapArticle^ article) {
+	String^ MapArticle::UPDATE(int^ article) {
 		return "";
 	}
 

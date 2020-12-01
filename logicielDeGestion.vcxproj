@@ -122,13 +122,12 @@
   <ItemGroup>
     <ClCompile Include="Adresse.cpp" />
     <ClCompile Include="CAD.cpp" />
-    <ClCompile Include="Gestion.cpp" />
     <ClCompile Include="GestionArticle.cpp" />
     <ClCompile Include="GestionEmploye.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapArticle.cpp" />
     <ClCompile Include="MapEmploye.cpp" />
+    <ClCompile Include="Gestion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adresse.h" />

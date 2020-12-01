@@ -3,14 +3,15 @@
 #include "Map.h"
 
 namespace Composants {
-	ref class MapArticle {
+	ref class MapArticle : public Map {
 	public:
 		MapArticle(void);
+		MapArticle(String^, String^);
 		MapArticle(String^, String^, String^, String^, String^, String^);
-		String^ SELECT(void);
-		String^ INSERT(void);
-		String^ DELETE(void);
-		String^ UPDATE(MapArticle^);
+		virtual String^ SELECT(void) override;
+		virtual String^ INSERT(void) override;
+		virtual String^ DELETE(void) override;
+		virtual String^ UPDATE(int^) override;
 		void set_ID(int);
 		void set_reference(String^);
 		void set_designation(String^);

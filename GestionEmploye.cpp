@@ -2,45 +2,51 @@
 
 namespace Services {
 	GestionEmploye::GestionEmploye(void) {
-		this->_cad = gcnew Composants::CAD();
+		this->initGestion();
 		this->_employe = gcnew Composants::MapEmploye();
-		this->_ds = nullptr;
 	}
 
-	DataSet^ GestionEmploye::listeEmploye(void) {
+	GestionEmploye::GestionEmploye(String^ nom, String^ prenom) {
+		this->initGestion();
+		this->_employe = gcnew Composants::MapEmploye(nom, prenom);
+	}
+
+	GestionEmploye::GestionEmploye(String^ nom, String^ prenom, String^ nomSupperieur, String^ prenomSupperieur, DateTime^ dateEmbauche, Adresse^ adresseDomicile) {
+		this->initGestion();
+		this->_employe = gcnew Composants::MapEmploye(nom, prenom, nomSupperieur, prenomSupperieur, dateEmbauche, adresseDomicile);
+	}
+
+	DataSet^ GestionEmploye::liste(void) {
 		this->_ds = gcnew DataSet();
 		this->_ds = this->_cad->getRows(this->_employe->SELECT(), "employe");
 		return this->_ds;
 	}
 
-	void GestionEmploye::ajouter(String^ nom, String^ prenom, String^ nomSuperieur, String^ prenomSuperieur, DateTime^ dateEmbauche, Adresse^ adresseDomicile) {
-		if (this->_cad->actionRowsID("SELECT * FROM employe WHERE employe.nom = '" + nom + "' AND employe.prenom = '" + prenom + "'") != 0) {
+	void GestionEmploye::ajouter(void) {
+		if (this->_cad->actionRowsID("SELECT * FROM employe WHERE employe.nom = '" + this->_employe->get_nom() + "' AND employe.prenom = '" + this->_employe->get_prenom() + "'") != 0) {
 			throw gcnew String("Cet employé existe deja !");
 		}
-		this->_employe = gcnew Composants::MapEmploye(nom, prenom, nomSuperieur, prenomSuperieur, dateEmbauche->Date, adresseDomicile);
 		this->_cad->actionRows(this->_employe->INSERT());
-		if (this->_cad->actionRowsID("SELECT * FROM employe WHERE employe.nom = '" + nom + "' AND employe.prenom = '" + prenom + "'") != 0) {
+		if (this->_cad->actionRowsID("SELECT * FROM employe WHERE employe.nom = '" + this->_employe->get_nom() + "' AND employe.prenom = '" + this->_employe->get_prenom() + "'") != 0) {
 			throw gcnew bool(1);
 		} else {
 			throw gcnew bool(0);
 		}
 	}
 
-	void GestionEmploye::supprimer(String^ nom, String^ prenom) {
-		if (this->_cad->actionRowsID("SELECT * FROM employe WHERE employe.nom = '" + nom + "' AND employe.prenom = '" + prenom + "'") == 0) {
+	void GestionEmploye::supprimer(void) {
+		if (this->_cad->actionRowsID("SELECT * FROM employe WHERE employe.nom = '" + this->_employe->get_nom() + "' AND employe.prenom = '" + this->_employe->get_prenom() + "'") == 0) {
 			throw gcnew String("Cet employé n\'existe pas !");
 		}
-		this->_employe->set_nom(nom);
-		this->_employe->set_prenom(prenom);
 		this->_cad->actionRows(this->_employe->DELETE());
-		if (this->_cad->actionRowsID("SELECT * FROM employe WHERE employe.nom = '" + nom + "' AND employe.prenom = '" + prenom + "'") == 0) {
+		if (this->_cad->actionRowsID("SELECT * FROM employe WHERE employe.nom = '" + this->_employe->get_nom() + "' AND employe.prenom = '" + this->_employe->get_prenom() + "'") == 0) {
 			throw gcnew bool(1);
 		} else {
 			throw gcnew bool(0);
 		}
 	}
 
-	void GestionEmploye::modifier(Composants::MapEmploye^ employe) {
-		this->_cad->actionRows(this->_employe->UPDATE(employe));
+	void GestionEmploye::modifier(int^ id) {
+		this->_cad->actionRows(this->_employe->UPDATE(id));
 	}
 }
