@@ -22,7 +22,7 @@ namespace Composants {
 		void set_adresseDomicile(String^, String^, String^, String^, String^);
 		void set_adresseDomicile(String^, String^, String^, String^, String^, String^);
 		void set_adresseDomicile(Adresse^);
-		int^ get_ID(void);
+		int get_ID(void);
 		String^ get_nom(void);
 		String^ get_prenom(void);
 		String^ get_nomSuperieur(void);
@@ -30,7 +30,7 @@ namespace Composants {
 		DateTime^ get_dateEmbauche(void);
 		Adresse^ get_adresseDomicile(void);
 	private:
-		int^ _ID;
+		int _ID;
 		String^ _nom;
 		String^ _prenom;
 		String^ _nomSuperieur;

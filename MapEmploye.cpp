@@ -121,7 +121,7 @@ namespace Composants {
 		this->_adresseDomicile = adresseDomicile;
 	}
 
-	int^ MapEmploye::get_ID(void) {
+	int MapEmploye::get_ID(void) {
 		return this->_ID;
 	}
 

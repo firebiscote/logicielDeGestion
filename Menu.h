@@ -60,19 +60,6 @@ namespace logicielDeGestion {
 		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
 		/// le contenu de cette méthode avec l'éditeur de code.
 		/// </summary>
-		void InitializeFenetreEmploye(void) {
-			this->Controls->Clear();
-			this->SuspendLayout();
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
-			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(760, 443);
-			
-			// utiliser les this->Controls->Add()
-
-			this->ResumeLayout(false);
-			this->PerformLayout();
-		}
-
 		void InitializeComponent(void)
 		{
 			this->components = (gcnew System::ComponentModel::Container());
@@ -201,14 +188,6 @@ namespace logicielDeGestion {
 			// 
 			// tBoxReponse
 			// 
-			this->tBoxReponse->Location = System::Drawing::Point(13, 364);
-			this->tBoxReponse->Name = L"tBoxReponse";
-			this->tBoxReponse->Size = System::Drawing::Size(298, 67);
-			this->tBoxReponse->TabIndex = 14;
-			this->tBoxReponse->Text = L"";
-			// 
-			// Menu
-			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(760, 443);
@@ -226,15 +205,13 @@ namespace logicielDeGestion {
 			this->Controls->Add(this->tEmployeNom);
 			this->Controls->Add(this->dataGrid);
 			this->Controls->Add(this->bAjouter);
-			this->Name = L"Menu";
-			this->Text = L"Menu";
 			this->Load += gcnew System::EventHandler(this, &Menu::Menu_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGrid))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->errorProviderAjouter))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
+	}
 
-		}
 #pragma endregion
 	private: System::Void Menu_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->gestion = gcnew Services::GestionEmploye();
