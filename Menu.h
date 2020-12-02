@@ -221,6 +221,7 @@ namespace logicielDeGestion {
 	private: System::Windows::Forms::TextBox^ tNumVoieFacturation_p3;
 	private: System::Windows::Forms::Label^ label69;
 	private: System::ComponentModel::IContainer^ components;
+	private: System::Windows::Forms::Button^ bCalcul_p6;
 	private: Services::Gestion^ gestion;
 
 
@@ -410,6 +411,7 @@ namespace logicielDeGestion {
 			this->dMontantAchatClient_p5 = (gcnew System::Windows::Forms::DataGridView());
 			this->errorProvider1 = (gcnew System::Windows::Forms::ErrorProvider(this->components));
 			this->panelSimulation = (gcnew System::Windows::Forms::Panel());
+			this->bCalcul_p6 = (gcnew System::Windows::Forms::Button());
 			this->label80 = (gcnew System::Windows::Forms::Label());
 			this->label79 = (gcnew System::Windows::Forms::Label());
 			this->label78 = (gcnew System::Windows::Forms::Label());
@@ -451,10 +453,11 @@ namespace logicielDeGestion {
 			// label1
 			// 
 			this->label1->Font = (gcnew System::Drawing::Font(L"Yu Gothic", 26.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(8, 7);
+				static_cast<System::Byte>(0)));
+			this->label1->Location = System::Drawing::Point(11, 9);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(999, 224);
+			this->label1->Size = System::Drawing::Size(1332, 276);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Bienvenu dans votre logiciel de gestion";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
@@ -463,18 +466,20 @@ namespace logicielDeGestion {
 			// 
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Yu Gothic", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(150, 332);
+				static_cast<System::Byte>(0)));
+			this->label2->Location = System::Drawing::Point(200, 409);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(259, 20);
+			this->label2->Size = System::Drawing::Size(333, 25);
 			this->label2->TabIndex = 0;
 			this->label2->Text = L"Choisissez le menu auquel accéder :";
 			// 
 			// buttonEmploye
 			// 
-			this->buttonEmploye->Location = System::Drawing::Point(464, 252);
+			this->buttonEmploye->Location = System::Drawing::Point(619, 310);
+			this->buttonEmploye->Margin = System::Windows::Forms::Padding(4);
 			this->buttonEmploye->Name = L"buttonEmploye";
-			this->buttonEmploye->Size = System::Drawing::Size(109, 25);
+			this->buttonEmploye->Size = System::Drawing::Size(145, 31);
 			this->buttonEmploye->TabIndex = 1;
 			this->buttonEmploye->Text = L"Employé";
 			this->buttonEmploye->UseVisualStyleBackColor = true;
@@ -482,9 +487,10 @@ namespace logicielDeGestion {
 			// 
 			// buttonClient
 			// 
-			this->buttonClient->Location = System::Drawing::Point(464, 283);
+			this->buttonClient->Location = System::Drawing::Point(619, 348);
+			this->buttonClient->Margin = System::Windows::Forms::Padding(4);
 			this->buttonClient->Name = L"buttonClient";
-			this->buttonClient->Size = System::Drawing::Size(109, 25);
+			this->buttonClient->Size = System::Drawing::Size(145, 31);
 			this->buttonClient->TabIndex = 2;
 			this->buttonClient->Text = L"Client";
 			this->buttonClient->UseVisualStyleBackColor = true;
@@ -492,9 +498,10 @@ namespace logicielDeGestion {
 			// 
 			// buttonCommande
 			// 
-			this->buttonCommande->Location = System::Drawing::Point(464, 314);
+			this->buttonCommande->Location = System::Drawing::Point(619, 386);
+			this->buttonCommande->Margin = System::Windows::Forms::Padding(4);
 			this->buttonCommande->Name = L"buttonCommande";
-			this->buttonCommande->Size = System::Drawing::Size(109, 25);
+			this->buttonCommande->Size = System::Drawing::Size(145, 31);
 			this->buttonCommande->TabIndex = 3;
 			this->buttonCommande->Text = L"Commande";
 			this->buttonCommande->UseVisualStyleBackColor = true;
@@ -502,9 +509,10 @@ namespace logicielDeGestion {
 			// 
 			// buttonStock
 			// 
-			this->buttonStock->Location = System::Drawing::Point(464, 345);
+			this->buttonStock->Location = System::Drawing::Point(619, 425);
+			this->buttonStock->Margin = System::Windows::Forms::Padding(4);
 			this->buttonStock->Name = L"buttonStock";
-			this->buttonStock->Size = System::Drawing::Size(109, 25);
+			this->buttonStock->Size = System::Drawing::Size(145, 31);
 			this->buttonStock->TabIndex = 4;
 			this->buttonStock->Text = L"Stock";
 			this->buttonStock->UseVisualStyleBackColor = true;
@@ -512,9 +520,10 @@ namespace logicielDeGestion {
 			// 
 			// buttonStatistiques
 			// 
-			this->buttonStatistiques->Location = System::Drawing::Point(464, 376);
+			this->buttonStatistiques->Location = System::Drawing::Point(619, 463);
+			this->buttonStatistiques->Margin = System::Windows::Forms::Padding(4);
 			this->buttonStatistiques->Name = L"buttonStatistiques";
-			this->buttonStatistiques->Size = System::Drawing::Size(109, 25);
+			this->buttonStatistiques->Size = System::Drawing::Size(145, 31);
 			this->buttonStatistiques->TabIndex = 5;
 			this->buttonStatistiques->Text = L"Statistiques";
 			this->buttonStatistiques->UseVisualStyleBackColor = true;
@@ -522,9 +531,10 @@ namespace logicielDeGestion {
 			// 
 			// buttonSimulation
 			// 
-			this->buttonSimulation->Location = System::Drawing::Point(464, 407);
+			this->buttonSimulation->Location = System::Drawing::Point(619, 501);
+			this->buttonSimulation->Margin = System::Windows::Forms::Padding(4);
 			this->buttonSimulation->Name = L"buttonSimulation";
-			this->buttonSimulation->Size = System::Drawing::Size(109, 25);
+			this->buttonSimulation->Size = System::Drawing::Size(145, 31);
 			this->buttonSimulation->TabIndex = 6;
 			this->buttonSimulation->Text = L"Simulation";
 			this->buttonSimulation->UseVisualStyleBackColor = true;
@@ -541,8 +551,9 @@ namespace logicielDeGestion {
 			this->panelMenu->Controls->Add(this->buttonEmploye);
 			this->panelMenu->Controls->Add(this->label2);
 			this->panelMenu->Location = System::Drawing::Point(0, 1);
+			this->panelMenu->Margin = System::Windows::Forms::Padding(4);
 			this->panelMenu->Name = L"panelMenu";
-			this->panelMenu->Size = System::Drawing::Size(1042, 559);
+			this->panelMenu->Size = System::Drawing::Size(1389, 688);
 			this->panelMenu->TabIndex = 8;
 			// 
 			// panelCommande
@@ -609,312 +620,351 @@ namespace logicielDeGestion {
 			this->panelCommande->Controls->Add(this->dCommande);
 			this->panelCommande->Controls->Add(this->dDetailCommande_p3);
 			this->panelCommande->Location = System::Drawing::Point(0, 1);
+			this->panelCommande->Margin = System::Windows::Forms::Padding(4);
 			this->panelCommande->Name = L"panelCommande";
-			this->panelCommande->Size = System::Drawing::Size(1042, 559);
+			this->panelCommande->Size = System::Drawing::Size(1389, 688);
 			this->panelCommande->TabIndex = 11;
 			// 
 			// tTypeVoieFacturation_p3
 			// 
-			this->tTypeVoieFacturation_p3->Location = System::Drawing::Point(170, 327);
+			this->tTypeVoieFacturation_p3->Location = System::Drawing::Point(227, 402);
+			this->tTypeVoieFacturation_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tTypeVoieFacturation_p3->Name = L"tTypeVoieFacturation_p3";
-			this->tTypeVoieFacturation_p3->Size = System::Drawing::Size(62, 20);
+			this->tTypeVoieFacturation_p3->Size = System::Drawing::Size(81, 22);
 			this->tTypeVoieFacturation_p3->TabIndex = 15;
 			// 
 			// label64
 			// 
 			this->label64->AutoSize = true;
-			this->label64->Location = System::Drawing::Point(166, 314);
+			this->label64->Location = System::Drawing::Point(221, 386);
+			this->label64->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label64->Name = L"label64";
-			this->label64->Size = System::Drawing::Size(69, 13);
+			this->label64->Size = System::Drawing::Size(90, 17);
 			this->label64->TabIndex = 143;
 			this->label64->Text = L"Type de voie";
 			// 
 			// tVilleFacturation_p3
 			// 
-			this->tVilleFacturation_p3->Location = System::Drawing::Point(194, 364);
+			this->tVilleFacturation_p3->Location = System::Drawing::Point(259, 448);
+			this->tVilleFacturation_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tVilleFacturation_p3->Name = L"tVilleFacturation_p3";
-			this->tVilleFacturation_p3->Size = System::Drawing::Size(73, 20);
+			this->tVilleFacturation_p3->Size = System::Drawing::Size(96, 22);
 			this->tVilleFacturation_p3->TabIndex = 18;
 			// 
 			// label65
 			// 
 			this->label65->AutoSize = true;
-			this->label65->Location = System::Drawing::Point(215, 351);
+			this->label65->Location = System::Drawing::Point(287, 432);
+			this->label65->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label65->Name = L"label65";
-			this->label65->Size = System::Drawing::Size(26, 13);
+			this->label65->Size = System::Drawing::Size(34, 17);
 			this->label65->TabIndex = 141;
 			this->label65->Text = L"Ville";
 			// 
 			// tCodePostalFacturation_p3
 			// 
-			this->tCodePostalFacturation_p3->Location = System::Drawing::Point(126, 364);
+			this->tCodePostalFacturation_p3->Location = System::Drawing::Point(168, 448);
+			this->tCodePostalFacturation_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tCodePostalFacturation_p3->Name = L"tCodePostalFacturation_p3";
-			this->tCodePostalFacturation_p3->Size = System::Drawing::Size(62, 20);
+			this->tCodePostalFacturation_p3->Size = System::Drawing::Size(81, 22);
 			this->tCodePostalFacturation_p3->TabIndex = 17;
 			// 
 			// label66
 			// 
 			this->label66->AutoSize = true;
-			this->label66->Location = System::Drawing::Point(126, 351);
+			this->label66->Location = System::Drawing::Point(168, 432);
+			this->label66->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label66->Name = L"label66";
-			this->label66->Size = System::Drawing::Size(63, 13);
+			this->label66->Size = System::Drawing::Size(83, 17);
 			this->label66->TabIndex = 139;
 			this->label66->Text = L"Code postal";
 			// 
 			// label67
 			// 
 			this->label67->AutoSize = true;
-			this->label67->Location = System::Drawing::Point(55, 314);
+			this->label67->Location = System::Drawing::Point(73, 386);
+			this->label67->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label67->Name = L"label67";
-			this->label67->Size = System::Drawing::Size(42, 13);
+			this->label67->Size = System::Drawing::Size(54, 17);
 			this->label67->TabIndex = 138;
 			this->label67->Text = L"N° voie";
 			// 
 			// tNomVoieFacturation_p3
 			// 
-			this->tNomVoieFacturation_p3->Location = System::Drawing::Point(239, 327);
+			this->tNomVoieFacturation_p3->Location = System::Drawing::Point(319, 402);
+			this->tNomVoieFacturation_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tNomVoieFacturation_p3->Name = L"tNomVoieFacturation_p3";
-			this->tNomVoieFacturation_p3->Size = System::Drawing::Size(110, 20);
+			this->tNomVoieFacturation_p3->Size = System::Drawing::Size(145, 22);
 			this->tNomVoieFacturation_p3->TabIndex = 16;
 			// 
 			// label68
 			// 
 			this->label68->AutoSize = true;
-			this->label68->Location = System::Drawing::Point(260, 314);
+			this->label68->Location = System::Drawing::Point(347, 386);
+			this->label68->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label68->Name = L"label68";
-			this->label68->Size = System::Drawing::Size(67, 13);
+			this->label68->Size = System::Drawing::Size(87, 17);
 			this->label68->TabIndex = 136;
 			this->label68->Text = L"Nom de voie";
 			// 
 			// tComplementFacturation_p3
 			// 
-			this->tComplementFacturation_p3->Location = System::Drawing::Point(102, 327);
+			this->tComplementFacturation_p3->Location = System::Drawing::Point(136, 402);
+			this->tComplementFacturation_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tComplementFacturation_p3->Name = L"tComplementFacturation_p3";
-			this->tComplementFacturation_p3->Size = System::Drawing::Size(62, 20);
+			this->tComplementFacturation_p3->Size = System::Drawing::Size(81, 22);
 			this->tComplementFacturation_p3->TabIndex = 14;
 			// 
 			// tNumVoieFacturation_p3
 			// 
-			this->tNumVoieFacturation_p3->Location = System::Drawing::Point(56, 327);
+			this->tNumVoieFacturation_p3->Location = System::Drawing::Point(75, 402);
+			this->tNumVoieFacturation_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tNumVoieFacturation_p3->Name = L"tNumVoieFacturation_p3";
-			this->tNumVoieFacturation_p3->Size = System::Drawing::Size(39, 20);
+			this->tNumVoieFacturation_p3->Size = System::Drawing::Size(51, 22);
 			this->tNumVoieFacturation_p3->TabIndex = 13;
 			// 
 			// label69
 			// 
 			this->label69->AutoSize = true;
-			this->label69->Location = System::Drawing::Point(102, 314);
+			this->label69->Location = System::Drawing::Point(136, 386);
+			this->label69->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label69->Name = L"label69";
-			this->label69->Size = System::Drawing::Size(65, 13);
+			this->label69->Size = System::Drawing::Size(86, 17);
 			this->label69->TabIndex = 133;
 			this->label69->Text = L"Complément";
 			// 
 			// tTypeVoieLivraison_p3
 			// 
-			this->tTypeVoieLivraison_p3->Location = System::Drawing::Point(170, 227);
+			this->tTypeVoieLivraison_p3->Location = System::Drawing::Point(227, 279);
+			this->tTypeVoieLivraison_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tTypeVoieLivraison_p3->Name = L"tTypeVoieLivraison_p3";
-			this->tTypeVoieLivraison_p3->Size = System::Drawing::Size(62, 20);
+			this->tTypeVoieLivraison_p3->Size = System::Drawing::Size(81, 22);
 			this->tTypeVoieLivraison_p3->TabIndex = 9;
 			// 
 			// label63
 			// 
 			this->label63->AutoSize = true;
-			this->label63->Location = System::Drawing::Point(166, 214);
+			this->label63->Location = System::Drawing::Point(221, 263);
+			this->label63->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label63->Name = L"label63";
-			this->label63->Size = System::Drawing::Size(69, 13);
+			this->label63->Size = System::Drawing::Size(90, 17);
 			this->label63->TabIndex = 131;
 			this->label63->Text = L"Type de voie";
 			// 
 			// label59
 			// 
 			this->label59->AutoSize = true;
-			this->label59->Location = System::Drawing::Point(19, 295);
+			this->label59->Location = System::Drawing::Point(25, 363);
+			this->label59->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label59->Name = L"label59";
-			this->label59->Size = System::Drawing::Size(157, 13);
+			this->label59->Size = System::Drawing::Size(211, 17);
 			this->label59->TabIndex = 126;
 			this->label59->Text = L"Informations adresse facturation";
 			// 
 			// tVilleLivraison_p3
 			// 
-			this->tVilleLivraison_p3->Location = System::Drawing::Point(194, 262);
+			this->tVilleLivraison_p3->Location = System::Drawing::Point(259, 322);
+			this->tVilleLivraison_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tVilleLivraison_p3->Name = L"tVilleLivraison_p3";
-			this->tVilleLivraison_p3->Size = System::Drawing::Size(73, 20);
+			this->tVilleLivraison_p3->Size = System::Drawing::Size(96, 22);
 			this->tVilleLivraison_p3->TabIndex = 12;
 			// 
 			// label56
 			// 
 			this->label56->AutoSize = true;
-			this->label56->Location = System::Drawing::Point(216, 249);
+			this->label56->Location = System::Drawing::Point(288, 306);
+			this->label56->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label56->Name = L"label56";
-			this->label56->Size = System::Drawing::Size(26, 13);
+			this->label56->Size = System::Drawing::Size(34, 17);
 			this->label56->TabIndex = 118;
 			this->label56->Text = L"Ville";
 			// 
 			// tCodePostalLivraison_p3
 			// 
-			this->tCodePostalLivraison_p3->Location = System::Drawing::Point(126, 262);
+			this->tCodePostalLivraison_p3->Location = System::Drawing::Point(168, 322);
+			this->tCodePostalLivraison_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tCodePostalLivraison_p3->Name = L"tCodePostalLivraison_p3";
-			this->tCodePostalLivraison_p3->Size = System::Drawing::Size(62, 20);
+			this->tCodePostalLivraison_p3->Size = System::Drawing::Size(81, 22);
 			this->tCodePostalLivraison_p3->TabIndex = 11;
 			// 
 			// label55
 			// 
 			this->label55->AutoSize = true;
-			this->label55->Location = System::Drawing::Point(126, 249);
+			this->label55->Location = System::Drawing::Point(168, 306);
+			this->label55->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label55->Name = L"label55";
-			this->label55->Size = System::Drawing::Size(63, 13);
+			this->label55->Size = System::Drawing::Size(83, 17);
 			this->label55->TabIndex = 116;
 			this->label55->Text = L"Code postal";
 			// 
 			// label33
 			// 
 			this->label33->AutoSize = true;
-			this->label33->Location = System::Drawing::Point(23, 193);
+			this->label33->Location = System::Drawing::Point(31, 238);
+			this->label33->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label33->Name = L"label33";
-			this->label33->Size = System::Drawing::Size(145, 13);
+			this->label33->Size = System::Drawing::Size(196, 17);
 			this->label33->TabIndex = 115;
 			this->label33->Text = L"Informations adresse livraison";
 			// 
 			// label51
 			// 
 			this->label51->AutoSize = true;
-			this->label51->Location = System::Drawing::Point(55, 214);
+			this->label51->Location = System::Drawing::Point(73, 263);
+			this->label51->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label51->Name = L"label51";
-			this->label51->Size = System::Drawing::Size(42, 13);
+			this->label51->Size = System::Drawing::Size(54, 17);
 			this->label51->TabIndex = 111;
 			this->label51->Text = L"N° voie";
 			// 
 			// tNomVoieLivraison_p3
 			// 
-			this->tNomVoieLivraison_p3->Location = System::Drawing::Point(239, 227);
+			this->tNomVoieLivraison_p3->Location = System::Drawing::Point(319, 279);
+			this->tNomVoieLivraison_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tNomVoieLivraison_p3->Name = L"tNomVoieLivraison_p3";
-			this->tNomVoieLivraison_p3->Size = System::Drawing::Size(110, 20);
+			this->tNomVoieLivraison_p3->Size = System::Drawing::Size(145, 22);
 			this->tNomVoieLivraison_p3->TabIndex = 10;
 			// 
 			// tDateLivraison_p3
 			// 
-			this->tDateLivraison_p3->Location = System::Drawing::Point(226, 154);
+			this->tDateLivraison_p3->Location = System::Drawing::Point(301, 190);
+			this->tDateLivraison_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tDateLivraison_p3->Name = L"tDateLivraison_p3";
-			this->tDateLivraison_p3->Size = System::Drawing::Size(110, 20);
+			this->tDateLivraison_p3->Size = System::Drawing::Size(145, 22);
 			this->tDateLivraison_p3->TabIndex = 6;
 			// 
 			// label54
 			// 
 			this->label54->AutoSize = true;
-			this->label54->Location = System::Drawing::Point(260, 214);
+			this->label54->Location = System::Drawing::Point(347, 263);
+			this->label54->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label54->Name = L"label54";
-			this->label54->Size = System::Drawing::Size(67, 13);
+			this->label54->Size = System::Drawing::Size(87, 17);
 			this->label54->TabIndex = 105;
 			this->label54->Text = L"Nom de voie";
 			// 
 			// tMoyenPaiement_p3
 			// 
-			this->tMoyenPaiement_p3->Location = System::Drawing::Point(254, 454);
+			this->tMoyenPaiement_p3->Location = System::Drawing::Point(339, 559);
+			this->tMoyenPaiement_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tMoyenPaiement_p3->Name = L"tMoyenPaiement_p3";
-			this->tMoyenPaiement_p3->Size = System::Drawing::Size(110, 20);
+			this->tMoyenPaiement_p3->Size = System::Drawing::Size(145, 22);
 			this->tMoyenPaiement_p3->TabIndex = 22;
 			// 
 			// tDatePaiement_p3
 			// 
-			this->tDatePaiement_p3->Location = System::Drawing::Point(129, 454);
+			this->tDatePaiement_p3->Location = System::Drawing::Point(172, 559);
+			this->tDatePaiement_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tDatePaiement_p3->Name = L"tDatePaiement_p3";
-			this->tDatePaiement_p3->Size = System::Drawing::Size(110, 20);
+			this->tDatePaiement_p3->Size = System::Drawing::Size(145, 22);
 			this->tDatePaiement_p3->TabIndex = 21;
 			// 
 			// label49
 			// 
 			this->label49->AutoSize = true;
-			this->label49->Location = System::Drawing::Point(254, 438);
+			this->label49->Location = System::Drawing::Point(339, 539);
+			this->label49->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label49->Name = L"label49";
-			this->label49->Size = System::Drawing::Size(100, 13);
+			this->label49->Size = System::Drawing::Size(132, 17);
 			this->label49->TabIndex = 100;
 			this->label49->Text = L"Moyen de paiement";
 			// 
 			// label50
 			// 
 			this->label50->AutoSize = true;
-			this->label50->Location = System::Drawing::Point(126, 438);
+			this->label50->Location = System::Drawing::Point(168, 539);
+			this->label50->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label50->Name = L"label50";
-			this->label50->Size = System::Drawing::Size(91, 13);
+			this->label50->Size = System::Drawing::Size(120, 17);
 			this->label50->TabIndex = 99;
 			this->label50->Text = L"Date de paiement";
 			// 
 			// label48
 			// 
 			this->label48->AutoSize = true;
-			this->label48->Location = System::Drawing::Point(13, 417);
+			this->label48->Location = System::Drawing::Point(17, 513);
+			this->label48->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label48->Name = L"label48";
-			this->label48->Size = System::Drawing::Size(95, 13);
+			this->label48->Size = System::Drawing::Size(127, 17);
 			this->label48->TabIndex = 98;
 			this->label48->Text = L"Informations article";
 			// 
 			// label47
 			// 
 			this->label47->AutoSize = true;
-			this->label47->Location = System::Drawing::Point(13, 457);
+			this->label47->Location = System::Drawing::Point(17, 562);
+			this->label47->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label47->Name = L"label47";
-			this->label47->Size = System::Drawing::Size(110, 13);
+			this->label47->Size = System::Drawing::Size(147, 17);
 			this->label47->TabIndex = 97;
 			this->label47->Text = L"Informations paiement";
 			// 
 			// label46
 			// 
 			this->label46->AutoSize = true;
-			this->label46->Location = System::Drawing::Point(23, 86);
+			this->label46->Location = System::Drawing::Point(31, 106);
+			this->label46->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label46->Name = L"label46";
-			this->label46->Size = System::Drawing::Size(119, 13);
+			this->label46->Size = System::Drawing::Size(158, 17);
 			this->label46->TabIndex = 96;
 			this->label46->Text = L"Informations commande";
 			// 
 			// label45
 			// 
 			this->label45->AutoSize = true;
-			this->label45->Location = System::Drawing::Point(64, 140);
+			this->label45->Location = System::Drawing::Point(85, 172);
+			this->label45->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label45->Name = L"label45";
-			this->label45->Size = System::Drawing::Size(93, 13);
+			this->label45->Size = System::Drawing::Size(125, 17);
 			this->label45->TabIndex = 94;
 			this->label45->Text = L"Date dernier solde";
 			// 
 			// label44
 			// 
 			this->label44->AutoSize = true;
-			this->label44->Location = System::Drawing::Point(412, 336);
+			this->label44->Location = System::Drawing::Point(549, 414);
+			this->label44->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label44->Name = L"label44";
-			this->label44->Size = System::Drawing::Size(86, 13);
+			this->label44->Size = System::Drawing::Size(114, 17);
 			this->label44->TabIndex = 93;
 			this->label44->Text = L"Détails Paiement";
 			// 
 			// dDetailPaiement_p3
 			// 
 			this->dDetailPaiement_p3->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dDetailPaiement_p3->Location = System::Drawing::Point(412, 351);
+			this->dDetailPaiement_p3->Location = System::Drawing::Point(549, 432);
+			this->dDetailPaiement_p3->Margin = System::Windows::Forms::Padding(4);
 			this->dDetailPaiement_p3->Name = L"dDetailPaiement_p3";
-			this->dDetailPaiement_p3->Size = System::Drawing::Size(622, 134);
+			this->dDetailPaiement_p3->RowHeadersWidth = 51;
+			this->dDetailPaiement_p3->Size = System::Drawing::Size(829, 165);
 			this->dDetailPaiement_p3->TabIndex = 0;
 			// 
 			// label30
 			// 
 			this->label30->AutoSize = true;
-			this->label30->Location = System::Drawing::Point(418, 493);
+			this->label30->Location = System::Drawing::Point(557, 607);
+			this->label30->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label30->Name = L"label30";
-			this->label30->Size = System::Drawing::Size(50, 13);
+			this->label30->Size = System::Drawing::Size(65, 17);
 			this->label30->TabIndex = 91;
 			this->label30->Text = L"Message";
 			// 
 			// tBoxMessage_p3
 			// 
-			this->tBoxMessage_p3->Location = System::Drawing::Point(411, 506);
+			this->tBoxMessage_p3->Location = System::Drawing::Point(548, 623);
+			this->tBoxMessage_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tBoxMessage_p3->Name = L"tBoxMessage_p3";
 			this->tBoxMessage_p3->ReadOnly = true;
-			this->tBoxMessage_p3->Size = System::Drawing::Size(624, 38);
+			this->tBoxMessage_p3->Size = System::Drawing::Size(831, 46);
 			this->tBoxMessage_p3->TabIndex = 90;
 			this->tBoxMessage_p3->Text = L"";
 			// 
 			// bRetour_p3
 			// 
-			this->bRetour_p3->Location = System::Drawing::Point(4, 3);
+			this->bRetour_p3->Location = System::Drawing::Point(5, 4);
+			this->bRetour_p3->Margin = System::Windows::Forms::Padding(4);
 			this->bRetour_p3->Name = L"bRetour_p3";
-			this->bRetour_p3->Size = System::Drawing::Size(37, 23);
+			this->bRetour_p3->Size = System::Drawing::Size(49, 28);
 			this->bRetour_p3->TabIndex = 26;
 			this->bRetour_p3->Text = L"<<";
 			this->bRetour_p3->UseVisualStyleBackColor = true;
@@ -922,9 +972,10 @@ namespace logicielDeGestion {
 			// 
 			// bRechercherCommande_p3
 			// 
-			this->bRechercherCommande_p3->Location = System::Drawing::Point(278, 43);
+			this->bRechercherCommande_p3->Location = System::Drawing::Point(371, 53);
+			this->bRechercherCommande_p3->Margin = System::Windows::Forms::Padding(4);
 			this->bRechercherCommande_p3->Name = L"bRechercherCommande_p3";
-			this->bRechercherCommande_p3->Size = System::Drawing::Size(76, 20);
+			this->bRechercherCommande_p3->Size = System::Drawing::Size(101, 25);
 			this->bRechercherCommande_p3->TabIndex = 2;
 			this->bRechercherCommande_p3->Text = L"Rechercher";
 			this->bRechercherCommande_p3->UseVisualStyleBackColor = true;
@@ -932,40 +983,45 @@ namespace logicielDeGestion {
 			// label31
 			// 
 			this->label31->AutoSize = true;
-			this->label31->Location = System::Drawing::Point(23, 46);
+			this->label31->Location = System::Drawing::Point(31, 57);
+			this->label31->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label31->Name = L"label31";
-			this->label31->Size = System::Drawing::Size(112, 13);
+			this->label31->Size = System::Drawing::Size(147, 17);
 			this->label31->TabIndex = 87;
 			this->label31->Text = L"Référence commande";
 			// 
 			// tRechercheCommande_p3
 			// 
-			this->tRechercheCommande_p3->Location = System::Drawing::Point(146, 43);
+			this->tRechercheCommande_p3->Location = System::Drawing::Point(195, 53);
+			this->tRechercheCommande_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tRechercheCommande_p3->Name = L"tRechercheCommande_p3";
-			this->tRechercheCommande_p3->Size = System::Drawing::Size(110, 20);
+			this->tRechercheCommande_p3->Size = System::Drawing::Size(145, 22);
 			this->tRechercheCommande_p3->TabIndex = 1;
 			// 
 			// tDernierSolde_p3
 			// 
-			this->tDernierSolde_p3->Location = System::Drawing::Point(65, 154);
+			this->tDernierSolde_p3->Location = System::Drawing::Point(87, 190);
+			this->tDernierSolde_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tDernierSolde_p3->Name = L"tDernierSolde_p3";
-			this->tDernierSolde_p3->Size = System::Drawing::Size(111, 20);
+			this->tDernierSolde_p3->Size = System::Drawing::Size(147, 22);
 			this->tDernierSolde_p3->TabIndex = 5;
 			// 
 			// label32
 			// 
 			this->label32->AutoSize = true;
-			this->label32->Location = System::Drawing::Point(224, 140);
+			this->label32->Location = System::Drawing::Point(299, 172);
+			this->label32->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label32->Name = L"label32";
-			this->label32->Size = System::Drawing::Size(86, 13);
+			this->label32->Size = System::Drawing::Size(114, 17);
 			this->label32->TabIndex = 84;
 			this->label32->Text = L"Date de livraison";
 			// 
 			// bAjouter_p3
 			// 
-			this->bAjouter_p3->Location = System::Drawing::Point(200, 486);
+			this->bAjouter_p3->Location = System::Drawing::Point(267, 598);
+			this->bAjouter_p3->Margin = System::Windows::Forms::Padding(4);
 			this->bAjouter_p3->Name = L"bAjouter_p3";
-			this->bAjouter_p3->Size = System::Drawing::Size(66, 68);
+			this->bAjouter_p3->Size = System::Drawing::Size(88, 84);
 			this->bAjouter_p3->TabIndex = 23;
 			this->bAjouter_p3->Text = L"Ajouter";
 			this->bAjouter_p3->UseVisualStyleBackColor = true;
@@ -973,18 +1029,20 @@ namespace logicielDeGestion {
 			// 
 			// bMaj_p3
 			// 
-			this->bMaj_p3->Location = System::Drawing::Point(120, 486);
+			this->bMaj_p3->Location = System::Drawing::Point(160, 598);
+			this->bMaj_p3->Margin = System::Windows::Forms::Padding(4);
 			this->bMaj_p3->Name = L"bMaj_p3";
-			this->bMaj_p3->Size = System::Drawing::Size(75, 32);
+			this->bMaj_p3->Size = System::Drawing::Size(100, 39);
 			this->bMaj_p3->TabIndex = 24;
 			this->bMaj_p3->Text = L"Mise à jour";
 			this->bMaj_p3->UseVisualStyleBackColor = true;
 			// 
 			// bSupprimer_p3
 			// 
-			this->bSupprimer_p3->Location = System::Drawing::Point(120, 522);
+			this->bSupprimer_p3->Location = System::Drawing::Point(160, 642);
+			this->bSupprimer_p3->Margin = System::Windows::Forms::Padding(4);
 			this->bSupprimer_p3->Name = L"bSupprimer_p3";
-			this->bSupprimer_p3->Size = System::Drawing::Size(75, 32);
+			this->bSupprimer_p3->Size = System::Drawing::Size(100, 39);
 			this->bSupprimer_p3->TabIndex = 25;
 			this->bSupprimer_p3->Text = L"Supprimer";
 			this->bSupprimer_p3->UseVisualStyleBackColor = true;
@@ -992,88 +1050,99 @@ namespace logicielDeGestion {
 			// 
 			// tQuantiteArticle_p3
 			// 
-			this->tQuantiteArticle_p3->Location = System::Drawing::Point(255, 414);
+			this->tQuantiteArticle_p3->Location = System::Drawing::Point(340, 510);
+			this->tQuantiteArticle_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tQuantiteArticle_p3->Name = L"tQuantiteArticle_p3";
-			this->tQuantiteArticle_p3->Size = System::Drawing::Size(110, 20);
+			this->tQuantiteArticle_p3->Size = System::Drawing::Size(145, 22);
 			this->tQuantiteArticle_p3->TabIndex = 20;
 			// 
 			// tRefArticle_p3
 			// 
-			this->tRefArticle_p3->Location = System::Drawing::Point(129, 417);
+			this->tRefArticle_p3->Location = System::Drawing::Point(172, 513);
+			this->tRefArticle_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tRefArticle_p3->Name = L"tRefArticle_p3";
-			this->tRefArticle_p3->Size = System::Drawing::Size(110, 20);
+			this->tRefArticle_p3->Size = System::Drawing::Size(145, 22);
 			this->tRefArticle_p3->TabIndex = 19;
 			// 
 			// tComplementLivraison_p3
 			// 
-			this->tComplementLivraison_p3->Location = System::Drawing::Point(102, 227);
+			this->tComplementLivraison_p3->Location = System::Drawing::Point(136, 279);
+			this->tComplementLivraison_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tComplementLivraison_p3->Name = L"tComplementLivraison_p3";
-			this->tComplementLivraison_p3->Size = System::Drawing::Size(62, 20);
+			this->tComplementLivraison_p3->Size = System::Drawing::Size(81, 22);
 			this->tComplementLivraison_p3->TabIndex = 8;
 			// 
 			// tNumVoieLivraison_p3
 			// 
-			this->tNumVoieLivraison_p3->Location = System::Drawing::Point(58, 227);
+			this->tNumVoieLivraison_p3->Location = System::Drawing::Point(77, 279);
+			this->tNumVoieLivraison_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tNumVoieLivraison_p3->Name = L"tNumVoieLivraison_p3";
-			this->tNumVoieLivraison_p3->Size = System::Drawing::Size(39, 20);
+			this->tNumVoieLivraison_p3->Size = System::Drawing::Size(51, 22);
 			this->tNumVoieLivraison_p3->TabIndex = 7;
 			// 
 			// tPrenom_p3
 			// 
-			this->tPrenom_p3->Location = System::Drawing::Point(226, 113);
+			this->tPrenom_p3->Location = System::Drawing::Point(301, 139);
+			this->tPrenom_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tPrenom_p3->Name = L"tPrenom_p3";
-			this->tPrenom_p3->Size = System::Drawing::Size(110, 20);
+			this->tPrenom_p3->Size = System::Drawing::Size(145, 22);
 			this->tPrenom_p3->TabIndex = 4;
 			// 
 			// tNom_p3
 			// 
-			this->tNom_p3->Location = System::Drawing::Point(65, 113);
+			this->tNom_p3->Location = System::Drawing::Point(87, 139);
+			this->tNom_p3->Margin = System::Windows::Forms::Padding(4);
 			this->tNom_p3->Name = L"tNom_p3";
-			this->tNom_p3->Size = System::Drawing::Size(110, 20);
+			this->tNom_p3->Size = System::Drawing::Size(145, 22);
 			this->tNom_p3->TabIndex = 3;
 			// 
 			// label34
 			// 
 			this->label34->AutoSize = true;
-			this->label34->Location = System::Drawing::Point(255, 401);
+			this->label34->Location = System::Drawing::Point(340, 494);
+			this->label34->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label34->Name = L"label34";
-			this->label34->Size = System::Drawing::Size(47, 13);
+			this->label34->Size = System::Drawing::Size(62, 17);
 			this->label34->TabIndex = 71;
 			this->label34->Text = L"Quantité";
 			// 
 			// label35
 			// 
 			this->label35->AutoSize = true;
-			this->label35->Location = System::Drawing::Point(128, 401);
+			this->label35->Location = System::Drawing::Point(171, 494);
+			this->label35->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label35->Name = L"label35";
-			this->label35->Size = System::Drawing::Size(57, 13);
+			this->label35->Size = System::Drawing::Size(74, 17);
 			this->label35->TabIndex = 70;
 			this->label35->Text = L"Référence";
 			// 
 			// label37
 			// 
 			this->label37->AutoSize = true;
-			this->label37->Location = System::Drawing::Point(102, 214);
+			this->label37->Location = System::Drawing::Point(136, 263);
+			this->label37->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label37->Name = L"label37";
-			this->label37->Size = System::Drawing::Size(65, 13);
+			this->label37->Size = System::Drawing::Size(86, 17);
 			this->label37->TabIndex = 68;
 			this->label37->Text = L"Complément";
 			// 
 			// label39
 			// 
 			this->label39->AutoSize = true;
-			this->label39->Location = System::Drawing::Point(224, 100);
+			this->label39->Location = System::Drawing::Point(299, 123);
+			this->label39->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label39->Name = L"label39";
-			this->label39->Size = System::Drawing::Size(43, 13);
+			this->label39->Size = System::Drawing::Size(57, 17);
 			this->label39->TabIndex = 66;
 			this->label39->Text = L"Prenom";
 			// 
 			// label40
 			// 
 			this->label40->AutoSize = true;
-			this->label40->Location = System::Drawing::Point(64, 100);
+			this->label40->Location = System::Drawing::Point(85, 123);
+			this->label40->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label40->Name = L"label40";
-			this->label40->Size = System::Drawing::Size(29, 13);
+			this->label40->Size = System::Drawing::Size(37, 17);
 			this->label40->TabIndex = 65;
 			this->label40->Text = L"Nom";
 			// 
@@ -1081,45 +1150,52 @@ namespace logicielDeGestion {
 			// 
 			this->label41->AutoSize = true;
 			this->label41->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-			this->label41->Location = System::Drawing::Point(46, 5);
+				static_cast<System::Byte>(0)));
+			this->label41->Location = System::Drawing::Point(61, 6);
+			this->label41->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label41->Name = L"label41";
-			this->label41->Size = System::Drawing::Size(135, 20);
+			this->label41->Size = System::Drawing::Size(169, 25);
 			this->label41->TabIndex = 64;
 			this->label41->Text = L"Menu Commande";
 			// 
 			// label42
 			// 
 			this->label42->AutoSize = true;
-			this->label42->Location = System::Drawing::Point(413, 183);
+			this->label42->Location = System::Drawing::Point(551, 225);
+			this->label42->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label42->Name = L"label42";
-			this->label42->Size = System::Drawing::Size(95, 13);
+			this->label42->Size = System::Drawing::Size(126, 17);
 			this->label42->TabIndex = 63;
 			this->label42->Text = L"Détails Commande";
 			// 
 			// label43
 			// 
 			this->label43->AutoSize = true;
-			this->label43->Location = System::Drawing::Point(413, 30);
+			this->label43->Location = System::Drawing::Point(551, 37);
+			this->label43->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label43->Name = L"label43";
-			this->label43->Size = System::Drawing::Size(60, 13);
+			this->label43->Size = System::Drawing::Size(79, 17);
 			this->label43->TabIndex = 62;
 			this->label43->Text = L"Commande";
 			// 
 			// dCommande
 			// 
 			this->dCommande->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dCommande->Location = System::Drawing::Point(413, 199);
+			this->dCommande->Location = System::Drawing::Point(551, 245);
+			this->dCommande->Margin = System::Windows::Forms::Padding(4);
 			this->dCommande->Name = L"dCommande";
-			this->dCommande->Size = System::Drawing::Size(622, 134);
+			this->dCommande->RowHeadersWidth = 51;
+			this->dCommande->Size = System::Drawing::Size(829, 165);
 			this->dCommande->TabIndex = 0;
 			// 
 			// dDetailCommande_p3
 			// 
 			this->dDetailCommande_p3->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dDetailCommande_p3->Location = System::Drawing::Point(413, 46);
+			this->dDetailCommande_p3->Location = System::Drawing::Point(551, 57);
+			this->dDetailCommande_p3->Margin = System::Windows::Forms::Padding(4);
 			this->dDetailCommande_p3->Name = L"dDetailCommande_p3";
-			this->dDetailCommande_p3->Size = System::Drawing::Size(619, 134);
+			this->dDetailCommande_p3->RowHeadersWidth = 51;
+			this->dDetailCommande_p3->Size = System::Drawing::Size(825, 165);
 			this->dDetailCommande_p3->TabIndex = 0;
 			// 
 			// panelEmploye
@@ -1157,15 +1233,17 @@ namespace logicielDeGestion {
 			this->panelEmploye->Controls->Add(this->dEmploye_p1);
 			this->panelEmploye->Controls->Add(this->labelEmploye);
 			this->panelEmploye->Location = System::Drawing::Point(0, 1);
+			this->panelEmploye->Margin = System::Windows::Forms::Padding(4);
 			this->panelEmploye->Name = L"panelEmploye";
-			this->panelEmploye->Size = System::Drawing::Size(1042, 559);
+			this->panelEmploye->Size = System::Drawing::Size(1389, 688);
 			this->panelEmploye->TabIndex = 9;
 			// 
 			// bRechercheIDemploye_p1
 			// 
-			this->bRechercheIDemploye_p1->Location = System::Drawing::Point(150, 92);
+			this->bRechercheIDemploye_p1->Location = System::Drawing::Point(200, 113);
+			this->bRechercheIDemploye_p1->Margin = System::Windows::Forms::Padding(4);
 			this->bRechercheIDemploye_p1->Name = L"bRechercheIDemploye_p1";
-			this->bRechercheIDemploye_p1->Size = System::Drawing::Size(87, 19);
+			this->bRechercheIDemploye_p1->Size = System::Drawing::Size(116, 23);
 			this->bRechercheIDemploye_p1->TabIndex = 2;
 			this->bRechercheIDemploye_p1->Text = L"Rechercher";
 			this->bRechercheIDemploye_p1->UseVisualStyleBackColor = true;
@@ -1173,43 +1251,48 @@ namespace logicielDeGestion {
 			// 
 			// tIDemploye_p1
 			// 
-			this->tIDemploye_p1->Location = System::Drawing::Point(136, 67);
+			this->tIDemploye_p1->Location = System::Drawing::Point(181, 82);
+			this->tIDemploye_p1->Margin = System::Windows::Forms::Padding(4);
 			this->tIDemploye_p1->Name = L"tIDemploye_p1";
-			this->tIDemploye_p1->Size = System::Drawing::Size(110, 20);
+			this->tIDemploye_p1->Size = System::Drawing::Size(145, 22);
 			this->tIDemploye_p1->TabIndex = 1;
 			// 
 			// label74
 			// 
 			this->label74->AutoSize = true;
-			this->label74->Location = System::Drawing::Point(159, 51);
+			this->label74->Location = System::Drawing::Point(212, 63);
+			this->label74->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label74->Name = L"label74";
-			this->label74->Size = System::Drawing::Size(60, 13);
+			this->label74->Size = System::Drawing::Size(78, 17);
 			this->label74->TabIndex = 61;
 			this->label74->Text = L"ID employé";
 			// 
 			// label28
 			// 
 			this->label28->AutoSize = true;
-			this->label28->Location = System::Drawing::Point(418, 493);
+			this->label28->Location = System::Drawing::Point(557, 607);
+			this->label28->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label28->Name = L"label28";
-			this->label28->Size = System::Drawing::Size(50, 13);
+			this->label28->Size = System::Drawing::Size(65, 17);
 			this->label28->TabIndex = 60;
 			this->label28->Text = L"Message";
 			// 
 			// tBoxMessage_p1
 			// 
-			this->tBoxMessage_p1->Location = System::Drawing::Point(411, 506);
+			this->tBoxMessage_p1->Location = System::Drawing::Point(548, 623);
+			this->tBoxMessage_p1->Margin = System::Windows::Forms::Padding(4);
 			this->tBoxMessage_p1->Name = L"tBoxMessage_p1";
 			this->tBoxMessage_p1->ReadOnly = true;
-			this->tBoxMessage_p1->Size = System::Drawing::Size(624, 38);
+			this->tBoxMessage_p1->Size = System::Drawing::Size(831, 46);
 			this->tBoxMessage_p1->TabIndex = 59;
 			this->tBoxMessage_p1->Text = L"";
 			// 
 			// bRetour_p1
 			// 
-			this->bRetour_p1->Location = System::Drawing::Point(4, 3);
+			this->bRetour_p1->Location = System::Drawing::Point(5, 4);
+			this->bRetour_p1->Margin = System::Windows::Forms::Padding(4);
 			this->bRetour_p1->Name = L"bRetour_p1";
-			this->bRetour_p1->Size = System::Drawing::Size(37, 23);
+			this->bRetour_p1->Size = System::Drawing::Size(49, 28);
 			this->bRetour_p1->TabIndex = 16;
 			this->bRetour_p1->Text = L"<<";
 			this->bRetour_p1->UseVisualStyleBackColor = true;
@@ -1218,33 +1301,37 @@ namespace logicielDeGestion {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(411, 38);
+			this->label9->Location = System::Drawing::Point(548, 47);
+			this->label9->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(47, 13);
+			this->label9->Size = System::Drawing::Size(62, 17);
 			this->label9->TabIndex = 27;
 			this->label9->Text = L"Employé";
 			// 
 			// tTypeVoie_p1
 			// 
-			this->tTypeVoie_p1->Location = System::Drawing::Point(65, 338);
+			this->tTypeVoie_p1->Location = System::Drawing::Point(87, 416);
+			this->tTypeVoie_p1->Margin = System::Windows::Forms::Padding(4);
 			this->tTypeVoie_p1->Name = L"tTypeVoie_p1";
-			this->tTypeVoie_p1->Size = System::Drawing::Size(110, 20);
+			this->tTypeVoie_p1->Size = System::Drawing::Size(145, 22);
 			this->tTypeVoie_p1->TabIndex = 9;
 			// 
 			// label14
 			// 
 			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(62, 321);
+			this->label14->Location = System::Drawing::Point(83, 395);
+			this->label14->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(69, 13);
+			this->label14->Size = System::Drawing::Size(90, 17);
 			this->label14->TabIndex = 25;
 			this->label14->Text = L"Type de voie";
 			// 
 			// bAjouter_p1
 			// 
-			this->bAjouter_p1->Location = System::Drawing::Point(206, 433);
+			this->bAjouter_p1->Location = System::Drawing::Point(275, 533);
+			this->bAjouter_p1->Margin = System::Windows::Forms::Padding(4);
 			this->bAjouter_p1->Name = L"bAjouter_p1";
-			this->bAjouter_p1->Size = System::Drawing::Size(66, 110);
+			this->bAjouter_p1->Size = System::Drawing::Size(88, 135);
 			this->bAjouter_p1->TabIndex = 13;
 			this->bAjouter_p1->Text = L"Ajouter";
 			this->bAjouter_p1->UseVisualStyleBackColor = true;
@@ -1252,9 +1339,10 @@ namespace logicielDeGestion {
 			// 
 			// bMaj_p1
 			// 
-			this->bMaj_p1->Location = System::Drawing::Point(121, 433);
+			this->bMaj_p1->Location = System::Drawing::Point(161, 533);
+			this->bMaj_p1->Margin = System::Windows::Forms::Padding(4);
 			this->bMaj_p1->Name = L"bMaj_p1";
-			this->bMaj_p1->Size = System::Drawing::Size(75, 51);
+			this->bMaj_p1->Size = System::Drawing::Size(100, 63);
 			this->bMaj_p1->TabIndex = 14;
 			this->bMaj_p1->Text = L"Mise à jour";
 			this->bMaj_p1->UseVisualStyleBackColor = true;
@@ -1262,9 +1350,10 @@ namespace logicielDeGestion {
 			// 
 			// bSupprimer_p1
 			// 
-			this->bSupprimer_p1->Location = System::Drawing::Point(121, 490);
+			this->bSupprimer_p1->Location = System::Drawing::Point(161, 603);
+			this->bSupprimer_p1->Margin = System::Windows::Forms::Padding(4);
 			this->bSupprimer_p1->Name = L"bSupprimer_p1";
-			this->bSupprimer_p1->Size = System::Drawing::Size(75, 53);
+			this->bSupprimer_p1->Size = System::Drawing::Size(100, 65);
 			this->bSupprimer_p1->TabIndex = 15;
 			this->bSupprimer_p1->Text = L"Supprimer";
 			this->bSupprimer_p1->UseVisualStyleBackColor = true;
@@ -1272,164 +1361,185 @@ namespace logicielDeGestion {
 			// 
 			// tVille_p1
 			// 
-			this->tVille_p1->Location = System::Drawing::Point(199, 388);
+			this->tVille_p1->Location = System::Drawing::Point(265, 478);
+			this->tVille_p1->Margin = System::Windows::Forms::Padding(4);
 			this->tVille_p1->Name = L"tVille_p1";
-			this->tVille_p1->Size = System::Drawing::Size(110, 20);
+			this->tVille_p1->Size = System::Drawing::Size(145, 22);
 			this->tVille_p1->TabIndex = 12;
 			// 
 			// tCodePostal_p1
 			// 
-			this->tCodePostal_p1->Location = System::Drawing::Point(65, 388);
+			this->tCodePostal_p1->Location = System::Drawing::Point(87, 478);
+			this->tCodePostal_p1->Margin = System::Windows::Forms::Padding(4);
 			this->tCodePostal_p1->Name = L"tCodePostal_p1";
-			this->tCodePostal_p1->Size = System::Drawing::Size(110, 20);
+			this->tCodePostal_p1->Size = System::Drawing::Size(145, 22);
 			this->tCodePostal_p1->TabIndex = 11;
 			// 
 			// tNomVoie_p1
 			// 
-			this->tNomVoie_p1->Location = System::Drawing::Point(200, 338);
+			this->tNomVoie_p1->Location = System::Drawing::Point(267, 416);
+			this->tNomVoie_p1->Margin = System::Windows::Forms::Padding(4);
 			this->tNomVoie_p1->Name = L"tNomVoie_p1";
-			this->tNomVoie_p1->Size = System::Drawing::Size(110, 20);
+			this->tNomVoie_p1->Size = System::Drawing::Size(145, 22);
 			this->tNomVoie_p1->TabIndex = 10;
 			// 
 			// tCompAdresse_p1
 			// 
-			this->tCompAdresse_p1->Location = System::Drawing::Point(199, 288);
+			this->tCompAdresse_p1->Location = System::Drawing::Point(265, 354);
+			this->tCompAdresse_p1->Margin = System::Windows::Forms::Padding(4);
 			this->tCompAdresse_p1->Name = L"tCompAdresse_p1";
-			this->tCompAdresse_p1->Size = System::Drawing::Size(110, 20);
+			this->tCompAdresse_p1->Size = System::Drawing::Size(145, 22);
 			this->tCompAdresse_p1->TabIndex = 8;
 			// 
 			// tNumVoie_p1
 			// 
-			this->tNumVoie_p1->Location = System::Drawing::Point(65, 288);
+			this->tNumVoie_p1->Location = System::Drawing::Point(87, 354);
+			this->tNumVoie_p1->Margin = System::Windows::Forms::Padding(4);
 			this->tNumVoie_p1->Name = L"tNumVoie_p1";
-			this->tNumVoie_p1->Size = System::Drawing::Size(110, 20);
+			this->tNumVoie_p1->Size = System::Drawing::Size(145, 22);
 			this->tNumVoie_p1->TabIndex = 7;
 			// 
 			// tPrenomSuperieur_p1
 			// 
-			this->tPrenomSuperieur_p1->Location = System::Drawing::Point(199, 215);
+			this->tPrenomSuperieur_p1->Location = System::Drawing::Point(265, 265);
+			this->tPrenomSuperieur_p1->Margin = System::Windows::Forms::Padding(4);
 			this->tPrenomSuperieur_p1->Name = L"tPrenomSuperieur_p1";
-			this->tPrenomSuperieur_p1->Size = System::Drawing::Size(111, 20);
+			this->tPrenomSuperieur_p1->Size = System::Drawing::Size(147, 22);
 			this->tPrenomSuperieur_p1->TabIndex = 6;
 			// 
 			// tNomSuperieur_p1
 			// 
-			this->tNomSuperieur_p1->Location = System::Drawing::Point(65, 215);
+			this->tNomSuperieur_p1->Location = System::Drawing::Point(87, 265);
+			this->tNomSuperieur_p1->Margin = System::Windows::Forms::Padding(4);
 			this->tNomSuperieur_p1->Name = L"tNomSuperieur_p1";
-			this->tNomSuperieur_p1->Size = System::Drawing::Size(110, 20);
+			this->tNomSuperieur_p1->Size = System::Drawing::Size(145, 22);
 			this->tNomSuperieur_p1->TabIndex = 5;
 			// 
 			// tPrenom_p1
 			// 
-			this->tPrenom_p1->Location = System::Drawing::Point(199, 149);
+			this->tPrenom_p1->Location = System::Drawing::Point(265, 183);
+			this->tPrenom_p1->Margin = System::Windows::Forms::Padding(4);
 			this->tPrenom_p1->Name = L"tPrenom_p1";
-			this->tPrenom_p1->Size = System::Drawing::Size(110, 20);
+			this->tPrenom_p1->Size = System::Drawing::Size(145, 22);
 			this->tPrenom_p1->TabIndex = 4;
 			// 
 			// tNom_p1
 			// 
-			this->tNom_p1->Location = System::Drawing::Point(65, 149);
+			this->tNom_p1->Location = System::Drawing::Point(87, 183);
+			this->tNom_p1->Margin = System::Windows::Forms::Padding(4);
 			this->tNom_p1->Name = L"tNom_p1";
-			this->tNom_p1->Size = System::Drawing::Size(110, 20);
+			this->tNom_p1->Size = System::Drawing::Size(145, 22);
 			this->tNom_p1->TabIndex = 3;
 			// 
 			// label13
 			// 
 			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(199, 372);
+			this->label13->Location = System::Drawing::Point(265, 458);
+			this->label13->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label13->Name = L"label13";
-			this->label13->Size = System::Drawing::Size(26, 13);
+			this->label13->Size = System::Drawing::Size(34, 17);
 			this->label13->TabIndex = 11;
 			this->label13->Text = L"Ville";
 			// 
 			// label12
 			// 
 			this->label12->AutoSize = true;
-			this->label12->Location = System::Drawing::Point(62, 372);
+			this->label12->Location = System::Drawing::Point(83, 458);
+			this->label12->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label12->Name = L"label12";
-			this->label12->Size = System::Drawing::Size(63, 13);
+			this->label12->Size = System::Drawing::Size(83, 17);
 			this->label12->TabIndex = 10;
 			this->label12->Text = L"Code postal";
 			// 
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(197, 268);
+			this->label11->Location = System::Drawing::Point(263, 330);
+			this->label11->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(113, 13);
+			this->label11->Size = System::Drawing::Size(152, 17);
 			this->label11->TabIndex = 9;
 			this->label11->Text = L"Complément d\'adresse";
 			// 
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(62, 268);
+			this->label10->Location = System::Drawing::Point(83, 330);
+			this->label10->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(82, 13);
+			this->label10->Size = System::Drawing::Size(108, 17);
 			this->label10->TabIndex = 8;
 			this->label10->Text = L"Numéro de voie";
 			// 
 			// label8
 			// 
 			this->label8->AutoSize = true;
-			this->label8->Location = System::Drawing::Point(197, 321);
+			this->label8->Location = System::Drawing::Point(263, 395);
+			this->label8->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(67, 13);
+			this->label8->Size = System::Drawing::Size(87, 17);
 			this->label8->TabIndex = 6;
 			this->label8->Text = L"Nom de voie";
 			// 
 			// label7
 			// 
 			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(197, 199);
+			this->label7->Location = System::Drawing::Point(263, 245);
+			this->label7->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(89, 13);
+			this->label7->Size = System::Drawing::Size(121, 17);
 			this->label7->TabIndex = 5;
 			this->label7->Text = L"Prénom supérieur";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(62, 199);
+			this->label6->Location = System::Drawing::Point(83, 245);
+			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(75, 13);
+			this->label6->Size = System::Drawing::Size(101, 17);
 			this->label6->TabIndex = 4;
 			this->label6->Text = L"Nom supérieur";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(196, 133);
+			this->label5->Location = System::Drawing::Point(261, 164);
+			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(43, 13);
+			this->label5->Size = System::Drawing::Size(57, 17);
 			this->label5->TabIndex = 3;
 			this->label5->Text = L"Prénom";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(62, 133);
+			this->label4->Location = System::Drawing::Point(83, 164);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(29, 13);
+			this->label4->Size = System::Drawing::Size(37, 17);
 			this->label4->TabIndex = 2;
 			this->label4->Text = L"Nom";
 			// 
 			// dEmploye_p1
 			// 
 			this->dEmploye_p1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dEmploye_p1->Location = System::Drawing::Point(413, 54);
+			this->dEmploye_p1->Location = System::Drawing::Point(551, 66);
+			this->dEmploye_p1->Margin = System::Windows::Forms::Padding(4);
 			this->dEmploye_p1->Name = L"dEmploye_p1";
-			this->dEmploye_p1->Size = System::Drawing::Size(622, 394);
+			this->dEmploye_p1->RowHeadersWidth = 51;
+			this->dEmploye_p1->Size = System::Drawing::Size(829, 485);
 			this->dEmploye_p1->TabIndex = 0;
 			// 
 			// labelEmploye
 			// 
 			this->labelEmploye->AutoSize = true;
 			this->labelEmploye->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-			this->labelEmploye->Location = System::Drawing::Point(46, 5);
+				static_cast<System::Byte>(0)));
+			this->labelEmploye->Location = System::Drawing::Point(61, 6);
+			this->labelEmploye->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->labelEmploye->Name = L"labelEmploye";
-			this->labelEmploye->Size = System::Drawing::Size(114, 20);
+			this->labelEmploye->Size = System::Drawing::Size(143, 25);
 			this->labelEmploye->TabIndex = 0;
 			this->labelEmploye->Text = L"Menu Employé";
 			// 
@@ -1468,33 +1578,37 @@ namespace logicielDeGestion {
 			this->panelClient->Controls->Add(this->dClient_p2);
 			this->panelClient->Controls->Add(this->dAdresse_p2);
 			this->panelClient->Location = System::Drawing::Point(0, 1);
+			this->panelClient->Margin = System::Windows::Forms::Padding(4);
 			this->panelClient->Name = L"panelClient";
-			this->panelClient->Size = System::Drawing::Size(1042, 559);
+			this->panelClient->Size = System::Drawing::Size(1389, 688);
 			this->panelClient->TabIndex = 10;
 			// 
 			// label29
 			// 
 			this->label29->AutoSize = true;
-			this->label29->Location = System::Drawing::Point(418, 493);
+			this->label29->Location = System::Drawing::Point(557, 607);
+			this->label29->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label29->Name = L"label29";
-			this->label29->Size = System::Drawing::Size(50, 13);
+			this->label29->Size = System::Drawing::Size(65, 17);
 			this->label29->TabIndex = 59;
 			this->label29->Text = L"Message";
 			// 
 			// tBoxMessage_p2
 			// 
-			this->tBoxMessage_p2->Location = System::Drawing::Point(411, 506);
+			this->tBoxMessage_p2->Location = System::Drawing::Point(548, 623);
+			this->tBoxMessage_p2->Margin = System::Windows::Forms::Padding(4);
 			this->tBoxMessage_p2->Name = L"tBoxMessage_p2";
 			this->tBoxMessage_p2->ReadOnly = true;
-			this->tBoxMessage_p2->Size = System::Drawing::Size(624, 38);
+			this->tBoxMessage_p2->Size = System::Drawing::Size(831, 46);
 			this->tBoxMessage_p2->TabIndex = 0;
 			this->tBoxMessage_p2->Text = L"";
 			// 
 			// bRetour_p2
 			// 
-			this->bRetour_p2->Location = System::Drawing::Point(4, 3);
+			this->bRetour_p2->Location = System::Drawing::Point(5, 4);
+			this->bRetour_p2->Margin = System::Windows::Forms::Padding(4);
 			this->bRetour_p2->Name = L"bRetour_p2";
-			this->bRetour_p2->Size = System::Drawing::Size(37, 23);
+			this->bRetour_p2->Size = System::Drawing::Size(49, 28);
 			this->bRetour_p2->TabIndex = 15;
 			this->bRetour_p2->Text = L"<<";
 			this->bRetour_p2->UseVisualStyleBackColor = true;
@@ -1502,9 +1616,10 @@ namespace logicielDeGestion {
 			// 
 			// bRechecher_p2
 			// 
-			this->bRechecher_p2->Location = System::Drawing::Point(144, 92);
+			this->bRechecher_p2->Location = System::Drawing::Point(192, 113);
+			this->bRechecher_p2->Margin = System::Windows::Forms::Padding(4);
 			this->bRechecher_p2->Name = L"bRechecher_p2";
-			this->bRechecher_p2->Size = System::Drawing::Size(76, 20);
+			this->bRechecher_p2->Size = System::Drawing::Size(101, 25);
 			this->bRechecher_p2->TabIndex = 2;
 			this->bRechecher_p2->Text = L"Rechercher";
 			this->bRechecher_p2->UseVisualStyleBackColor = true;
@@ -1513,56 +1628,63 @@ namespace logicielDeGestion {
 			// label23
 			// 
 			this->label23->AutoSize = true;
-			this->label23->Location = System::Drawing::Point(151, 50);
+			this->label23->Location = System::Drawing::Point(201, 62);
+			this->label23->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label23->Name = L"label23";
-			this->label23->Size = System::Drawing::Size(62, 13);
+			this->label23->Size = System::Drawing::Size(81, 17);
 			this->label23->TabIndex = 0;
 			this->label23->Text = L"N° de client";
 			// 
 			// tNumClient_p2
 			// 
-			this->tNumClient_p2->Location = System::Drawing::Point(128, 66);
+			this->tNumClient_p2->Location = System::Drawing::Point(171, 81);
+			this->tNumClient_p2->Margin = System::Windows::Forms::Padding(4);
 			this->tNumClient_p2->Name = L"tNumClient_p2";
-			this->tNumClient_p2->Size = System::Drawing::Size(110, 20);
+			this->tNumClient_p2->Size = System::Drawing::Size(145, 22);
 			this->tNumClient_p2->TabIndex = 1;
 			// 
 			// tDateNaissance_p2
 			// 
-			this->tDateNaissance_p2->Location = System::Drawing::Point(63, 206);
+			this->tDateNaissance_p2->Location = System::Drawing::Point(84, 254);
+			this->tDateNaissance_p2->Margin = System::Windows::Forms::Padding(4);
 			this->tDateNaissance_p2->Name = L"tDateNaissance_p2";
-			this->tDateNaissance_p2->Size = System::Drawing::Size(110, 20);
+			this->tDateNaissance_p2->Size = System::Drawing::Size(145, 22);
 			this->tDateNaissance_p2->TabIndex = 5;
 			// 
 			// label24
 			// 
 			this->label24->AutoSize = true;
-			this->label24->Location = System::Drawing::Point(60, 190);
+			this->label24->Location = System::Drawing::Point(80, 234);
+			this->label24->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label24->Name = L"label24";
-			this->label24->Size = System::Drawing::Size(96, 13);
+			this->label24->Size = System::Drawing::Size(126, 17);
 			this->label24->TabIndex = 0;
 			this->label24->Text = L"Date de naissance";
 			// 
 			// tTypeVoie_p2
 			// 
-			this->tTypeVoie_p2->Location = System::Drawing::Point(63, 331);
+			this->tTypeVoie_p2->Location = System::Drawing::Point(84, 407);
+			this->tTypeVoie_p2->Margin = System::Windows::Forms::Padding(4);
 			this->tTypeVoie_p2->Name = L"tTypeVoie_p2";
-			this->tTypeVoie_p2->Size = System::Drawing::Size(110, 20);
+			this->tTypeVoie_p2->Size = System::Drawing::Size(145, 22);
 			this->tTypeVoie_p2->TabIndex = 8;
 			// 
 			// label17
 			// 
 			this->label17->AutoSize = true;
-			this->label17->Location = System::Drawing::Point(60, 314);
+			this->label17->Location = System::Drawing::Point(80, 386);
+			this->label17->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label17->Name = L"label17";
-			this->label17->Size = System::Drawing::Size(69, 13);
+			this->label17->Size = System::Drawing::Size(90, 17);
 			this->label17->TabIndex = 49;
 			this->label17->Text = L"Type de voie";
 			// 
 			// bAjouter_p2
 			// 
-			this->bAjouter_p2->Location = System::Drawing::Point(200, 431);
+			this->bAjouter_p2->Location = System::Drawing::Point(267, 530);
+			this->bAjouter_p2->Margin = System::Windows::Forms::Padding(4);
 			this->bAjouter_p2->Name = L"bAjouter_p2";
-			this->bAjouter_p2->Size = System::Drawing::Size(66, 110);
+			this->bAjouter_p2->Size = System::Drawing::Size(88, 135);
 			this->bAjouter_p2->TabIndex = 12;
 			this->bAjouter_p2->Text = L"Ajouter";
 			this->bAjouter_p2->UseVisualStyleBackColor = true;
@@ -1570,9 +1692,10 @@ namespace logicielDeGestion {
 			// 
 			// bMaj_p2
 			// 
-			this->bMaj_p2->Location = System::Drawing::Point(115, 431);
+			this->bMaj_p2->Location = System::Drawing::Point(153, 530);
+			this->bMaj_p2->Margin = System::Windows::Forms::Padding(4);
 			this->bMaj_p2->Name = L"bMaj_p2";
-			this->bMaj_p2->Size = System::Drawing::Size(75, 51);
+			this->bMaj_p2->Size = System::Drawing::Size(100, 63);
 			this->bMaj_p2->TabIndex = 13;
 			this->bMaj_p2->Text = L"Mise à jour";
 			this->bMaj_p2->UseVisualStyleBackColor = true;
@@ -1580,9 +1703,10 @@ namespace logicielDeGestion {
 			// 
 			// bSupprimer_p2
 			// 
-			this->bSupprimer_p2->Location = System::Drawing::Point(115, 488);
+			this->bSupprimer_p2->Location = System::Drawing::Point(153, 601);
+			this->bSupprimer_p2->Margin = System::Windows::Forms::Padding(4);
 			this->bSupprimer_p2->Name = L"bSupprimer_p2";
-			this->bSupprimer_p2->Size = System::Drawing::Size(75, 53);
+			this->bSupprimer_p2->Size = System::Drawing::Size(100, 65);
 			this->bSupprimer_p2->TabIndex = 14;
 			this->bSupprimer_p2->Text = L"Supprimer";
 			this->bSupprimer_p2->UseVisualStyleBackColor = true;
@@ -1590,113 +1714,127 @@ namespace logicielDeGestion {
 			// 
 			// tVille_p2
 			// 
-			this->tVille_p2->Location = System::Drawing::Point(197, 381);
+			this->tVille_p2->Location = System::Drawing::Point(263, 469);
+			this->tVille_p2->Margin = System::Windows::Forms::Padding(4);
 			this->tVille_p2->Name = L"tVille_p2";
-			this->tVille_p2->Size = System::Drawing::Size(110, 20);
+			this->tVille_p2->Size = System::Drawing::Size(145, 22);
 			this->tVille_p2->TabIndex = 11;
 			// 
 			// tCodePostal_p2
 			// 
-			this->tCodePostal_p2->Location = System::Drawing::Point(63, 381);
+			this->tCodePostal_p2->Location = System::Drawing::Point(84, 469);
+			this->tCodePostal_p2->Margin = System::Windows::Forms::Padding(4);
 			this->tCodePostal_p2->Name = L"tCodePostal_p2";
-			this->tCodePostal_p2->Size = System::Drawing::Size(110, 20);
+			this->tCodePostal_p2->Size = System::Drawing::Size(145, 22);
 			this->tCodePostal_p2->TabIndex = 10;
 			// 
 			// tNomVoie_p2
 			// 
-			this->tNomVoie_p2->Location = System::Drawing::Point(198, 331);
+			this->tNomVoie_p2->Location = System::Drawing::Point(264, 407);
+			this->tNomVoie_p2->Margin = System::Windows::Forms::Padding(4);
 			this->tNomVoie_p2->Name = L"tNomVoie_p2";
-			this->tNomVoie_p2->Size = System::Drawing::Size(110, 20);
+			this->tNomVoie_p2->Size = System::Drawing::Size(145, 22);
 			this->tNomVoie_p2->TabIndex = 9;
 			// 
 			// tCompAdresse_p2
 			// 
-			this->tCompAdresse_p2->Location = System::Drawing::Point(197, 281);
+			this->tCompAdresse_p2->Location = System::Drawing::Point(263, 346);
+			this->tCompAdresse_p2->Margin = System::Windows::Forms::Padding(4);
 			this->tCompAdresse_p2->Name = L"tCompAdresse_p2";
-			this->tCompAdresse_p2->Size = System::Drawing::Size(110, 20);
+			this->tCompAdresse_p2->Size = System::Drawing::Size(145, 22);
 			this->tCompAdresse_p2->TabIndex = 7;
 			// 
 			// tNumVoie_p2
 			// 
-			this->tNumVoie_p2->Location = System::Drawing::Point(63, 281);
+			this->tNumVoie_p2->Location = System::Drawing::Point(84, 346);
+			this->tNumVoie_p2->Margin = System::Windows::Forms::Padding(4);
 			this->tNumVoie_p2->Name = L"tNumVoie_p2";
-			this->tNumVoie_p2->Size = System::Drawing::Size(110, 20);
+			this->tNumVoie_p2->Size = System::Drawing::Size(145, 22);
 			this->tNumVoie_p2->TabIndex = 6;
 			// 
 			// tPrenom_p2
 			// 
-			this->tPrenom_p2->Location = System::Drawing::Point(197, 154);
+			this->tPrenom_p2->Location = System::Drawing::Point(263, 190);
+			this->tPrenom_p2->Margin = System::Windows::Forms::Padding(4);
 			this->tPrenom_p2->Name = L"tPrenom_p2";
-			this->tPrenom_p2->Size = System::Drawing::Size(110, 20);
+			this->tPrenom_p2->Size = System::Drawing::Size(145, 22);
 			this->tPrenom_p2->TabIndex = 4;
 			// 
 			// tNom_p2
 			// 
-			this->tNom_p2->Location = System::Drawing::Point(63, 154);
+			this->tNom_p2->Location = System::Drawing::Point(84, 190);
+			this->tNom_p2->Margin = System::Windows::Forms::Padding(4);
 			this->tNom_p2->Name = L"tNom_p2";
-			this->tNom_p2->Size = System::Drawing::Size(110, 20);
+			this->tNom_p2->Size = System::Drawing::Size(145, 22);
 			this->tNom_p2->TabIndex = 3;
 			// 
 			// label18
 			// 
 			this->label18->AutoSize = true;
-			this->label18->Location = System::Drawing::Point(197, 365);
+			this->label18->Location = System::Drawing::Point(263, 449);
+			this->label18->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label18->Name = L"label18";
-			this->label18->Size = System::Drawing::Size(26, 13);
+			this->label18->Size = System::Drawing::Size(34, 17);
 			this->label18->TabIndex = 36;
 			this->label18->Text = L"Ville";
 			// 
 			// label19
 			// 
 			this->label19->AutoSize = true;
-			this->label19->Location = System::Drawing::Point(60, 365);
+			this->label19->Location = System::Drawing::Point(80, 449);
+			this->label19->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label19->Name = L"label19";
-			this->label19->Size = System::Drawing::Size(63, 13);
+			this->label19->Size = System::Drawing::Size(83, 17);
 			this->label19->TabIndex = 35;
 			this->label19->Text = L"Code postal";
 			// 
 			// label20
 			// 
 			this->label20->AutoSize = true;
-			this->label20->Location = System::Drawing::Point(195, 261);
+			this->label20->Location = System::Drawing::Point(260, 321);
+			this->label20->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label20->Name = L"label20";
-			this->label20->Size = System::Drawing::Size(113, 13);
+			this->label20->Size = System::Drawing::Size(152, 17);
 			this->label20->TabIndex = 34;
 			this->label20->Text = L"Complément d\'adresse";
 			// 
 			// label21
 			// 
 			this->label21->AutoSize = true;
-			this->label21->Location = System::Drawing::Point(60, 261);
+			this->label21->Location = System::Drawing::Point(80, 321);
+			this->label21->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label21->Name = L"label21";
-			this->label21->Size = System::Drawing::Size(82, 13);
+			this->label21->Size = System::Drawing::Size(108, 17);
 			this->label21->TabIndex = 0;
 			this->label21->Text = L"Numéro de voie";
 			// 
 			// label22
 			// 
 			this->label22->AutoSize = true;
-			this->label22->Location = System::Drawing::Point(195, 314);
+			this->label22->Location = System::Drawing::Point(260, 386);
+			this->label22->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label22->Name = L"label22";
-			this->label22->Size = System::Drawing::Size(67, 13);
+			this->label22->Size = System::Drawing::Size(87, 17);
 			this->label22->TabIndex = 32;
 			this->label22->Text = L"Nom de voie";
 			// 
 			// label25
 			// 
 			this->label25->AutoSize = true;
-			this->label25->Location = System::Drawing::Point(195, 138);
+			this->label25->Location = System::Drawing::Point(260, 170);
+			this->label25->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label25->Name = L"label25";
-			this->label25->Size = System::Drawing::Size(43, 13);
+			this->label25->Size = System::Drawing::Size(57, 17);
 			this->label25->TabIndex = 0;
 			this->label25->Text = L"Prénom";
 			// 
 			// label26
 			// 
 			this->label26->AutoSize = true;
-			this->label26->Location = System::Drawing::Point(60, 138);
+			this->label26->Location = System::Drawing::Point(80, 170);
+			this->label26->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label26->Name = L"label26";
-			this->label26->Size = System::Drawing::Size(29, 13);
+			this->label26->Size = System::Drawing::Size(37, 17);
 			this->label26->TabIndex = 28;
 			this->label26->Text = L"Nom";
 			// 
@@ -1704,45 +1842,52 @@ namespace logicielDeGestion {
 			// 
 			this->label27->AutoSize = true;
 			this->label27->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-			this->label27->Location = System::Drawing::Point(46, 5);
+				static_cast<System::Byte>(0)));
+			this->label27->Location = System::Drawing::Point(61, 6);
+			this->label27->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label27->Name = L"label27";
-			this->label27->Size = System::Drawing::Size(93, 20);
+			this->label27->Size = System::Drawing::Size(117, 25);
 			this->label27->TabIndex = 0;
 			this->label27->Text = L"Menu Client";
 			// 
 			// label16
 			// 
 			this->label16->AutoSize = true;
-			this->label16->Location = System::Drawing::Point(412, 219);
+			this->label16->Location = System::Drawing::Point(549, 270);
+			this->label16->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label16->Name = L"label16";
-			this->label16->Size = System::Drawing::Size(45, 13);
+			this->label16->Size = System::Drawing::Size(60, 17);
 			this->label16->TabIndex = 4;
 			this->label16->Text = L"Adresse";
 			// 
 			// label15
 			// 
 			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(413, 23);
+			this->label15->Location = System::Drawing::Point(551, 28);
+			this->label15->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label15->Name = L"label15";
-			this->label15->Size = System::Drawing::Size(33, 13);
+			this->label15->Size = System::Drawing::Size(43, 17);
 			this->label15->TabIndex = 3;
 			this->label15->Text = L"Client";
 			// 
 			// dClient_p2
 			// 
 			this->dClient_p2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dClient_p2->Location = System::Drawing::Point(413, 38);
+			this->dClient_p2->Location = System::Drawing::Point(551, 47);
+			this->dClient_p2->Margin = System::Windows::Forms::Padding(4);
 			this->dClient_p2->Name = L"dClient_p2";
-			this->dClient_p2->Size = System::Drawing::Size(622, 167);
+			this->dClient_p2->RowHeadersWidth = 51;
+			this->dClient_p2->Size = System::Drawing::Size(829, 206);
 			this->dClient_p2->TabIndex = 0;
 			// 
 			// dAdresse_p2
 			// 
 			this->dAdresse_p2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dAdresse_p2->Location = System::Drawing::Point(413, 234);
+			this->dAdresse_p2->Location = System::Drawing::Point(551, 288);
+			this->dAdresse_p2->Margin = System::Windows::Forms::Padding(4);
 			this->dAdresse_p2->Name = L"dAdresse_p2";
-			this->dAdresse_p2->Size = System::Drawing::Size(622, 234);
+			this->dAdresse_p2->RowHeadersWidth = 51;
+			this->dAdresse_p2->Size = System::Drawing::Size(829, 288);
 			this->dAdresse_p2->TabIndex = 0;
 			// 
 			// panelStock
@@ -1772,31 +1917,35 @@ namespace logicielDeGestion {
 			this->panelStock->Controls->Add(this->dArticle_p4);
 			this->panelStock->Controls->Add(this->label73);
 			this->panelStock->Location = System::Drawing::Point(0, 1);
+			this->panelStock->Margin = System::Windows::Forms::Padding(4);
 			this->panelStock->Name = L"panelStock";
-			this->panelStock->Size = System::Drawing::Size(1042, 559);
+			this->panelStock->Size = System::Drawing::Size(1389, 688);
 			this->panelStock->TabIndex = 12;
 			// 
 			// label53
 			// 
 			this->label53->AutoSize = true;
-			this->label53->Location = System::Drawing::Point(208, 177);
+			this->label53->Location = System::Drawing::Point(277, 218);
+			this->label53->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label53->Name = L"label53";
-			this->label53->Size = System::Drawing::Size(88, 13);
+			this->label53->Size = System::Drawing::Size(116, 17);
 			this->label53->TabIndex = 92;
 			this->label53->Text = L"Référence article";
 			// 
 			// tReferenceArticle_p4
 			// 
-			this->tReferenceArticle_p4->Location = System::Drawing::Point(211, 192);
+			this->tReferenceArticle_p4->Location = System::Drawing::Point(281, 236);
+			this->tReferenceArticle_p4->Margin = System::Windows::Forms::Padding(4);
 			this->tReferenceArticle_p4->Name = L"tReferenceArticle_p4";
-			this->tReferenceArticle_p4->Size = System::Drawing::Size(109, 20);
+			this->tReferenceArticle_p4->Size = System::Drawing::Size(144, 22);
 			this->tReferenceArticle_p4->TabIndex = 4;
 			// 
 			// bRechercheArticle_p4
 			// 
-			this->bRechercheArticle_p4->Location = System::Drawing::Point(161, 110);
+			this->bRechercheArticle_p4->Location = System::Drawing::Point(215, 135);
+			this->bRechercheArticle_p4->Margin = System::Windows::Forms::Padding(4);
 			this->bRechercheArticle_p4->Name = L"bRechercheArticle_p4";
-			this->bRechercheArticle_p4->Size = System::Drawing::Size(74, 21);
+			this->bRechercheArticle_p4->Size = System::Drawing::Size(99, 26);
 			this->bRechercheArticle_p4->TabIndex = 2;
 			this->bRechercheArticle_p4->Text = L"Rechercher";
 			this->bRechercheArticle_p4->UseVisualStyleBackColor = true;
@@ -1804,26 +1953,29 @@ namespace logicielDeGestion {
 			// label36
 			// 
 			this->label36->AutoSize = true;
-			this->label36->Location = System::Drawing::Point(418, 493);
+			this->label36->Location = System::Drawing::Point(557, 607);
+			this->label36->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label36->Name = L"label36";
-			this->label36->Size = System::Drawing::Size(50, 13);
+			this->label36->Size = System::Drawing::Size(65, 17);
 			this->label36->TabIndex = 89;
 			this->label36->Text = L"Message";
 			// 
 			// tBoxMessage_p4
 			// 
-			this->tBoxMessage_p4->Location = System::Drawing::Point(411, 506);
+			this->tBoxMessage_p4->Location = System::Drawing::Point(548, 623);
+			this->tBoxMessage_p4->Margin = System::Windows::Forms::Padding(4);
 			this->tBoxMessage_p4->Name = L"tBoxMessage_p4";
 			this->tBoxMessage_p4->ReadOnly = true;
-			this->tBoxMessage_p4->Size = System::Drawing::Size(624, 38);
+			this->tBoxMessage_p4->Size = System::Drawing::Size(831, 46);
 			this->tBoxMessage_p4->TabIndex = 0;
 			this->tBoxMessage_p4->Text = L"";
 			// 
 			// bRetour_p4
 			// 
-			this->bRetour_p4->Location = System::Drawing::Point(4, 3);
+			this->bRetour_p4->Location = System::Drawing::Point(5, 4);
+			this->bRetour_p4->Margin = System::Windows::Forms::Padding(4);
 			this->bRetour_p4->Name = L"bRetour_p4";
-			this->bRetour_p4->Size = System::Drawing::Size(37, 23);
+			this->bRetour_p4->Size = System::Drawing::Size(49, 28);
 			this->bRetour_p4->TabIndex = 12;
 			this->bRetour_p4->Text = L"<<";
 			this->bRetour_p4->UseVisualStyleBackColor = true;
@@ -1832,33 +1984,37 @@ namespace logicielDeGestion {
 			// label38
 			// 
 			this->label38->AutoSize = true;
-			this->label38->Location = System::Drawing::Point(412, 37);
+			this->label38->Location = System::Drawing::Point(549, 46);
+			this->label38->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label38->Name = L"label38";
-			this->label38->Size = System::Drawing::Size(36, 13);
+			this->label38->Size = System::Drawing::Size(47, 17);
 			this->label38->TabIndex = 86;
 			this->label38->Text = L"Article";
 			// 
 			// tTauxTVA_p4
 			// 
-			this->tTauxTVA_p4->Location = System::Drawing::Point(75, 327);
+			this->tTauxTVA_p4->Location = System::Drawing::Point(100, 402);
+			this->tTauxTVA_p4->Margin = System::Windows::Forms::Padding(4);
 			this->tTauxTVA_p4->Name = L"tTauxTVA_p4";
-			this->tTauxTVA_p4->Size = System::Drawing::Size(110, 20);
+			this->tTauxTVA_p4->Size = System::Drawing::Size(145, 22);
 			this->tTauxTVA_p4->TabIndex = 7;
 			// 
 			// label52
 			// 
 			this->label52->AutoSize = true;
-			this->label52->Location = System::Drawing::Point(72, 312);
+			this->label52->Location = System::Drawing::Point(96, 384);
+			this->label52->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label52->Name = L"label52";
-			this->label52->Size = System::Drawing::Size(72, 13);
+			this->label52->Size = System::Drawing::Size(96, 17);
 			this->label52->TabIndex = 84;
 			this->label52->Text = L"Taux TVA (%)";
 			// 
 			// bAjouter_p4
 			// 
-			this->bAjouter_p4->Location = System::Drawing::Point(216, 394);
+			this->bAjouter_p4->Location = System::Drawing::Point(288, 485);
+			this->bAjouter_p4->Margin = System::Windows::Forms::Padding(4);
 			this->bAjouter_p4->Name = L"bAjouter_p4";
-			this->bAjouter_p4->Size = System::Drawing::Size(66, 110);
+			this->bAjouter_p4->Size = System::Drawing::Size(88, 135);
 			this->bAjouter_p4->TabIndex = 9;
 			this->bAjouter_p4->Text = L"Ajouter";
 			this->bAjouter_p4->UseVisualStyleBackColor = true;
@@ -1866,9 +2022,10 @@ namespace logicielDeGestion {
 			// 
 			// bMaj_p4
 			// 
-			this->bMaj_p4->Location = System::Drawing::Point(131, 394);
+			this->bMaj_p4->Location = System::Drawing::Point(175, 485);
+			this->bMaj_p4->Margin = System::Windows::Forms::Padding(4);
 			this->bMaj_p4->Name = L"bMaj_p4";
-			this->bMaj_p4->Size = System::Drawing::Size(75, 51);
+			this->bMaj_p4->Size = System::Drawing::Size(100, 63);
 			this->bMaj_p4->TabIndex = 10;
 			this->bMaj_p4->Text = L"Mise à jour";
 			this->bMaj_p4->UseVisualStyleBackColor = true;
@@ -1876,9 +2033,10 @@ namespace logicielDeGestion {
 			// 
 			// bSupprimer_p4
 			// 
-			this->bSupprimer_p4->Location = System::Drawing::Point(131, 451);
+			this->bSupprimer_p4->Location = System::Drawing::Point(175, 555);
+			this->bSupprimer_p4->Margin = System::Windows::Forms::Padding(4);
 			this->bSupprimer_p4->Name = L"bSupprimer_p4";
-			this->bSupprimer_p4->Size = System::Drawing::Size(75, 53);
+			this->bSupprimer_p4->Size = System::Drawing::Size(100, 65);
 			this->bSupprimer_p4->TabIndex = 11;
 			this->bSupprimer_p4->Text = L"Supprimer";
 			this->bSupprimer_p4->UseVisualStyleBackColor = true;
@@ -1886,100 +2044,113 @@ namespace logicielDeGestion {
 			// 
 			// tPrixHT_p4
 			// 
-			this->tPrixHT_p4->Location = System::Drawing::Point(210, 327);
+			this->tPrixHT_p4->Location = System::Drawing::Point(280, 402);
+			this->tPrixHT_p4->Margin = System::Windows::Forms::Padding(4);
 			this->tPrixHT_p4->Name = L"tPrixHT_p4";
-			this->tPrixHT_p4->Size = System::Drawing::Size(110, 20);
+			this->tPrixHT_p4->Size = System::Drawing::Size(145, 22);
 			this->tPrixHT_p4->TabIndex = 8;
 			// 
 			// tSeuilReap_p4
 			// 
-			this->tSeuilReap_p4->Location = System::Drawing::Point(74, 264);
+			this->tSeuilReap_p4->Location = System::Drawing::Point(99, 325);
+			this->tSeuilReap_p4->Margin = System::Windows::Forms::Padding(4);
 			this->tSeuilReap_p4->Name = L"tSeuilReap_p4";
-			this->tSeuilReap_p4->Size = System::Drawing::Size(110, 20);
+			this->tSeuilReap_p4->Size = System::Drawing::Size(145, 22);
 			this->tSeuilReap_p4->TabIndex = 5;
 			// 
 			// tQuantiteStock_p4
 			// 
-			this->tQuantiteStock_p4->Location = System::Drawing::Point(209, 264);
+			this->tQuantiteStock_p4->Location = System::Drawing::Point(279, 325);
+			this->tQuantiteStock_p4->Margin = System::Windows::Forms::Padding(4);
 			this->tQuantiteStock_p4->Name = L"tQuantiteStock_p4";
-			this->tQuantiteStock_p4->Size = System::Drawing::Size(111, 20);
+			this->tQuantiteStock_p4->Size = System::Drawing::Size(147, 22);
 			this->tQuantiteStock_p4->TabIndex = 6;
 			// 
 			// tDesignation_p4
 			// 
-			this->tDesignation_p4->Location = System::Drawing::Point(75, 192);
+			this->tDesignation_p4->Location = System::Drawing::Point(100, 236);
+			this->tDesignation_p4->Margin = System::Windows::Forms::Padding(4);
 			this->tDesignation_p4->Name = L"tDesignation_p4";
-			this->tDesignation_p4->Size = System::Drawing::Size(109, 20);
+			this->tDesignation_p4->Size = System::Drawing::Size(144, 22);
 			this->tDesignation_p4->TabIndex = 3;
 			// 
 			// tRechercheArticle_p4
 			// 
-			this->tRechercheArticle_p4->Location = System::Drawing::Point(141, 84);
+			this->tRechercheArticle_p4->Location = System::Drawing::Point(188, 103);
+			this->tRechercheArticle_p4->Margin = System::Windows::Forms::Padding(4);
 			this->tRechercheArticle_p4->Name = L"tRechercheArticle_p4";
-			this->tRechercheArticle_p4->Size = System::Drawing::Size(110, 20);
+			this->tRechercheArticle_p4->Size = System::Drawing::Size(145, 22);
 			this->tRechercheArticle_p4->TabIndex = 1;
 			// 
 			// label58
 			// 
 			this->label58->AutoSize = true;
-			this->label58->Location = System::Drawing::Point(207, 312);
+			this->label58->Location = System::Drawing::Point(276, 384);
+			this->label58->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label58->Name = L"label58";
-			this->label58->Size = System::Drawing::Size(57, 13);
+			this->label58->Size = System::Drawing::Size(68, 17);
 			this->label58->TabIndex = 69;
 			this->label58->Text = L"Prix HT ()";
 			// 
 			// label60
 			// 
 			this->label60->AutoSize = true;
-			this->label60->Location = System::Drawing::Point(64, 250);
+			this->label60->Location = System::Drawing::Point(85, 308);
+			this->label60->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label60->Name = L"label60";
-			this->label60->Size = System::Drawing::Size(131, 13);
+			this->label60->Size = System::Drawing::Size(176, 17);
 			this->label60->TabIndex = 68;
 			this->label60->Text = L"Seuil réapprovisionnement";
 			// 
 			// label62
 			// 
 			this->label62->AutoSize = true;
-			this->label62->Location = System::Drawing::Point(208, 249);
+			this->label62->Location = System::Drawing::Point(277, 306);
+			this->label62->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label62->Name = L"label62";
-			this->label62->Size = System::Drawing::Size(76, 13);
+			this->label62->Size = System::Drawing::Size(99, 17);
 			this->label62->TabIndex = 66;
 			this->label62->Text = L"Quantité stock";
 			// 
 			// label71
 			// 
 			this->label71->AutoSize = true;
-			this->label71->Location = System::Drawing::Point(72, 176);
+			this->label71->Location = System::Drawing::Point(96, 217);
+			this->label71->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label71->Name = L"label71";
-			this->label71->Size = System::Drawing::Size(63, 13);
+			this->label71->Size = System::Drawing::Size(83, 17);
 			this->label71->TabIndex = 64;
 			this->label71->Text = L"Désignation";
 			// 
 			// label72
 			// 
 			this->label72->AutoSize = true;
-			this->label72->Location = System::Drawing::Point(152, 68);
+			this->label72->Location = System::Drawing::Point(203, 84);
+			this->label72->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label72->Name = L"label72";
-			this->label72->Size = System::Drawing::Size(88, 13);
+			this->label72->Size = System::Drawing::Size(116, 17);
 			this->label72->TabIndex = 63;
 			this->label72->Text = L"Référence article";
 			// 
 			// dArticle_p4
 			// 
 			this->dArticle_p4->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dArticle_p4->Location = System::Drawing::Point(413, 51);
+			this->dArticle_p4->Location = System::Drawing::Point(551, 63);
+			this->dArticle_p4->Margin = System::Windows::Forms::Padding(4);
 			this->dArticle_p4->Name = L"dArticle_p4";
-			this->dArticle_p4->Size = System::Drawing::Size(622, 394);
+			this->dArticle_p4->RowHeadersWidth = 51;
+			this->dArticle_p4->Size = System::Drawing::Size(829, 485);
 			this->dArticle_p4->TabIndex = 0;
 			// 
 			// label73
 			// 
 			this->label73->AutoSize = true;
 			this->label73->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-			this->label73->Location = System::Drawing::Point(46, 5);
+				static_cast<System::Byte>(0)));
+			this->label73->Location = System::Drawing::Point(61, 6);
+			this->label73->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label73->Name = L"label73";
-			this->label73->Size = System::Drawing::Size(94, 20);
+			this->label73->Size = System::Drawing::Size(117, 25);
 			this->label73->TabIndex = 61;
 			this->label73->Text = L"Menu Stock";
 			// 
@@ -2004,117 +2175,137 @@ namespace logicielDeGestion {
 			this->panelStatistiques->Controls->Add(this->dChiffreAffaireMois_p5);
 			this->panelStatistiques->Controls->Add(this->dMontantAchatClient_p5);
 			this->panelStatistiques->Location = System::Drawing::Point(0, 1);
+			this->panelStatistiques->Margin = System::Windows::Forms::Padding(4);
 			this->panelStatistiques->Name = L"panelStatistiques";
-			this->panelStatistiques->Size = System::Drawing::Size(1042, 559);
+			this->panelStatistiques->Size = System::Drawing::Size(1389, 688);
 			this->panelStatistiques->TabIndex = 13;
 			// 
 			// label70
 			// 
 			this->label70->AutoSize = true;
-			this->label70->Location = System::Drawing::Point(64, 200);
+			this->label70->Location = System::Drawing::Point(85, 246);
+			this->label70->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label70->Name = L"label70";
-			this->label70->Size = System::Drawing::Size(205, 13);
+			this->label70->Size = System::Drawing::Size(277, 17);
 			this->label70->TabIndex = 104;
 			this->label70->Text = L"Produits sous le seuil d\'approvisionnement";
 			// 
 			// dProduitsSousSeuil_p5
 			// 
 			this->dProduitsSousSeuil_p5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dProduitsSousSeuil_p5->Location = System::Drawing::Point(67, 216);
+			this->dProduitsSousSeuil_p5->Location = System::Drawing::Point(89, 266);
+			this->dProduitsSousSeuil_p5->Margin = System::Windows::Forms::Padding(4);
 			this->dProduitsSousSeuil_p5->Name = L"dProduitsSousSeuil_p5";
-			this->dProduitsSousSeuil_p5->Size = System::Drawing::Size(421, 127);
+			this->dProduitsSousSeuil_p5->RowHeadersWidth = 51;
+			this->dProduitsSousSeuil_p5->Size = System::Drawing::Size(561, 156);
 			this->dProduitsSousSeuil_p5->TabIndex = 103;
 			// 
 			// label61
 			// 
 			this->label61->AutoSize = true;
-			this->label61->Location = System::Drawing::Point(539, 381);
+			this->label61->Location = System::Drawing::Point(719, 469);
+			this->label61->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label61->Name = L"label61";
-			this->label61->Size = System::Drawing::Size(125, 13);
+			this->label61->Size = System::Drawing::Size(167, 17);
 			this->label61->TabIndex = 102;
 			this->label61->Text = L"Articles les moins vendus";
 			// 
 			// dArticlesMoinsVendus
 			// 
 			this->dArticlesMoinsVendus->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dArticlesMoinsVendus->Location = System::Drawing::Point(542, 396);
+			this->dArticlesMoinsVendus->Location = System::Drawing::Point(723, 487);
+			this->dArticlesMoinsVendus->Margin = System::Windows::Forms::Padding(4);
 			this->dArticlesMoinsVendus->Name = L"dArticlesMoinsVendus";
-			this->dArticlesMoinsVendus->Size = System::Drawing::Size(421, 127);
+			this->dArticlesMoinsVendus->RowHeadersWidth = 51;
+			this->dArticlesMoinsVendus->Size = System::Drawing::Size(561, 156);
 			this->dArticlesMoinsVendus->TabIndex = 101;
 			// 
 			// label57
 			// 
 			this->label57->AutoSize = true;
-			this->label57->Location = System::Drawing::Point(64, 381);
+			this->label57->Location = System::Drawing::Point(85, 469);
+			this->label57->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label57->Name = L"label57";
-			this->label57->Size = System::Drawing::Size(117, 13);
+			this->label57->Size = System::Drawing::Size(156, 17);
 			this->label57->TabIndex = 100;
 			this->label57->Text = L"Articles les plus vendus";
 			// 
 			// dArticlesPlusVendus_p5
 			// 
 			this->dArticlesPlusVendus_p5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dArticlesPlusVendus_p5->Location = System::Drawing::Point(67, 396);
+			this->dArticlesPlusVendus_p5->Location = System::Drawing::Point(89, 487);
+			this->dArticlesPlusVendus_p5->Margin = System::Windows::Forms::Padding(4);
 			this->dArticlesPlusVendus_p5->Name = L"dArticlesPlusVendus_p5";
-			this->dArticlesPlusVendus_p5->Size = System::Drawing::Size(421, 127);
+			this->dArticlesPlusVendus_p5->RowHeadersWidth = 51;
+			this->dArticlesPlusVendus_p5->Size = System::Drawing::Size(561, 156);
 			this->dArticlesPlusVendus_p5->TabIndex = 99;
 			// 
 			// label85
 			// 
 			this->label85->AutoSize = true;
-			this->label85->Location = System::Drawing::Point(787, 108);
+			this->label85->Location = System::Drawing::Point(1049, 133);
+			this->label85->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label85->Name = L"label85";
-			this->label85->Size = System::Drawing::Size(167, 13);
+			this->label85->Size = System::Drawing::Size(225, 17);
 			this->label85->TabIndex = 98;
 			this->label85->Text = L"Chiffre d\'affaire du mois précédent";
 			// 
 			// label87
 			// 
 			this->label87->AutoSize = true;
-			this->label87->Location = System::Drawing::Point(335, 110);
+			this->label87->Location = System::Drawing::Point(447, 135);
+			this->label87->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label87->Name = L"label87";
-			this->label87->Size = System::Drawing::Size(119, 13);
+			this->label87->Size = System::Drawing::Size(156, 17);
 			this->label87->TabIndex = 97;
 			this->label87->Text = L"Valeur d\'achat du stock";
 			// 
 			// dValeurAchatStock_p5
 			// 
 			this->dValeurAchatStock_p5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dValeurAchatStock_p5->Location = System::Drawing::Point(303, 123);
+			this->dValeurAchatStock_p5->Location = System::Drawing::Point(404, 151);
+			this->dValeurAchatStock_p5->Margin = System::Windows::Forms::Padding(4);
 			this->dValeurAchatStock_p5->Name = L"dValeurAchatStock_p5";
-			this->dValeurAchatStock_p5->Size = System::Drawing::Size(185, 35);
+			this->dValeurAchatStock_p5->RowHeadersWidth = 51;
+			this->dValeurAchatStock_p5->Size = System::Drawing::Size(247, 43);
 			this->dValeurAchatStock_p5->TabIndex = 96;
 			// 
 			// label86
 			// 
 			this->label86->AutoSize = true;
-			this->label86->Location = System::Drawing::Point(87, 109);
+			this->label86->Location = System::Drawing::Point(116, 134);
+			this->label86->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label86->Name = L"label86";
-			this->label86->Size = System::Drawing::Size(143, 13);
+			this->label86->Size = System::Drawing::Size(189, 17);
 			this->label86->TabIndex = 95;
 			this->label86->Text = L"Valeur commerciale du stock";
 			// 
 			// dValeurCo_p5
 			// 
 			this->dValeurCo_p5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dValeurCo_p5->Location = System::Drawing::Point(67, 122);
+			this->dValeurCo_p5->Location = System::Drawing::Point(89, 150);
+			this->dValeurCo_p5->Margin = System::Windows::Forms::Padding(4);
 			this->dValeurCo_p5->Name = L"dValeurCo_p5";
-			this->dValeurCo_p5->Size = System::Drawing::Size(185, 35);
+			this->dValeurCo_p5->RowHeadersWidth = 51;
+			this->dValeurCo_p5->Size = System::Drawing::Size(247, 43);
 			this->dValeurCo_p5->TabIndex = 94;
 			// 
 			// dPanierMoyen_p5
 			// 
 			this->dPanierMoyen_p5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dPanierMoyen_p5->Location = System::Drawing::Point(542, 123);
+			this->dPanierMoyen_p5->Location = System::Drawing::Point(723, 151);
+			this->dPanierMoyen_p5->Margin = System::Windows::Forms::Padding(4);
 			this->dPanierMoyen_p5->Name = L"dPanierMoyen_p5";
-			this->dPanierMoyen_p5->Size = System::Drawing::Size(185, 35);
+			this->dPanierMoyen_p5->RowHeadersWidth = 51;
+			this->dPanierMoyen_p5->Size = System::Drawing::Size(247, 43);
 			this->dPanierMoyen_p5->TabIndex = 92;
 			// 
 			// bRetour_p5
 			// 
-			this->bRetour_p5->Location = System::Drawing::Point(4, 3);
+			this->bRetour_p5->Location = System::Drawing::Point(5, 4);
+			this->bRetour_p5->Margin = System::Windows::Forms::Padding(4);
 			this->bRetour_p5->Name = L"bRetour_p5";
-			this->bRetour_p5->Size = System::Drawing::Size(37, 23);
+			this->bRetour_p5->Size = System::Drawing::Size(49, 28);
 			this->bRetour_p5->TabIndex = 1;
 			this->bRetour_p5->Text = L"<<";
 			this->bRetour_p5->UseVisualStyleBackColor = true;
@@ -2124,45 +2315,52 @@ namespace logicielDeGestion {
 			// 
 			this->label82->AutoSize = true;
 			this->label82->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-			this->label82->Location = System::Drawing::Point(46, 5);
+				static_cast<System::Byte>(0)));
+			this->label82->Location = System::Drawing::Point(61, 6);
+			this->label82->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label82->Name = L"label82";
-			this->label82->Size = System::Drawing::Size(137, 20);
+			this->label82->Size = System::Drawing::Size(168, 25);
 			this->label82->TabIndex = 64;
 			this->label82->Text = L"Menu Statistiques";
 			// 
 			// dProduitSousSeuil_p5
 			// 
 			this->dProduitSousSeuil_p5->AutoSize = true;
-			this->dProduitSousSeuil_p5->Location = System::Drawing::Point(539, 200);
+			this->dProduitSousSeuil_p5->Location = System::Drawing::Point(719, 246);
+			this->dProduitSousSeuil_p5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->dProduitSousSeuil_p5->Name = L"dProduitSousSeuil_p5";
-			this->dProduitSousSeuil_p5->Size = System::Drawing::Size(145, 13);
+			this->dProduitSousSeuil_p5->Size = System::Drawing::Size(191, 17);
 			this->dProduitSousSeuil_p5->TabIndex = 63;
 			this->dProduitSousSeuil_p5->Text = L"Montant total achat par client";
 			// 
 			// label84
 			// 
 			this->label84->AutoSize = true;
-			this->label84->Location = System::Drawing::Point(592, 107);
+			this->label84->Location = System::Drawing::Point(789, 132);
+			this->label84->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label84->Name = L"label84";
-			this->label84->Size = System::Drawing::Size(87, 13);
+			this->label84->Size = System::Drawing::Size(109, 17);
 			this->label84->TabIndex = 62;
 			this->label84->Text = L"Panier Moyen ()";
 			// 
 			// dChiffreAffaireMois_p5
 			// 
 			this->dChiffreAffaireMois_p5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dChiffreAffaireMois_p5->Location = System::Drawing::Point(778, 124);
+			this->dChiffreAffaireMois_p5->Location = System::Drawing::Point(1037, 153);
+			this->dChiffreAffaireMois_p5->Margin = System::Windows::Forms::Padding(4);
 			this->dChiffreAffaireMois_p5->Name = L"dChiffreAffaireMois_p5";
-			this->dChiffreAffaireMois_p5->Size = System::Drawing::Size(185, 35);
+			this->dChiffreAffaireMois_p5->RowHeadersWidth = 51;
+			this->dChiffreAffaireMois_p5->Size = System::Drawing::Size(247, 43);
 			this->dChiffreAffaireMois_p5->TabIndex = 61;
 			// 
 			// dMontantAchatClient_p5
 			// 
 			this->dMontantAchatClient_p5->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dMontantAchatClient_p5->Location = System::Drawing::Point(542, 216);
+			this->dMontantAchatClient_p5->Location = System::Drawing::Point(723, 266);
+			this->dMontantAchatClient_p5->Margin = System::Windows::Forms::Padding(4);
 			this->dMontantAchatClient_p5->Name = L"dMontantAchatClient_p5";
-			this->dMontantAchatClient_p5->Size = System::Drawing::Size(421, 127);
+			this->dMontantAchatClient_p5->RowHeadersWidth = 51;
+			this->dMontantAchatClient_p5->Size = System::Drawing::Size(561, 156);
 			this->dMontantAchatClient_p5->TabIndex = 60;
 			// 
 			// errorProvider1
@@ -2171,6 +2369,7 @@ namespace logicielDeGestion {
 			// 
 			// panelSimulation
 			// 
+			this->panelSimulation->Controls->Add(this->bCalcul_p6);
 			this->panelSimulation->Controls->Add(this->label80);
 			this->panelSimulation->Controls->Add(this->label79);
 			this->panelSimulation->Controls->Add(this->label78);
@@ -2184,18 +2383,30 @@ namespace logicielDeGestion {
 			this->panelSimulation->Controls->Add(this->bRetour_p6);
 			this->panelSimulation->Controls->Add(this->label75);
 			this->panelSimulation->Location = System::Drawing::Point(0, 1);
+			this->panelSimulation->Margin = System::Windows::Forms::Padding(4);
 			this->panelSimulation->Name = L"panelSimulation";
-			this->panelSimulation->Size = System::Drawing::Size(1042, 559);
+			this->panelSimulation->Size = System::Drawing::Size(1389, 688);
 			this->panelSimulation->TabIndex = 14;
+			// 
+			// bCalcul_p6
+			// 
+			this->bCalcul_p6->Location = System::Drawing::Point(648, 340);
+			this->bCalcul_p6->Name = L"bCalcul_p6";
+			this->bCalcul_p6->Size = System::Drawing::Size(104, 46);
+			this->bCalcul_p6->TabIndex = 70;
+			this->bCalcul_p6->Text = L"Calcul";
+			this->bCalcul_p6->UseVisualStyleBackColor = true;
+			this->bCalcul_p6->Click += gcnew System::EventHandler(this, &Menu::bCalcul_p6_Click);
 			// 
 			// label80
 			// 
 			this->label80->AutoSize = true;
 			this->label80->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label80->Location = System::Drawing::Point(304, 353);
+			this->label80->Location = System::Drawing::Point(405, 434);
+			this->label80->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label80->Name = L"label80";
-			this->label80->Size = System::Drawing::Size(436, 16);
+			this->label80->Size = System::Drawing::Size(554, 20);
 			this->label80->TabIndex = 69;
 			this->label80->Text = L"Résultat de la simulation de la variation du prix total du stock commercial";
 			// 
@@ -2203,10 +2414,11 @@ namespace logicielDeGestion {
 			// 
 			this->label79->AutoSize = true;
 			this->label79->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-			this->label79->Location = System::Drawing::Point(815, 189);
+				static_cast<System::Byte>(0)));
+			this->label79->Location = System::Drawing::Point(1087, 233);
+			this->label79->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label79->Name = L"label79";
-			this->label79->Size = System::Drawing::Size(141, 18);
+			this->label79->Size = System::Drawing::Size(184, 24);
 			this->label79->TabIndex = 68;
 			this->label79->Text = L"Démarque inconnue";
 			// 
@@ -2214,10 +2426,11 @@ namespace logicielDeGestion {
 			// 
 			this->label78->AutoSize = true;
 			this->label78->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-			this->label78->Location = System::Drawing::Point(561, 189);
+				static_cast<System::Byte>(0)));
+			this->label78->Location = System::Drawing::Point(748, 233);
+			this->label78->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label78->Name = L"label78";
-			this->label78->Size = System::Drawing::Size(149, 18);
+			this->label78->Size = System::Drawing::Size(188, 24);
 			this->label78->TabIndex = 67;
 			this->label78->Text = L"Remise commerciale";
 			// 
@@ -2225,10 +2438,11 @@ namespace logicielDeGestion {
 			// 
 			this->label77->AutoSize = true;
 			this->label77->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-			this->label77->Location = System::Drawing::Point(316, 189);
+				static_cast<System::Byte>(0)));
+			this->label77->Location = System::Drawing::Point(421, 233);
+			this->label77->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label77->Name = L"label77";
-			this->label77->Size = System::Drawing::Size(140, 18);
+			this->label77->Size = System::Drawing::Size(178, 24);
 			this->label77->TabIndex = 66;
 			this->label77->Text = L"Marge commerciale";
 			// 
@@ -2236,62 +2450,70 @@ namespace logicielDeGestion {
 			// 
 			this->label76->AutoSize = true;
 			this->label76->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-			static_cast<System::Byte>(0)));
-			this->label76->Location = System::Drawing::Point(142, 189);
+				static_cast<System::Byte>(0)));
+			this->label76->Location = System::Drawing::Point(189, 233);
+			this->label76->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label76->Name = L"label76";
-			this->label76->Size = System::Drawing::Size(35, 18);
+			this->label76->Size = System::Drawing::Size(48, 24);
 			this->label76->TabIndex = 65;
 			this->label76->Text = L"TVA";
 			// 
 			// dSimulation_p6
 			// 
 			this->dSimulation_p6->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dSimulation_p6->Location = System::Drawing::Point(441, 382);
+			this->dSimulation_p6->Location = System::Drawing::Point(588, 470);
+			this->dSimulation_p6->Margin = System::Windows::Forms::Padding(4);
 			this->dSimulation_p6->Name = L"dSimulation_p6";
-			this->dSimulation_p6->Size = System::Drawing::Size(175, 42);
+			this->dSimulation_p6->RowHeadersWidth = 51;
+			this->dSimulation_p6->Size = System::Drawing::Size(233, 52);
 			this->dSimulation_p6->TabIndex = 0;
 			// 
 			// cbMarge_p6
 			// 
 			this->cbMarge_p6->FormattingEnabled = true;
-			this->cbMarge_p6->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"x 5%", L"x 10%", L"x15%" });
-			this->cbMarge_p6->Location = System::Drawing::Point(343, 210);
+			this->cbMarge_p6->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"5 %", L"10 %", L"15 %" });
+			this->cbMarge_p6->Location = System::Drawing::Point(457, 258);
+			this->cbMarge_p6->Margin = System::Windows::Forms::Padding(4);
 			this->cbMarge_p6->Name = L"cbMarge_p6";
-			this->cbMarge_p6->Size = System::Drawing::Size(83, 21);
+			this->cbMarge_p6->Size = System::Drawing::Size(109, 24);
 			this->cbMarge_p6->TabIndex = 2;
 			// 
 			// cbRemiseComm_p6
 			// 
 			this->cbRemiseComm_p6->FormattingEnabled = true;
-			this->cbRemiseComm_p6->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"5%", L"6%" });
-			this->cbRemiseComm_p6->Location = System::Drawing::Point(590, 210);
+			this->cbRemiseComm_p6->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"5 %", L"6 %" });
+			this->cbRemiseComm_p6->Location = System::Drawing::Point(787, 258);
+			this->cbRemiseComm_p6->Margin = System::Windows::Forms::Padding(4);
 			this->cbRemiseComm_p6->Name = L"cbRemiseComm_p6";
-			this->cbRemiseComm_p6->Size = System::Drawing::Size(83, 21);
+			this->cbRemiseComm_p6->Size = System::Drawing::Size(109, 24);
 			this->cbRemiseComm_p6->TabIndex = 3;
 			// 
 			// cbDemarque_p6
 			// 
 			this->cbDemarque_p6->FormattingEnabled = true;
-			this->cbDemarque_p6->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"2%", L"3%", L"5%" });
-			this->cbDemarque_p6->Location = System::Drawing::Point(842, 210);
+			this->cbDemarque_p6->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"2 %", L"3 %", L"5 %" });
+			this->cbDemarque_p6->Location = System::Drawing::Point(1123, 258);
+			this->cbDemarque_p6->Margin = System::Windows::Forms::Padding(4);
 			this->cbDemarque_p6->Name = L"cbDemarque_p6";
-			this->cbDemarque_p6->Size = System::Drawing::Size(83, 21);
+			this->cbDemarque_p6->Size = System::Drawing::Size(109, 24);
 			this->cbDemarque_p6->TabIndex = 4;
 			// 
 			// cbTVA_p6
 			// 
 			this->cbTVA_p6->FormattingEnabled = true;
-			this->cbTVA_p6->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"20%", L"10%", L"5,5%" });
-			this->cbTVA_p6->Location = System::Drawing::Point(118, 210);
+			this->cbTVA_p6->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"20 %", L"10 %", L"5 %" });
+			this->cbTVA_p6->Location = System::Drawing::Point(157, 258);
+			this->cbTVA_p6->Margin = System::Windows::Forms::Padding(4);
 			this->cbTVA_p6->Name = L"cbTVA_p6";
-			this->cbTVA_p6->Size = System::Drawing::Size(83, 21);
+			this->cbTVA_p6->Size = System::Drawing::Size(109, 24);
 			this->cbTVA_p6->TabIndex = 1;
 			// 
 			// bRetour_p6
 			// 
-			this->bRetour_p6->Location = System::Drawing::Point(4, 3);
+			this->bRetour_p6->Location = System::Drawing::Point(5, 4);
+			this->bRetour_p6->Margin = System::Windows::Forms::Padding(4);
 			this->bRetour_p6->Name = L"bRetour_p6";
-			this->bRetour_p6->Size = System::Drawing::Size(37, 23);
+			this->bRetour_p6->Size = System::Drawing::Size(49, 28);
 			this->bRetour_p6->TabIndex = 5;
 			this->bRetour_p6->Text = L"<<";
 			this->bRetour_p6->UseVisualStyleBackColor = true;
@@ -2302,17 +2524,18 @@ namespace logicielDeGestion {
 			this->label75->AutoSize = true;
 			this->label75->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label75->Location = System::Drawing::Point(46, 5);
+			this->label75->Location = System::Drawing::Point(61, 6);
+			this->label75->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label75->Name = L"label75";
-			this->label75->Size = System::Drawing::Size(127, 20);
+			this->label75->Size = System::Drawing::Size(158, 25);
 			this->label75->TabIndex = 58;
 			this->label75->Text = L"Menu Simulation";
 			// 
 			// Menu
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1044, 562);
+			this->ClientSize = System::Drawing::Size(1392, 692);
 			this->Controls->Add(this->panelSimulation);
 			this->Controls->Add(this->panelClient);
 			this->Controls->Add(this->panelCommande);
@@ -2320,6 +2543,7 @@ namespace logicielDeGestion {
 			this->Controls->Add(this->panelStatistiques);
 			this->Controls->Add(this->panelStock);
 			this->Controls->Add(this->panelEmploye);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"Menu";
 			this->Text = L"Logiciel de gestion";
 			this->Load += gcnew System::EventHandler(this, &Menu::Menu_Load);
@@ -2355,6 +2579,7 @@ namespace logicielDeGestion {
 			this->panelSimulation->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dSimulation_p6))->EndInit();
 			this->ResumeLayout(false);
+
 		}
 #pragma endregion
 	private: void resetForm(void) {
@@ -2759,6 +2984,8 @@ namespace logicielDeGestion {
 		this->loadDataStock();
 	}
 
+
+
 	private: System::Void buttonStatistiques_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelMenu->Hide();
 		this->panelStatistiques->Show();
@@ -2767,10 +2994,12 @@ namespace logicielDeGestion {
 	private: System::Void buttonSimulation_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelMenu->Hide();
 		this->panelSimulation->Show();
+		this->gestion = gcnew Services::GestionArticle();
 	}
 
 	private: System::Void bRetour_p1_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelEmploye->Hide();
+		this->resetEmploye();
 		this->panelMenu->Show();
 	}
 
@@ -2786,6 +3015,7 @@ namespace logicielDeGestion {
 
 	private: System::Void bRetour_p4_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelStock->Hide();
+		this->resetArticle();
 		this->panelMenu->Show();
 	}
 
@@ -2797,6 +3027,17 @@ namespace logicielDeGestion {
 	private: System::Void bRetour_p6_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelSimulation->Hide();
 		this->panelMenu->Show();
+	}
+
+	private: System::Void bCalcul_p6_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->resetForm();
+		try {
+			this->dSimulation_p6->DataSource = this->gestion->simulation(this->cbTVA_p6->SelectedText->Split(' ')[0], this->cbMarge_p6->SelectedText->Split(' ')[0], this->cbRemiseComm_p6->SelectedText->Split(' ')[0], this->cbDemarque_p6->SelectedText->Split(' ')[0]);
+			this->dSimulation_p6->DataMember = "Article";
+		}
+		catch (String^ e) {
+			this->errorProvider1->SetError(this->bCalcul_p6, e);
+		}
 	}
 };
 }
