@@ -1920,6 +1920,8 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 			this->bRechercheArticle_p4->TabIndex = 90;
 			this->bRechercheArticle_p4->Text = L"Rechercher";
 			this->bRechercheArticle_p4->UseVisualStyleBackColor = true;
+			this->bRechercheArticle_p4->Click += gcnew System::EventHandler(this, &Menu::bRechercheArticle_p4_Click);
+
 			// 
 			// label36
 			// 
@@ -1999,6 +2001,7 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 			this->bMaj_p4->TabIndex = 82;
 			this->bMaj_p4->Text = L"Mise à jour";
 			this->bMaj_p4->UseVisualStyleBackColor = true;
+			this->bMaj_p4->Click += gcnew System::EventHandler(this, &Menu::bMaj_p4_Click);
 			// 
 			// bSupprimer_p4
 			// 
@@ -2522,6 +2525,9 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 		catch (String^ e) {
 			this->errorProvider1->SetError(this->bAjouter_p1, e);
 		}
+		catch (FormatException^) {
+			this->errorProvider1->SetError(this->bRechercheIDemploye_p1, "Un ID doit être un réel !");
+		}
 		catch (bool^ e) {
 			if (e) {
 				this->tBoxReponse_p1->Text = "Opération réussie !";
@@ -2665,6 +2671,44 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 		this->dArticle_p4->DataMember = "Article";
 	}
 
+	private: void resetArticle(void) {
+		this->tDesignation_p4->Text = "";
+		this->tReferenceArticle_p4->Text = "";
+		this->tSeuilReap_p4->Text = "";
+		this->tQuantiteStock_p4->Text = "";
+		this->tPrixHT_p4->Text = "";
+		this->tTauxTVA_p4->Text = "";
+	}
+
+	private: System::Void bRechercheArticle_p4_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			this->resetForm();
+			bool find = 0;
+			for (int i = 0; i < this->dArticle_p4->RowCount - 1; i++) {
+				if (this->tRechercheArticle_p4->Text->Trim() == this->dArticle_p4->Rows[i]->Cells[0]->Value->ToString()) {
+					this->dArticle_p4->CurrentCell = this->dArticle_p4->Rows[i]->Cells[0];
+					find = 1;
+				}
+			}
+			if (!find) {
+				this->resetArticle();
+				throw gcnew String("Cet article n'existe pas !");
+			}
+			else {
+					this->tBoxMessage_p4->Text = "Opération réussie !";
+			}
+			this->tDesignation_p4->Text = this->dArticle_p4->CurrentRow->Cells[1]->Value->ToString();
+			this->tReferenceArticle_p4->Text = this->dArticle_p4->CurrentRow->Cells[0]->Value->ToString();
+			this->tSeuilReap_p4->Text = this->dArticle_p4->CurrentRow->Cells[3]->Value->ToString();
+			this->tQuantiteStock_p4->Text = this->dArticle_p4->CurrentRow->Cells[2]->Value->ToString();
+			this->tPrixHT_p4->Text = this->dArticle_p4->CurrentRow->Cells[4]->Value->ToString()->Split(' ')[0];
+			this->tTauxTVA_p4->Text = this->dArticle_p4->CurrentRow->Cells[5]->Value->ToString()->Split(' ')[0];
+		}
+		catch (String^ e) {
+			this->errorProvider1->SetError(this->bRechercheArticle_p4, e);
+		}
+	}
+
 	private: System::Void bAjouter_p4_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->resetForm();
 		try {
@@ -2700,6 +2744,36 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 			}
 			else {
 				this->tBoxMessage_p4->Text = "Opération échouée !";
+			}
+		}
+		this->loadDataStock();
+	}
+
+	private: System::Void bMaj_p4_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->resetForm();
+		try {
+			bool find = 0;
+			for (int i = 0; i < this->dArticle_p4->RowCount - 1; i++) {
+				if (this->tRechercheArticle_p4->Text->Trim() == this->dArticle_p4->Rows[i]->Cells[0]->Value->ToString()) {
+					find = 1;
+				}
+			}
+			if (!find) {
+				this->resetArticle();
+				throw gcnew String("Cet article n'existe pas !");
+			}
+			this->gestion = gcnew Services::GestionArticle(this->tReferenceArticle_p4->Text->Trim(), this->tDesignation_p4->Text->Trim(), this->tQuantiteStock_p4->Text->Trim(), this->tSeuilReap_p4->Text->Trim(), this->tPrixHT_p4->Text->Trim(), this->tTauxTVA_p4->Text->Trim());			this->gestion->modifier(this->tRechercheArticle_p4->Text);
+			this->gestion->modifier(this->tRechercheArticle_p4->Text);
+		}
+		catch (String^ e) {
+			this->errorProvider1->SetError(this->bAjouter_p1, e);
+		}
+		catch (bool^ e) {
+			if (e) {
+				this->tBoxReponse_p1->Text = "Opération réussie !";
+			}
+			else {
+				this->tBoxReponse_p1->Text = "Opération échouée !";
 			}
 		}
 		this->loadDataStock();

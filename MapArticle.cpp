@@ -26,7 +26,7 @@ namespace Composants {
 	}
 
 	String^ MapArticle::SELECT(int choix) {
-		return "SELECT * FROM article";
+		return "SELECT reference, designation, stock, seuilDeReapprovisionnement AS seuil, CONCAT(prixHT, ' €') AS prixUHT, CONCAT(tauxDeTVA, ' %') AS TVA FROM article";
 	}
 
 	String^ MapArticle::INSERT(void) {
@@ -43,7 +43,9 @@ namespace Composants {
 	}
 
 	String^ MapArticle::UPDATE(String^ article) {
-		return "";
+		return "BEGIN TRANSACTION;" + 
+			"UPDATE article SET reference = '" + this->get_reference() + "', designation = '" + this->get_designation() + "', seuilDeReapprovisionnement = '" + this->get_seuilDeReapprovisionnement() + "', stock = '" + this->get_stock() + "', prixHT = '" + this->get_prixHT() + "', tauxDeTVA = '" + this->get_tauxDeTVA() + "';" + 
+			"COMMIT";
 	}
 
 	void MapArticle::set_ID(int ID) {
