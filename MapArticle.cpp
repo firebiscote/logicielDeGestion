@@ -17,7 +17,6 @@ namespace Composants {
 	}
 
 	MapArticle::MapArticle(String^ reference, String^ designation, String^ stock, String^ seuilDeReapprovisionnement, String^ prixHT, String^ tauxDeTVA) {
-		this->_ID = -1;
 		this->set_reference(reference);
 		this->set_designation(designation);
 		this->set_stock(stock);

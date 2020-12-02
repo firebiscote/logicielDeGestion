@@ -1000,6 +1000,7 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 			this->bAjouter_p3->TabIndex = 81;
 			this->bAjouter_p3->Text = L"Ajouter";
 			this->bAjouter_p3->UseVisualStyleBackColor = true;
+			this->bAjouter_p3->Click += gcnew System::EventHandler(this, &Menu::bAjouter_p3_Click);
 			// 
 			// bMaj_p3
 			// 
@@ -1020,6 +1021,7 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 			this->bSupprimer_p3->TabIndex = 79;
 			this->bSupprimer_p3->Text = L"Supprimer";
 			this->bSupprimer_p3->UseVisualStyleBackColor = true;
+			this->bSupprimer_p3->Click += gcnew System::EventHandler(this, &Menu::bSupprimer_p3_Click);
 			// 
 			// tQuantiteArticle_p3
 			// 
@@ -2464,7 +2466,7 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 		this->dClient_p2->DataSource = this->gestion->liste(1);
 		this->dClient_p2->DataMember = "Client";
 		this->dAdresse_p2->DataSource = this->gestion->liste(2);
-		this->dAdresse_p2->DataMember = "Adresse";
+		this->dAdresse_p2->DataMember = "Client";
 	}
 
 	private: System::Void bAjouter_p2_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -2510,6 +2512,62 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 	private: System::Void buttonCommande_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelMenu->Hide();
 		this->panelCommande->Show();
+		this->gestion = gcnew Services::GestionCommande();
+		this->loadDataCommande();
+	}
+
+	private: void loadDataCommande(void) {
+		this->dCommande->DataSource = this->gestion->liste(0);
+		this->dCommande->DataMember = "Commande";
+	}
+
+	private: void loadDataCommandeAll(void) {
+		this->dCommande->DataSource = this->gestion->liste(1);
+		this->dCommande->DataMember = "Commande";
+		this->dDetailCommande_p3->DataSource = this->gestion->liste(2);
+		this->dDetailCommande_p3->DataMember = "Commande";
+		this->dDetailPaiement_p3->DataSource = this->gestion->liste(2);
+		this->dDetailPaiement_p3->DataMember = "Commande";
+	}
+
+	private: System::Void bAjouter_p3_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->resetForm();
+		try {
+			this->gestion = gcnew Services::GestionCommande(this->tNom_p3->Text->Trim(), this->tPrenom_p3->Text->Trim(), Convert::ToDateTime(this->tDernierSolde_p3->Text->Trim()), Convert::ToDateTime(tDateLivraison_p3->Text->Trim()), gcnew Adresse(this->tNumVoieLivraison_p3->Text->Trim(), this->tComplementLivraison_p3->Text->Trim(), this->tTypeVoieLivraison_p3->Text->Trim(), this->tNomVoieLivraison_p3->Text->Trim(), this->tCodePostalLivraison_p3->Text->Trim(), this->tVilleLivraison_p3->Text->Trim()), gcnew Adresse(this->tNumVoieFacturation_p3->Text->Trim(), this->tComplementFacturation_p3->Text->Trim(), this->tTypeVoieFacturation_p3->Text->Trim(), this->tNomVoieFacturation_p3->Text->Trim(), this->tCodePostalFacturation_p3->Text->Trim(), this->tVilleFacturation_p3->Text->Trim()), this->tRefArticle_p3->Text->Trim(), this->tQuantiteArticle_p3->Text->Trim(), Convert::ToDateTime(this->tDatePaiement_p3->Text->Trim()), this->tMoyenPaiement_p3->Text->Trim());
+			this->gestion->ajouter();
+		}
+		catch (String^ e) {
+			this->errorProvider1->SetError(this->bAjouter_p3, e);
+		}
+		catch (bool^ e) {
+			if (e) {
+				this->tBoxMessage_p3->Text = "Opération réussie !";
+			}
+			else {
+				this->tBoxMessage_p3->Text = "Opération échouée !";
+			}
+		}
+		this->loadDataCommandeAll();
+	}
+
+	private: System::Void bSupprimer_p3_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->resetForm();
+		try {
+			this->gestion = gcnew Services::GestionCommande(this->tRechercheCommande_p3->Text->Trim(), this->tNom_p3->Text->Trim(), this->tPrenom_p3->Text->Trim());
+			this->gestion->supprimer();
+		}
+		catch (String^ e) {
+			this->errorProvider1->SetError(this->bAjouter_p3, e);
+		}
+		catch (bool^ e) {
+			if (e) {
+				this->tBoxMessage_p3->Text = "Opération réussie !";
+			}
+			else {
+				this->tBoxMessage_p3->Text = "Opération échouée !";
+			}
+		}
+		this->loadDataCommande();
 	}
 
 	private: System::Void buttonStock_Click(System::Object^ sender, System::EventArgs^ e) {

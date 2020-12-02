@@ -24,7 +24,7 @@ namespace Services {
 
 	void GestionClient::ajouter(void) {
 		if (this->_cad->actionRowsID("SELECT * FROM client WHERE client.nom = '" + this->_client->get_nom() + "' AND client.prenom = '" + this->_client->get_prenom() + "'") != 0) {
-			throw gcnew String("Cet employé existe deja !");
+			throw gcnew String("Ce client existe deja !");
 		}
 		this->_cad->actionRows(this->_client->INSERT());
 		if (this->_cad->actionRowsID("SELECT * FROM client WHERE client.nom = '" + this->_client->get_nom() + "' AND client.prenom = '" + this->_client->get_prenom() + "'") != 0) {
@@ -37,7 +37,7 @@ namespace Services {
 
 	void GestionClient::supprimer(void) {
 		if (this->_cad->actionRowsID("SELECT * FROM client WHERE client.nom = '" + this->_client->get_nom() + "' AND client.prenom = '" + this->_client->get_prenom() + "'") == 0) {
-			throw gcnew String("Cet employé n\'existe pas !");
+			throw gcnew String("Ce client n\'existe pas !");
 		}
 		this->_cad->actionRows(this->_client->DELETE());
 		if (this->_cad->actionRowsID("SELECT * FROM client WHERE client.nom = '" + this->_client->get_nom() + "' AND client.prenom = '" + this->_client->get_prenom() + "'") == 0) {

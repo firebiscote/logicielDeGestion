@@ -6,14 +6,15 @@ namespace Services {
 		this->_commande = gcnew Composants::MapCommande();
 	}
 
-	GestionCommande::GestionCommande(String^ reference) {
+	GestionCommande::GestionCommande(String^ reference, String^ nomClient, String^ prenomClient) {
 		this->initGestion();
-		this->_commande = gcnew Composants::MapCommande(reference);
+		this->_commande = gcnew Composants::MapCommande(reference, nomClient, prenomClient);
 	}
 
-	GestionCommande::GestionCommande(String^ reference, String^ nomClient) {
+	GestionCommande::GestionCommande(String^ nomClient, String^ prenomClient, DateTime^ dateDernierSolde, DateTime^ dateLivraison, Adresse^ adresseLivraison, Adresse^ adressePaiement, String^ referenceObjet, String^ quantite, DateTime^ datePaiement, String^ moyenDePaiement) {
 		this->initGestion();
-		this->_commande = gcnew Composants::MapCommande(reference, nomClient);
+		String^ reference = gcnew String(nomClient->Substring(0, 2) + prenomClient->Substring(0, 2) + dateLivraison->Year + adresseLivraison->get_nomDeCommune()->Substring(0, 3));
+		this->_commande = gcnew Composants::MapCommande(reference, nomClient, prenomClient, dateDernierSolde, dateLivraison, adresseLivraison, adressePaiement, referenceObjet, quantite, datePaiement, moyenDePaiement);
 	}
 
 	DataSet^ GestionCommande::liste(int choix) {
