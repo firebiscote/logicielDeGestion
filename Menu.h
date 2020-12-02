@@ -1320,6 +1320,7 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 			this->bMaj_p1->TabIndex = 23;
 			this->bMaj_p1->Text = L"Mise à jour";
 			this->bMaj_p1->UseVisualStyleBackColor = true;
+			this->bMaj_p1->Click += gcnew System::EventHandler(this, &Menu::bMaj_p1_Click);
 			// 
 			// bSupprimer_p1
 			// 
@@ -2409,27 +2410,54 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 		this->dEmploye_p1->DataMember = "Employe";
 	}
 
+	private: void resetEmploye(void) {
+		this->tNom_p1->Text = "";
+		this->tPrenom_p1->Text = "";
+		this->tNomSuperieur_p1->Text = "";
+		this->tPrenomSuperieur_p1->Text = "";
+		this->tNumVoie_p1->Text = "";
+		this->tCompAdresse_p1->Text = "";
+		this->tTypeVoie_p1->Text = "";
+		this->tNomVoie_p1->Text = "";
+		this->tCodePostal_p1->Text = "";
+		this->tVille_p1->Text = "";
+	}
+
 	private: System::Void bRechercheIDemploye_p1_Click(System::Object^ sender, System::EventArgs^ e) {
 		try {
+			this->resetForm();
+			bool find = 0;
 			if (Convert::ToInt32(this->tIDemploye_p1->Text->Trim()) > 0) {
-				for (int i = 0; i < this->dEmploye_p1->RowCount; i++) {
-					if (this->tIDemploye_p1->Text->Trim() == this->dEmploye_p1->Rows[i]->Cells[0]->ToString()) {
-						this->dEmploye_p1->Rows[i]->Selected = true;
+				for (int i = 0; i < this->dEmploye_p1->RowCount-1; i++) {
+					if (this->tIDemploye_p1->Text->Trim() == this->dEmploye_p1->Rows[i]->Cells[0]->Value->ToString()) {
+						this->dEmploye_p1->CurrentCell = this->dEmploye_p1->Rows[i]->Cells[0];
+						find = 1;
 					}
 				}
+				if (!find) {
+					this->resetEmploye();
+					throw gcnew String("Cet employé n'existe pas !");
+				}
+				else {
+					this->tBoxReponse_p1->Text = "Opération réussie !";
+				}
 			}
-			else {
-				this->tNom_p1->Text = this->dEmploye_p1->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[0];
-				this->tPrenom_p1->Text = this->dEmploye_p1->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[1];
-				this->tNomSuperieur_p1->Text = this->dEmploye_p1->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[0];
-				this->tPrenomSuperieur_p1->Text = this->dEmploye_p1->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[1];
-				this->tNumVoie_p1->Text = this->dEmploye_p1->CurrentRow->Cells[4]->Value->ToString()->Split(' ')[0];
-				this->tCompAdresse_p1->Text = this->dEmploye_p1->CurrentRow->Cells[4]->Value->ToString()->Split(' ')[1];
-				this->tTypeVoie_p1->Text = this->dEmploye_p1->CurrentRow->Cells[5]->Value->ToString()->Split(' ')[0];
-				this->tNomVoie_p1->Text = this->dEmploye_p1->CurrentRow->Cells[5]->Value->ToString()->Split(' ')[1];
-				this->tCodePostal_p1->Text = this->dEmploye_p1->CurrentRow->Cells[6]->Value->ToString()->Split(' ')[0];
-				this->tVille_p1->Text = this->dEmploye_p1->CurrentRow->Cells[6]->Value->ToString()->Split(' ')[1];
-			}
+			this->tNom_p1->Text = this->dEmploye_p1->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[0];
+			this->tPrenom_p1->Text = this->dEmploye_p1->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[1];
+			this->tNomSuperieur_p1->Text = this->dEmploye_p1->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[0];
+			this->tPrenomSuperieur_p1->Text = this->dEmploye_p1->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[1];
+			this->tNumVoie_p1->Text = this->dEmploye_p1->CurrentRow->Cells[4]->Value->ToString()->Split(' ')[0];
+			this->tCompAdresse_p1->Text = this->dEmploye_p1->CurrentRow->Cells[4]->Value->ToString()->Split(' ')[1];
+			this->tTypeVoie_p1->Text = this->dEmploye_p1->CurrentRow->Cells[5]->Value->ToString()->Split(' ')[0];
+			this->tNomVoie_p1->Text = this->dEmploye_p1->CurrentRow->Cells[5]->Value->ToString()->Split(' ')[1];
+			this->tCodePostal_p1->Text = this->dEmploye_p1->CurrentRow->Cells[6]->Value->ToString()->Split(' ')[0];
+			this->tVille_p1->Text = this->dEmploye_p1->CurrentRow->Cells[6]->Value->ToString()->Split(' ')[1];
+		}
+		catch (String^ e) {
+			this->errorProvider1->SetError(this->bRechercheIDemploye_p1, e);
+		}
+		catch (FormatException^) {
+			this->errorProvider1->SetError(this->bRechercheIDemploye_p1, "Un ID doit être un réel !");
 		}
 	}
 
@@ -2458,6 +2486,38 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 		try {
 			this->gestion = gcnew Services::GestionEmploye(this->tNom_p1->Text->Trim(), this->tPrenom_p1->Text->Trim());
 			this->gestion->supprimer();
+		}
+		catch (String^ e) {
+			this->errorProvider1->SetError(this->bAjouter_p1, e);
+		}
+		catch (bool^ e) {
+			if (e) {
+				this->tBoxReponse_p1->Text = "Opération réussie !";
+			}
+			else {
+				this->tBoxReponse_p1->Text = "Opération échouée !";
+			}
+		}
+		this->loadDataEmploye();
+	}
+
+	private: System::Void bMaj_p1_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->resetForm();
+		try {
+			bool find = 0;
+			if (Convert::ToInt32(this->tIDemploye_p1->Text->Trim()) > 0) {
+				for (int i = 0; i < this->dEmploye_p1->RowCount - 1; i++) {
+					if (this->tIDemploye_p1->Text->Trim() == this->dEmploye_p1->Rows[i]->Cells[0]->Value->ToString()) {
+						find = 1;
+					}
+				}
+				if (!find) {
+					this->resetEmploye();
+					throw gcnew String("Cet employé n'existe pas !");
+				}
+				this->gestion = gcnew Services::GestionEmploye(this->tNom_p1->Text->Trim(), this->tPrenom_p1->Text->Trim(), this->tNomSuperieur_p1->Text->Trim(), this->tPrenomSuperieur_p1->Text->Trim(), DateTime::Today, gcnew Adresse(this->tNumVoie_p1->Text->Trim(), this->tCompAdresse_p1->Text->Trim(), this->tTypeVoie_p1->Text->Trim(), this->tNomVoie_p1->Text->Trim(), this->tCodePostal_p1->Text->Trim(), this->tVille_p1->Text->Trim()));
+				this->gestion->modifier(this->tIDemploye_p1->Text);
+			}
 		}
 		catch (String^ e) {
 			this->errorProvider1->SetError(this->bAjouter_p1, e);

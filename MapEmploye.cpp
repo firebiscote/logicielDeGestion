@@ -57,7 +57,10 @@ namespace Composants {
 	}
 
 	String^ MapEmploye::UPDATE(String^ employe) {
-		return "";
+		return "BEGIN TRANSACTION;" + 
+			"UPDATE employe SET nom = '" + this->get_nom() + "', prenom = '" + this->get_prenom() + "' WHERE ID = '" + employe + "';" + 
+			"UPDATE adresse SET numeroDeVoie = '" + this->get_adresseDomicile()->get_numeroDeVoie() + "', complementDeNumero = '" + this->get_adresseDomicile()->get_complementDeNumero() + "', typeDeVoie = '" + this->get_adresseDomicile()->get_typeDeVoie() + "', nomDeVoie = '" + this->get_adresseDomicile()->get_nomDeVoie() + "', codePostal = '" + this->get_adresseDomicile()->get_codePostal() + "', nomDeCommune = '" + this->get_adresseDomicile()->get_nomDeCommune() + "' WHERE ID = (SELECT ID_adresse FROM employe WHERE ID = '" + employe + "');" +
+			"COMMIT";
 	}
 
 	void MapEmploye::set_ID(int ID) {
