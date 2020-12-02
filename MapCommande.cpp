@@ -30,39 +30,51 @@ namespace Composants {
 	String^ MapCommande::SELECT(int choix) {
 		switch (choix) {
 		case 0:
-			return "SELECT CONCAT(SUBSTRING(client.nom, 0, 2), SUBSTRING(client.prenom, 0, 2), YEAR(date.date), SUBSTRING(adresse.nomDeCommune, 0, 3), commande.ID) AS reference, date.date AS livraison FROM commande LEFT JOIN daterCommande ON commande.ID = daterCommande.ID_commande LEFT JOIN date ON daterCommande.ID_date = date.ID LEFT JOIN client ON commande.ID_client = client.ID LEFT JOIN localiserCommande ON commande.ID = localiserCommande.ID_commande LEFT JOIN adresse ON localiserCommande.ID_adresse = adresse.ID WHERE localiserCommande.livraison = 1 AND daterCommande.envois = 1";
+			return "SELECT reference, date.date AS livraison, CONCAT(client.nom, ' ', client.prenom) AS client FROM commande LEFT JOIN daterCommande ON commande.ID = daterCommande.ID_commande LEFT JOIN date ON daterCommande.ID_date = date.ID LEFT JOIN client ON commande.ID_client = client.ID WHERE daterCommande.envois = 1";
 			break;
 		case 1:
-			return "";
+			return "SELECT reference, date.date AS livraison, CONCAT(client.nom, ' ', client.prenom) AS client FROM commande LEFT JOIN daterCommande ON commande.ID = daterCommande.ID_commande LEFT JOIN date ON daterCommande.ID_date = date.ID LEFT JOIN client ON commande.ID_client = client.ID WHERE daterCommande.envois = 1 AND commande.reference = '" + this->get_reference() + "'";
 			break;
 		case 2:
-			return "";
+			return "SELECT article.reference, article.designation, contenir.quantite FROM commande LEFT JOIN contenir ON commande.ID = ID_commande LEFT JOIN article ON ID_article = article.ID WHERE commande.reference = '" + this->get_reference() + "'";
 			break;
 		case 3:
-			return "";
+			return "SELECT date.date, envois, moyenDePaiement FROM commande LEFT JOIN daterCommande ON commande.ID = ID_commande LEFT JOIN date ON ID_date = date.ID WHERE commande.reference = '" + this->get_reference() + "'";
+			break;
+		default:
+			throw gcnew String("Erreur fatale");
 			break;
 		}
 	}
 
 	String^ MapCommande::INSERT(int choix) {
 		String^ na = gcnew String("NA");
-		return "BEGIN TRANSACTION; DECLARE @idCommande INT;" +
-			"INSERT INTO commande (ID_client) VALUES ((SELECT client.ID FROM client WHERE client.nom = '" + this->get_nomClient() + "' AND client.prenom = '" + this->get_prenomClient() + "'));" +
-			"SET @idCommande = 1;" +
-			"INSERT INTO daterCommande (ID_commande, ID_date, envois, moyenDePaiement) VALUES (@idCommande, (SELECT date.ID FROM date WHERE date.date = '" + this->get_dateLivraison() + "'), 1, '" + na + "');" +
-			"INSERT INTO daterCommande (ID_commande, ID_date, envois, moyenDePaiement) VALUES (@idCommande, (SELECT date.ID FROM date WHERE date.date = '" + this->get_dateDernierSolde() + "'), 0, '" + this->get_moyenDePaiement() + "');" +
-			"INSERT INTO localiserCommande (ID_commande, ID_adresse, livraison) VALUES (@idCommande, (SELECT adresse.ID FROM adresse WHERE adresse.numeroDeVoie = '" + this->get_adresseLivraison()->get_numeroDeVoie() + "' AND adresse.complementDeNumero = '" + this->get_adresseLivraison()->get_complementDeNumero() + "' AND adresse.typeDeVoie = '" + this->get_adresseLivraison()->get_typeDeVoie() + "' AND adresse.nomDeVoie = '" + this->get_adresseLivraison()->get_nomDeVoie() + "' and adresse.codePostal = '" + this->get_adresseLivraison()->get_codePostal() + "' AND adresse.nomDeCommune = '" + this->get_adresseLivraison()->get_nomDeCommune() + "'), 1);" +
-			"INSERT INTO localiserCommande (ID_commande, ID_adresse, livraison) VALUES (@idCommande, (SELECT adresse.ID FROM adresse WHERE adresse.numeroDeVoie = '" + this->get_adressePaiement()->get_numeroDeVoie() + "' AND adresse.complementDeNumero = '" + this->get_adressePaiement()->get_complementDeNumero() + "' AND adresse.typeDeVoie = '" + this->get_adressePaiement()->get_typeDeVoie() + "' AND adresse.nomDeVoie = '" + this->get_adressePaiement()->get_nomDeVoie() + "' and adresse.codePostal = '" + this->get_adressePaiement()->get_codePostal() + "' AND adresse.nomDeCommune = '" + this->get_adressePaiement()->get_nomDeCommune() + "'), 0);" +
-			"INSERT INTO contenir (ID_commande, ID_article, quantite) VALUES (@idCommande, (SELECT article.ID FROM article WHERE article.reference = '" + this->get_referenceObjet() + "'), '" + this->get_quantite() + "');" +
+		return "BEGIN TRANSACTION; DECLARE @idCommande INT; DECLARE @idDateEnvois INT; DECLARE @idDatePaiement INT; DECLARE @idAdresseLivraison INT; DECLARE @idAdressePaiement INT;" +
+			"INSERT INTO commande (ID_client, reference) VALUES ((SELECT TOP(1) client.ID FROM client WHERE client.nom = '" + this->get_nomClient() + "' AND client.prenom = '" + this->get_prenomClient() + "'), '" + this->get_reference() + "');" +
+			"SET @idCommande = (SELECT TOP(1) ID FROM commande ORDER BY ID DESC);" +
+			"INSERT INTO date (date) VALUES ('" + this->get_dateLivraison() + "');" +
+			"SET @idDateEnvois = (SELECT TOP(1) ID FROM date ORDER BY ID DESC);" +
+			"INSERT INTO date (date) VALUES ('" + this->get_dateDernierSolde() + "');" +
+			"SET @idDatePaiement = (SELECT TOP(1) ID FROM date ORDER BY ID DESC);" +
+			"INSERT INTO daterCommande (ID_commande, ID_date, envois, moyenDePaiement) VALUES (@idCommande, @idDateEnvois, 1, '" + na + "');" +
+			"INSERT INTO daterCommande (ID_commande, ID_date, envois, moyenDePaiement) VALUES (@idCommande, @idDatePaiement, 0, '" + this->get_moyenDePaiement() + "');" +
+			"INSERT INTO adresse (numeroDeVoie, complementDeNumero, typeDeVoie, nomDeVoie, codePostal, nomDeCommune) VALUES ('" + this->get_adresseLivraison()->get_numeroDeVoie() + "', '" + this->get_adresseLivraison()->get_complementDeNumero() + "', '" + this->get_adresseLivraison()->get_typeDeVoie() + "', '" + this->get_adresseLivraison()->get_nomDeVoie() + "', '" + this->get_adresseLivraison()->get_codePostal() + "', '" + this->get_adresseLivraison()->get_nomDeCommune() + "');" +
+			"SET @idAdresseLivraison = (SELECT TOP(1) ID FROM adresse ORDER BY ID DESC);" +
+			"INSERT INTO adresse (numeroDeVoie, complementDeNumero, typeDeVoie, nomDeVoie, codePostal, nomDeCommune) VALUES ('" + this->get_adressePaiement()->get_numeroDeVoie() + "', '" + this->get_adressePaiement()->get_complementDeNumero() + "', '" + this->get_adressePaiement()->get_typeDeVoie() + "', '" + this->get_adressePaiement()->get_nomDeVoie() + "', '" + this->get_adressePaiement()->get_codePostal() + "', '" + this->get_adressePaiement()->get_nomDeCommune() + "');" +
+			"SET @idAdressePaiement = (SELECT TOP(1) ID FROM adresse ORDER BY ID DESC);" +
+			"INSERT INTO localiserCommande (ID_commande, ID_adresse, livraison) VALUES (@idCommande, @idAdresseLivraison, 1);" +
+			"INSERT INTO localiserCommande (ID_commande, ID_adresse, livraison) VALUES (@idCommande, @idAdressePaiement, 0);" +
+			"INSERT INTO contenir (ID_commande, ID_article, quantite) VALUES (@idCommande, (SELECT TOP(1) article.ID FROM article WHERE article.reference = '" + this->get_referenceObjet() + "'), '" + this->get_quantite() + "');" + 
 			"COMMIT";
 	}
 
 	String^ MapCommande::DELETE(void) {
-		return "BEGIN TRANSACTION;" +
-			"DELETE FROM daterCommande" +
-			"DELETE FROM localiserCommande" +
-			"DELETE FROM contenir" +
-			"DELETE FROM commande;" +
+		return "BEGIN TRANSACTION; DECLARE @idCommande INT;" +
+			"SET @idCommande = (SELECT ID FROM commande WHERE reference = '" + this->get_reference() + "');"
+			"DELETE FROM daterCommande WHERE ID_commande = @idCommande;" +
+			"DELETE FROM localiserCommande WHERE ID_commande = @idCommande;" +
+			"DELETE FROM contenir WHERE ID_commande = @idCommande;" +
+			"DELETE FROM commande WHERE ID = @idCommande;" +
 			"COMMIT";
 	}
 

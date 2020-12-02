@@ -29,7 +29,7 @@ namespace Composants {
 			return "SELECT client.ID, CONCAT(client.nom, ' ', client.prenom) AS client, date.date AS naissance FROM client LEFT JOIN daterClient ON client.ID = daterClient.ID_client LEFT JOIN date ON daterClient.ID_date = date.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "'AND client.ID != 1";
 			break;
 		case 2:
-			return "SELECT CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero) AS numero, CONCAT(adresse.typeDeVoie, ' ', adresse.nomDeVoie) AS voie, CONCAT(adresse.codePostal, ' ', adresse.nomDeCommune) AS ville FROM client LEFT JOIN localiserClient ON client.ID = localiserClient.ID_client LEFT JOIN adresse ON localiserClient.ID_adresse = adresse.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "' AND client.ID != 1";
+			return "SELECT adresse.ID, CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero) AS numero, CONCAT(adresse.typeDeVoie, ' ', adresse.nomDeVoie) AS voie, CONCAT(adresse.codePostal, ' ', adresse.nomDeCommune) AS ville FROM client LEFT JOIN localiserClient ON client.ID = localiserClient.ID_client LEFT JOIN adresse ON localiserClient.ID_adresse = adresse.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "' AND client.ID != 1";
 			break;
 		default:
 			throw gcnew String("Erreur fatale");
@@ -79,7 +79,11 @@ namespace Composants {
 	}
 
 	String^ MapClient::UPDATE(String^ id) {
-		return "";
+		return "BEGIN TRANSACTION;" +
+			//"UPDATE adresse SET numeroDeVoie = '" + this->get_adresse()->get_numeroDeVoie() + "', complementDeNumero = '" + this->get_adresse()->get_complementDeNumero() + "', typeDeVoie = '" + this->get_adresse()->get_typeDeVoie() + "', nomDeVoie = '" + this->get_adresse()->get_nomDeVoie() + "', codePostal = '" + this->get_adresse()->get_codePostal() + "', nomDeCommune = '" + this->get_adresse()->get_nomDeCommune() + "' WHERE ID = (SELECT ID_adresse FROM"
+			"UPDATE date SET date = '" + this->get_dateNaissance() + "' WHERE ID = (SELECT ID_date FROM daterClient WHERE ID_client = '" + id + "' AND naissance = 1)" +
+			"UPDATE client SET nom = '" + this->get_nom() + "', prenom = '" + this->get_prenom() + "' WHERE ID = id;" +
+			"COMMIT";
 	}
 
 	void MapClient::set_ID(int ID) {

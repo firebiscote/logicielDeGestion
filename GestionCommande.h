@@ -9,7 +9,7 @@ namespace Services {
 	public:
 		GestionCommande(void);
 		GestionCommande(String^, String^, String^);
-		GestionCommande(String^, String^, DateTime^, DateTime^, Adresse^, Adresse^, String^, String^, DateTime^, String^);
+		GestionCommande(String^, String^, String^, DateTime^, DateTime^, Adresse^, Adresse^, String^, String^, DateTime^, String^);
 		virtual DataSet^ liste(int) override;
 		virtual void ajouter(void) override;
 		virtual void supprimer(void) override;

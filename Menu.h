@@ -979,6 +979,7 @@ namespace logicielDeGestion {
 			this->bRechercherCommande_p3->TabIndex = 2;
 			this->bRechercherCommande_p3->Text = L"Rechercher";
 			this->bRechercherCommande_p3->UseVisualStyleBackColor = true;
+			this->bRechercherCommande_p3->Click += gcnew System::EventHandler(this, &Menu::bRechercherCommande_p3_Click);
 			// 
 			// label31
 			// 
@@ -2601,6 +2602,8 @@ namespace logicielDeGestion {
 		this->panelMenu->Show();
 	}
 
+	//=====================================	Employe ============================================================================
+
 	private: System::Void buttonEmploye_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelMenu->Hide();
 		this->panelEmploye->Show();
@@ -2739,6 +2742,8 @@ namespace logicielDeGestion {
 		this->loadDataEmploye();
 	}
 
+	//=====================================	Client ============================================================================
+
 	private: System::Void buttonClient_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelMenu->Hide();
 		this->panelClient->Show();
@@ -2785,7 +2790,7 @@ namespace logicielDeGestion {
 				}
 				if (!find) {
 					this->resetClient();
-					throw gcnew String("Ce client n'existe pas !");
+					throw gcnew String("Ce client n\'existe pas !");
 				}
 			}
 			this->tNom_p2->Text = this->dClient_p2->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[0];
@@ -2793,6 +2798,12 @@ namespace logicielDeGestion {
 			this->tDateNaissance_p2->Text = this->dClient_p2->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[0];
 			this->gestion = gcnew Services::GestionClient(this->tNom_p2->Text, this->tPrenom_p2->Text);
 			this->loadDataClientAll();
+			this->tNumVoie_p2->Text = this->dAdresse_p2->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[0];
+			this->tCompAdresse_p2->Text = this->dAdresse_p2->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[1];
+			this->tTypeVoie_p2->Text = this->dAdresse_p2->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[0];
+			this->tNomVoie_p2->Text = this->dAdresse_p2->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[1];
+			this->tCodePostal_p2->Text = this->dAdresse_p2->CurrentRow->Cells[3]->Value->ToString()->Split(' ')[0];
+			this->tVille_p2->Text = this->dAdresse_p2->CurrentRow->Cells[3]->Value->ToString()->Split(' ')[1];
 		}
 		catch (String^ e) {
 			this->errorProvider1->SetError(this->bRechecher_p2, e);
@@ -2808,7 +2819,6 @@ namespace logicielDeGestion {
 				this->tBoxMessage_p2->Text = "Opération échouée !";
 			}
 		}
-		this->loadDataClient();
 	}
 
 	private: System::Void bAjouter_p2_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -2852,8 +2862,41 @@ namespace logicielDeGestion {
 	}
 
 	private: System::Void bMaj_p2_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->resetForm();
+		try {
+			bool find = 0;
+			if (Convert::ToInt32(this->tNumClient_p2->Text->Trim()) > 0) {
+				for (int i = 0; i < this->dClient_p2->RowCount - 1; i++) {
+					if (this->tNumClient_p2->Text->Trim() == this->dClient_p2->Rows[i]->Cells[0]->Value->ToString()) {
+						find = 1;
+					}
+				}
+				if (!find) {
+					this->resetClient();
+					throw gcnew String("Ce client n'existe pas !");
+				}
+				this->gestion = gcnew Services::GestionClient(this->tNom_p2->Text->Trim(), this->tPrenom_p2->Text->Trim(), Convert::ToDateTime(this->tDateNaissance_p2->Text->Trim()), gcnew Adresse(this->tNumVoie_p2->Text->Trim(), this->tCompAdresse_p2->Text->Trim(), this->tTypeVoie_p2->Text->Trim(), this->tNomVoie_p2->Text->Trim(), this->tCodePostal_p2->Text->Trim(), this->tVille_p2->Text->Trim()));
+				this->gestion->modifier(this->tNumClient_p2->Text);
+			}
+		}
+		catch (String^ e) {
+			this->errorProvider1->SetError(this->bAjouter_p2, e);
+		}
+		catch (FormatException^) {
+			this->errorProvider1->SetError(this->bRechecher_p2, "Un ID doit être un réel !");
+		}
+		catch (bool^ e) {
+			if (e) {
+				this->tBoxMessage_p2->Text = "Opération réussie !";
+			}
+			else {
+				this->tBoxMessage_p2->Text = "Opération échouée !";
+			}
+		}
 		this->loadDataClientAll();
 	}
+
+	//=====================================	Commande ============================================================================
 
 	private: System::Void buttonCommande_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelMenu->Hide();
@@ -2863,23 +2906,103 @@ namespace logicielDeGestion {
 	}
 
 	private: void loadDataCommande(void) {
-		this->dCommande->DataSource = this->gestion->liste(0);
-		this->dCommande->DataMember = "Commande";
+		this->dDetailCommande_p3->DataSource = this->gestion->liste(0);
+		this->dDetailCommande_p3->DataMember = "Commande";
+		this->dCommande->DataSource = nullptr;
+		this->dDetailPaiement_p3->DataSource = nullptr;
 	}
 
 	private: void loadDataCommandeAll(void) {
-		this->dCommande->DataSource = this->gestion->liste(1);
-		this->dCommande->DataMember = "Commande";
-		this->dDetailCommande_p3->DataSource = this->gestion->liste(2);
+		this->dDetailCommande_p3->DataSource = this->gestion->liste(1);
 		this->dDetailCommande_p3->DataMember = "Commande";
-		this->dDetailPaiement_p3->DataSource = this->gestion->liste(2);
+		this->dCommande->DataSource = this->gestion->liste(2);
+		this->dCommande->DataMember = "Commande";
+		this->dDetailPaiement_p3->DataSource = this->gestion->liste(3);
 		this->dDetailPaiement_p3->DataMember = "Commande";
+	}
+
+	private: void resetCommande(void) {
+		this->tNom_p3->Text = "";
+		this->tPrenom_p3->Text = "";
+		this->tDateLivraison_p3->Text = "";
+		this->tDatePaiement_p3->Text = "";
+		this->tDernierSolde_p3->Text = "";
+		this->tNumVoieFacturation_p3->Text = "";
+		this->tComplementFacturation_p3->Text = "";
+		this->tTypeVoieFacturation_p3->Text = "";
+		this->tNomVoieFacturation_p3->Text = "";
+		this->tCodePostalFacturation_p3->Text = "";
+		this->tCodePostalLivraison_p3->Text = "";
+		this->tVilleFacturation_p3->Text = "";
+		this->tNumVoieLivraison_p3->Text = "";
+		this->tComplementLivraison_p3->Text = "";
+		this->tTypeVoieLivraison_p3->Text = "";
+		this->tNomVoieLivraison_p3->Text = "";
+		this->tCodePostalLivraison_p3->Text = "";
+		this->tVilleLivraison_p3->Text = "";
+		this->tRefArticle_p3->Text = "";
+		this->tQuantiteArticle_p3->Text = "";
+		this->tMoyenPaiement_p3->Text = "";
+	}
+
+	private: System::Void bRechercherCommande_p3_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->resetForm();
+		this->loadDataCommande();
+		try {
+			bool find = 0;
+			for (int i = 0; i < this->dDetailCommande_p3->RowCount - 1; i++) {
+				if (this->tRechercheCommande_p3->Text->Trim() == this->dDetailCommande_p3->Rows[i]->Cells[0]->Value->ToString()) {
+					this->dDetailCommande_p3->CurrentCell = this->dDetailCommande_p3->Rows[i]->Cells[0];
+					find = 1;
+				}
+			}
+			if (!find) {
+				this->resetCommande();
+				throw gcnew String("Cette commande n\'existe pas !");
+			}
+			this->tNom_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[0];
+			this->tPrenom_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[1];
+			this->gestion = gcnew Services::GestionCommande(this->tRechercheCommande_p3->Text->Trim(), this->tNom_p3->Text->Trim(), this->tPrenom_p3->Text->Trim());
+			this->loadDataCommandeAll();
+			this->tNom_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[0];
+			this->tPrenom_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[1];
+			this->tDateLivraison_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[0];
+			this->tDatePaiement_p3->Text = this->dDetailPaiement_p3->Rows[1]->Cells[0]->Value->ToString()->Split(' ')[0];
+			this->tDernierSolde_p3->Text = this->dDetailPaiement_p3->Rows[1]->Cells[0]->Value->ToString()->Split(' ')[0];
+			this->tNumVoieFacturation_p3->Text = "";
+			this->tComplementFacturation_p3->Text = "";
+			this->tTypeVoieFacturation_p3->Text = "";
+			this->tNomVoieFacturation_p3->Text = "";
+			this->tCodePostalFacturation_p3->Text = "";
+			this->tCodePostalLivraison_p3->Text = "";
+			this->tVilleFacturation_p3->Text = "";
+			this->tNumVoieLivraison_p3->Text = "";
+			this->tComplementLivraison_p3->Text = "";
+			this->tTypeVoieLivraison_p3->Text = "";
+			this->tNomVoieLivraison_p3->Text = "";
+			this->tCodePostalLivraison_p3->Text = "";
+			this->tVilleLivraison_p3->Text = "";
+			this->tRefArticle_p3->Text = this->dCommande->Rows[0]->Cells[0]->Value->ToString();
+			this->tQuantiteArticle_p3->Text = this->dCommande->Rows[0]->Cells[2]->Value->ToString();
+			this->tMoyenPaiement_p3->Text = this->dDetailPaiement_p3->Rows[1]->Cells[2]->Value->ToString();
+		}
+		catch (String^ e) {
+			this->errorProvider1->SetError(this->bRechercherCommande_p3, e);
+		}
+		catch (bool^ e) {
+			if (e) {
+				this->tBoxMessage_p3->Text = "Opération réussie !";
+			}
+			else {
+				this->tBoxMessage_p3->Text = "Opération échouée !";
+			}
+		}
 	}
 
 	private: System::Void bAjouter_p3_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->resetForm();
 		try {
-			this->gestion = gcnew Services::GestionCommande(this->tNom_p3->Text->Trim(), this->tPrenom_p3->Text->Trim(), Convert::ToDateTime(this->tDernierSolde_p3->Text->Trim()), Convert::ToDateTime(tDateLivraison_p3->Text->Trim()), gcnew Adresse(this->tNumVoieLivraison_p3->Text->Trim(), this->tComplementLivraison_p3->Text->Trim(), this->tTypeVoieLivraison_p3->Text->Trim(), this->tNomVoieLivraison_p3->Text->Trim(), this->tCodePostalLivraison_p3->Text->Trim(), this->tVilleLivraison_p3->Text->Trim()), gcnew Adresse(this->tNumVoieFacturation_p3->Text->Trim(), this->tComplementFacturation_p3->Text->Trim(), this->tTypeVoieFacturation_p3->Text->Trim(), this->tNomVoieFacturation_p3->Text->Trim(), this->tCodePostalFacturation_p3->Text->Trim(), this->tVilleFacturation_p3->Text->Trim()), this->tRefArticle_p3->Text->Trim(), this->tQuantiteArticle_p3->Text->Trim(), Convert::ToDateTime(this->tDatePaiement_p3->Text->Trim()), this->tMoyenPaiement_p3->Text->Trim());
+			this->gestion = gcnew Services::GestionCommande("ABC", "D", "R", Convert::ToDateTime("25/11/2020"), Convert::ToDateTime("29/11/2020"), gcnew Adresse("15", "", "rue", "ber", "33700", "mer"), gcnew Adresse("15", "", "rue", "ber", "33700", "mer"), "C16", "10", Convert::ToDateTime("25/11/2020"), "Carte");
 			this->gestion->ajouter();
 		}
 		catch (String^ e) {
@@ -2915,6 +3038,8 @@ namespace logicielDeGestion {
 		}
 		this->loadDataCommande();
 	}
+
+	//=====================================	Article ============================================================================
 
 	private: System::Void buttonStock_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelMenu->Hide();
@@ -3039,7 +3164,7 @@ namespace logicielDeGestion {
 		this->loadDataStock();
 	}
 
-
+	//=====================================	Reste ============================================================================
 
 	private: System::Void buttonStatistiques_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelMenu->Hide();
