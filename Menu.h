@@ -2465,7 +2465,7 @@ namespace logicielDeGestion {
 			this->dSimulation_p6->Margin = System::Windows::Forms::Padding(4);
 			this->dSimulation_p6->Name = L"dSimulation_p6";
 			this->dSimulation_p6->RowHeadersWidth = 51;
-			this->dSimulation_p6->Size = System::Drawing::Size(233, 52);
+			this->dSimulation_p6->Size = System::Drawing::Size(233, 81);
 			this->dSimulation_p6->TabIndex = 0;
 			// 
 			// cbMarge_p6
@@ -2481,7 +2481,7 @@ namespace logicielDeGestion {
 			// cbRemiseComm_p6
 			// 
 			this->cbRemiseComm_p6->FormattingEnabled = true;
-			this->cbRemiseComm_p6->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"5 %", L"6 %" });
+			this->cbRemiseComm_p6->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"0 %", L"5 %", L"6 %" });
 			this->cbRemiseComm_p6->Location = System::Drawing::Point(787, 258);
 			this->cbRemiseComm_p6->Margin = System::Windows::Forms::Padding(4);
 			this->cbRemiseComm_p6->Name = L"cbRemiseComm_p6";
@@ -2993,8 +2993,12 @@ namespace logicielDeGestion {
 
 	private: System::Void buttonSimulation_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelMenu->Hide();
-		this->panelSimulation->Show();
 		this->gestion = gcnew Services::GestionArticle();
+		this->cbTVA_p6->SelectedIndex = 0;
+		this->cbMarge_p6->SelectedIndex = 0;
+		this->cbRemiseComm_p6->SelectedIndex = 0;
+		this->cbDemarque_p6->SelectedIndex = 0;
+		this->panelSimulation->Show();
 	}
 
 	private: System::Void bRetour_p1_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -3032,8 +3036,11 @@ namespace logicielDeGestion {
 	private: System::Void bCalcul_p6_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->resetForm();
 		try {
-			this->dSimulation_p6->DataSource = this->gestion->simulation(this->cbTVA_p6->SelectedText->Split(' ')[0], this->cbMarge_p6->SelectedText->Split(' ')[0], this->cbRemiseComm_p6->SelectedText->Split(' ')[0], this->cbDemarque_p6->SelectedText->Split(' ')[0]);
+			this->dSimulation_p6->DataSource = this->gestion->simulation(Convert::ToDouble(this->cbTVA_p6->SelectedItem->ToString()->Split(' ')[0]->Trim()), Convert::ToDouble(this->cbMarge_p6->SelectedItem->ToString()->Split(' ')[0]->Trim()), Convert::ToDouble(this->cbRemiseComm_p6->SelectedItem->ToString()->Split(' ')[0]->Trim()), Convert::ToDouble(this->cbDemarque_p6->SelectedItem->ToString()->Split(' ')[0]->Trim()));
 			this->dSimulation_p6->DataMember = "Article";
+		}
+		catch (FormatException^) {
+			this->errorProvider1->SetError(this->bCalcul_p6, "Les parametres doivent être des réels !");
 		}
 		catch (String^ e) {
 			this->errorProvider1->SetError(this->bCalcul_p6, e);

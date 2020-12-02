@@ -10,7 +10,7 @@ namespace Services {
 		virtual void ajouter(void) abstract;
 		virtual void supprimer(void) abstract;
 		virtual void modifier(String^) abstract;
-		DataSet^ simulation(String^, String^, String^, String^);
+		DataSet^ simulation(double, double, double, double);
 	protected:
 		void initGestion(void);
 		Composants::CAD^ _cad;
