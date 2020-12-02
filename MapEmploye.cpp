@@ -33,7 +33,7 @@ namespace Composants {
 			"LEFT JOIN date ON employe.ID_date = date.ID";
 	}
 
-	String^ MapEmploye::INSERT(void) {
+	String^ MapEmploye::INSERT(int choix) {
 		return	"BEGIN TRANSACTION; DECLARE @idSuperieur INT; DECLARE @idDate INT; DECLARE @idAdresse INT;" +
 			"SET @idSuperieur = (SELECT employe.ID FROM employe WHERE employe.nom = '" + this->get_nomSuperieur() + "' AND employe.prenom = '" + this->get_prenomSuperieur() + "');" +
 			"IF '" + this->get_dateEmbauche() + "' NOT IN (SELECT date.date FROM date) BEGIN" +

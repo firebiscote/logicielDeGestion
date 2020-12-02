@@ -10,7 +10,7 @@ namespace Composants {
 		MapCommande(String^, String^, String^);
 		MapCommande(String^, String^, String^, DateTime^, DateTime^, Adresse^, Adresse^, String^, String^, DateTime^, String^);
 		virtual String^ SELECT(int) override;
-		virtual String^ INSERT(void) override;
+		virtual String^ INSERT(int) override;
 		virtual String^ DELETE(void) override;
 		virtual String^ UPDATE(String^) override;
 		void set_ID(int);

@@ -24,9 +24,10 @@ namespace Services {
 
 	void GestionClient::ajouter(void) {
 		if (this->_cad->actionRowsID("SELECT * FROM client WHERE client.nom = '" + this->_client->get_nom() + "' AND client.prenom = '" + this->_client->get_prenom() + "'") != 0) {
-			throw gcnew String("Ce client existe deja !");
+			this->_cad->actionRows(this->_client->INSERT(1));
+			throw gcnew bool(1);
 		}
-		this->_cad->actionRows(this->_client->INSERT());
+		this->_cad->actionRows(this->_client->INSERT(0));
 		if (this->_cad->actionRowsID("SELECT * FROM client WHERE client.nom = '" + this->_client->get_nom() + "' AND client.prenom = '" + this->_client->get_prenom() + "'") != 0) {
 			throw gcnew bool(1);
 		}

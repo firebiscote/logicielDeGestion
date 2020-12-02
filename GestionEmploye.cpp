@@ -26,7 +26,7 @@ namespace Services {
 		if (this->_cad->actionRowsID("SELECT * FROM employe WHERE employe.nom = '" + this->_employe->get_nom() + "' AND employe.prenom = '" + this->_employe->get_prenom() + "'") != 0) {
 			throw gcnew String("Cet employé existe deja !");
 		}
-		this->_cad->actionRows(this->_employe->INSERT());
+		this->_cad->actionRows(this->_employe->INSERT(0));
 		if (this->_cad->actionRowsID("SELECT * FROM employe WHERE employe.nom = '" + this->_employe->get_nom() + "' AND employe.prenom = '" + this->_employe->get_prenom() + "'") != 0) {
 			throw gcnew bool(1);
 		} else {

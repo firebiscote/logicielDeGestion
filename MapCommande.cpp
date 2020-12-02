@@ -44,7 +44,7 @@ namespace Composants {
 		}
 	}
 
-	String^ MapCommande::INSERT(void) {
+	String^ MapCommande::INSERT(int choix) {
 		String^ na = gcnew String("NA");
 		return "BEGIN TRANSACTION; DECLARE @idCommande INT;" +
 			"INSERT INTO commande (ID_client) VALUES ((SELECT client.ID FROM client WHERE client.nom = '" + this->get_nomClient() + "' AND client.prenom = '" + this->get_prenomClient() + "'));" +

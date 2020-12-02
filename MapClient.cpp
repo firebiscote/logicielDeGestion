@@ -23,43 +23,57 @@ namespace Composants {
 	String^ MapClient::SELECT(int choix) {
 		switch (choix) {
 		case 0:
-			return "SELECT client.ID, CONCAT(client.nom, ' ', client.prenom) AS client, date.date AS naissance FROM client LEFT JOIN daterClient ON client.ID = daterClient.ID_client LEFT JOIN date ON daterClient.ID_date = date.ID";
+			return "SELECT client.ID, CONCAT(client.nom, ' ', client.prenom) AS client, date.date AS naissance FROM client LEFT JOIN daterClient ON client.ID = daterClient.ID_client LEFT JOIN date ON daterClient.ID_date = date.ID WHERE client.ID != 1";
 			break;
 		case 1:
-			return "SELECT client.ID, CONCAT(client.nom, ' ', client.prenom) AS client, date.date AS naissance FROM client LEFT JOIN daterClient ON client.ID = daterClient.ID_client LEFT JOIN date ON daterClient.ID_date = date.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "'";
+			return "SELECT client.ID, CONCAT(client.nom, ' ', client.prenom) AS client, date.date AS naissance FROM client LEFT JOIN daterClient ON client.ID = daterClient.ID_client LEFT JOIN date ON daterClient.ID_date = date.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "'AND client.ID != 1";
 			break;
 		case 2:
-			return "SELECT CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero) AS numero, CONCAT(adresse.typeDeVoie, ' ', adresse.nomDeVoie) AS voie, CONCAT(adresse.codePostal, ' ', adresse.nomDeCommune) AS ville FROM client LEFT JOIN localiserClient ON client.ID = localiserClient.ID_client LEFT JOIN adresse ON localiserClient.ID_adresse = adresse.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "'";
+			return "SELECT CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero) AS numero, CONCAT(adresse.typeDeVoie, ' ', adresse.nomDeVoie) AS voie, CONCAT(adresse.codePostal, ' ', adresse.nomDeCommune) AS ville FROM client LEFT JOIN localiserClient ON client.ID = localiserClient.ID_client LEFT JOIN adresse ON localiserClient.ID_adresse = adresse.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "' AND client.ID != 1";
+			break;
+		default:
+			throw gcnew String("Erreur fatale");
 			break;
 		}
 		
 	}
 
-	String^ MapClient::INSERT(void) {
-		return "BEGIN TRANSACTION; DECLARE @idClient INT; DECLARE @idDate INT; DECLARE @idAdresse INT;" +
-			"IF '" + this->get_dateNaissance() + "' NOT IN (SELECT date.date FROM date) BEGIN" +
-			"	INSERT INTO date (date.date) VALUES('" + this->get_dateNaissance() + "');\nEND\n" +
-			"SET @idDate = (SELECT date.ID FROM date WHERE date.date = '" + this->get_dateNaissance() + "');" +
-			"IF CONCAT('" + this->get_adresse()->get_numeroDeVoie() + "', '" + this->get_adresse()->get_complementDeNumero() + "', '" + this->get_adresse()->get_typeDeVoie() + "', '" + this->get_adresse()->get_nomDeVoie() + "', '" + this->get_adresse()->get_codePostal() + "', '" + this->get_adresse()->get_nomDeCommune() + "') NOT IN (SELECT CONCAT(adresse.numeroDeVoie, adresse.complementDeNumero, adresse.typeDeVoie, adresse.nomDeVoie, adresse.codePostal, adresse.nomDeCommune) FROM adresse) BEGIN" +
-			"	INSERT INTO adresse (adresse.numeroDeVoie, adresse.complementDeNumero, adresse.typeDeVoie, adresse.nomDeVoie, adresse.codePostal, adresse.nomDeCommune) VALUES('" + this->get_adresse()->get_numeroDeVoie() + "', '" + this->get_adresse()->get_complementDeNumero() + "', '" + this->get_adresse()->get_typeDeVoie() + "', '" + this->get_adresse()->get_nomDeVoie() + "', '" + this->get_adresse()->get_codePostal() + "', '" + this->get_adresse()->get_nomDeCommune() + "');\nEND\n" +
-			"SET @idAdresse = (SELECT adresse.ID FROM adresse WHERE adresse.numeroDeVoie = '" + this->get_adresse()->get_numeroDeVoie() + "' AND adresse.complementDeNumero = '" + this->get_adresse()->get_complementDeNumero() + "' AND adresse.typeDeVoie = '" + this->get_adresse()->get_typeDeVoie() + "' AND adresse.nomDeVoie = '" + this->get_adresse()->get_nomDeVoie() + "' and adresse.codePostal = '" + this->get_adresse()->get_codePostal() + "' AND adresse.nomDeCommune = '" + this->get_adresse()->get_nomDeCommune() + "');" +
-			"IF CONCAT('" + this->get_nom() + "', '" + this->get_prenom() + "') NOT IN (SELECT CONCAT(client.nom, client.prenom) FROM client) BEGIN" +
-			"	INSERT INTO client (client.nom, client.prenom) VALUES('" + this->get_nom() + "', '" + this->get_prenom() + "');\nEND\n" +
-			"SET @idClient = (SELECT client.ID FROM client WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "')" +
-			"IF CONCAT(@idClient, @idDate) NOT IN (SELECT CONCAT(daterClient.ID_client, daterClient.ID_date) FROM daterClient) BEGIN" +
-			"	INSERT INTO daterClient (daterClient.ID_client, daterClient.ID_date, daterClient.naissance) VALUES(@idClient, @idDate, 1);\nEND\n" +
-			"IF CONCAT(@idClient, @idAdresse) NOT IN (SELECT CONCAT(localiserClient.ID_client, localiserClient.ID_adresse) FROM localiserClient) BEGIN" +
-			"	INSERT INTO localiserClient (localiserClient.ID_client, localiserClient.ID_adresse) VALUES(@idClient, @idAdresse);\nEND\n" +
-			"COMMIT";
+	String^ MapClient::INSERT(int choix) {
+		switch (choix) {
+		case 0:
+			return "BEGIN TRANSACTION; DECLARE @idClient INT; DECLARE @idDate INT; DECLARE @idAdresse INT;" +
+				"INSERT INTO date (date.date) VALUES('" + this->get_dateNaissance() + "');" +
+				"SET @idDate = (SELECT TOP(1) ID FROM date ORDER BY ID DESC);" +
+				"INSERT INTO adresse (adresse.numeroDeVoie, adresse.complementDeNumero, adresse.typeDeVoie, adresse.nomDeVoie, adresse.codePostal, adresse.nomDeCommune) VALUES('" + this->get_adresse()->get_numeroDeVoie() + "', '" + this->get_adresse()->get_complementDeNumero() + "', '" + this->get_adresse()->get_typeDeVoie() + "', '" + this->get_adresse()->get_nomDeVoie() + "', '" + this->get_adresse()->get_codePostal() + "', '" + this->get_adresse()->get_nomDeCommune() + "');" +
+				"SET @idAdresse = (SELECT TOP(1) ID FROM adresse ORDER BY ID DESC);" +
+				"INSERT INTO client (client.nom, client.prenom) VALUES('" + this->get_nom() + "', '" + this->get_prenom() + "');" +
+				"SET @idClient = (SELECT TOP(1) ID FROM client ORDER BY ID DESC);" +
+				"INSERT INTO daterClient (daterClient.ID_client, daterClient.ID_date, daterClient.naissance) VALUES(@idClient, @idDate, 1);" +
+				"INSERT INTO localiserClient (localiserClient.ID_client, localiserClient.ID_adresse) VALUES(@idClient, @idAdresse);" +
+				"COMMIT";
+			break;
+		case 1:
+			return "BEGIN TRANSACTION; DECLARE @idAdresse INT;" +
+				"IF CONCAT('" + this->get_adresse()->get_numeroDeVoie() + "', '" + this->get_adresse()->get_codePostal() + "', '" + this->get_adresse()->get_typeDeVoie() + "', '" + this->get_adresse()->get_nomDeVoie() + "', '" + this->get_adresse()->get_codePostal() + "', '" + this->get_adresse()->get_nomDeCommune() + "') NOT IN (SELECT CONCAT(numeroDeVoie, complementDeNumero, typeDeVoie, nomDeVoie, codePostal, nomDeCommune) FROM adresse WHERE ID = (SELECT ID_adresse FROM localiserClient WHERE ID_client = (SELECT ID FROM client WHERE nom = '" + this->get_nom() + "' AND prenom = '" + this->get_prenom() + "'))) BEGIN"
+				"	INSERT INTO adresse (adresse.numeroDeVoie, adresse.complementDeNumero, adresse.typeDeVoie, adresse.nomDeVoie, adresse.codePostal, adresse.nomDeCommune) VALUES('" + this->get_adresse()->get_numeroDeVoie() + "', '" + this->get_adresse()->get_complementDeNumero() + "', '" + this->get_adresse()->get_typeDeVoie() + "', '" + this->get_adresse()->get_nomDeVoie() + "', '" + this->get_adresse()->get_codePostal() + "', '" + this->get_adresse()->get_nomDeCommune() + "');" +
+				"	SET @idAdresse = (SELECT TOP(1) ID FROM adresse ORDER BY ID DESC);" +
+				"	INSERT INTO localiserClient (localiserClient.ID_client, localiserClient.ID_adresse) VALUES((SELECT ID FROM client WHERE nom = '" + this->get_nom() + "' AND prenom = '" + this->get_prenom() + "'), @idAdresse);\nEND\n" +
+				"COMMIT";
+			break;
+		default:
+			throw gcnew String("Erreur fatale");
+			break;
+		}
 	}
 
 	String^ MapClient::DELETE(void) {
 		return	"BEGIN TRANSACTION; DECLARE @idClient INT;" +
 			"SET @idClient = (SELECT ID FROM client WHERE nom = '" + this->get_nom() + "' AND prenom = '" + this->get_prenom() + "');" +
+			"UPDATE commande SET ID_client = 1 WHERE ID_client = @idClient;"
 			"DELETE FROM localiserClient WHERE ID_client = @idClient;" +
-			"DELETE FROM adresse WHERE ID NOT IN (SELECT ID_adresse FROM localiserClient) AND ID NOT IN (SELECT employe.ID_adresse FROM employe);" +
+			"DELETE FROM adresse WHERE ID NOT IN (SELECT ID_adresse FROM localiserClient) AND ID NOT IN (SELECT employe.ID_adresse FROM employe) AND ID NOT IN (SELECT ID_adresse FROM localiserCommande);" +
 			"DELETE FROM daterClient WHERE ID_client = @idClient;" +
-			"DELETE FROM date WHERE ID NOT IN (SELECT ID_date FROM daterClient) AND ID NOT IN (SELECT employe.ID_date FROM employe);" +
+			"DELETE FROM date WHERE ID NOT IN (SELECT ID_date FROM daterClient) AND ID NOT IN (SELECT employe.ID_date FROM employe) AND ID NOT IN (SELECT ID_date FROM daterCommande);" +
 			"DELETE FROM client WHERE ID = @idClient;" +
 			"COMMIT";
 	}

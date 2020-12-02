@@ -10,7 +10,7 @@ namespace Composants {
 		MapEmploye(String^, String^);
 		MapEmploye(String^, String^, String^, String^, DateTime^, Adresse^);
 		virtual String^ SELECT(int) override;
-		virtual String^ INSERT(void) override;
+		virtual String^ INSERT(int) override;
 		virtual String^ DELETE(void) override;
 		virtual String^ UPDATE(String^) override;
 		void set_ID(int);

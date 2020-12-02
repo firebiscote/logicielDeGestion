@@ -1949,6 +1949,7 @@ namespace logicielDeGestion {
 			this->bRechercheArticle_p4->TabIndex = 2;
 			this->bRechercheArticle_p4->Text = L"Rechercher";
 			this->bRechercheArticle_p4->UseVisualStyleBackColor = true;
+			this->bRechercheArticle_p4->Click += gcnew System::EventHandler(this, &Menu::bRechercheArticle_p4_Click);
 			// 
 			// label36
 			// 
@@ -2748,6 +2749,7 @@ namespace logicielDeGestion {
 	private: void loadDataClient(void) {
 		this->dClient_p2->DataSource = this->gestion->liste(0);
 		this->dClient_p2->DataMember = "Client";
+		this->dAdresse_p2->DataSource = nullptr;
 	}
 
 	private: void loadDataClientAll(void) {
@@ -2757,7 +2759,56 @@ namespace logicielDeGestion {
 		this->dAdresse_p2->DataMember = "Client";
 	}
 
+	private: void resetClient(void) {
+		this->tNom_p2->Text = "";
+		this->tPrenom_p2->Text = "";
+		this->tDateNaissance_p2->Text = "";
+		this->tNumVoie_p2->Text = "";
+		this->tCompAdresse_p2->Text = "";
+		this->tTypeVoie_p2->Text = "";
+		this->tNomVoie_p2->Text = "";
+		this->tCodePostal_p2->Text = "";
+		this->tVille_p2->Text = "";
+	}
+
 	private: System::Void bRechecher_p2_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->resetForm();
+		this->loadDataClient();
+		try {
+			bool find = 0;
+			if (Convert::ToInt32(this->tNumClient_p2->Text->Trim()) > 0) {
+				for (int i = 0; i < this->dClient_p2->RowCount - 1; i++) {
+					if (this->tNumClient_p2->Text->Trim() == this->dClient_p2->Rows[i]->Cells[0]->Value->ToString()) {
+						this->dClient_p2->CurrentCell = this->dClient_p2->Rows[i]->Cells[0];
+						find = 1;
+					}
+				}
+				if (!find) {
+					this->resetClient();
+					throw gcnew String("Ce client n'existe pas !");
+				}
+			}
+			this->tNom_p2->Text = this->dClient_p2->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[0];
+			this->tPrenom_p2->Text = this->dClient_p2->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[1];
+			this->tDateNaissance_p2->Text = this->dClient_p2->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[0];
+			this->gestion = gcnew Services::GestionClient(this->tNom_p2->Text, this->tPrenom_p2->Text);
+			this->loadDataClientAll();
+		}
+		catch (String^ e) {
+			this->errorProvider1->SetError(this->bRechecher_p2, e);
+		}
+		catch (FormatException^) {
+			this->errorProvider1->SetError(this->bRechecher_p2, "Un ID doit être un réel !");
+		}
+		catch (bool^ e) {
+			if (e) {
+				this->tBoxMessage_p2->Text = "Opération réussie !";
+			}
+			else {
+				this->tBoxMessage_p2->Text = "Opération échouée !";
+			}
+		}
+		this->loadDataClient();
 	}
 
 	private: System::Void bAjouter_p2_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -2801,6 +2852,7 @@ namespace logicielDeGestion {
 	}
 
 	private: System::Void bMaj_p2_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->loadDataClientAll();
 	}
 
 	private: System::Void buttonCommande_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -2939,6 +2991,9 @@ namespace logicielDeGestion {
 		try {
 			this->gestion = gcnew Services::GestionArticle(this->tReferenceArticle_p4->Text->Trim());
 			this->gestion->supprimer();
+		}
+		catch (SqlException^) {
+			this->errorProvider1->SetError(this->bAjouter_p4, "Supprimez d'abord les commandes le contenant !");
 		}
 		catch (String^ e) {
 			this->errorProvider1->SetError(this->bAjouter_p4, e);

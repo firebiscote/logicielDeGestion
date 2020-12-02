@@ -27,7 +27,7 @@ namespace Services {
 		/*if (this->_cad->actionRowsID("SELECT * FROM commande WHERE commande.nom = '" + this->_commande->get_nom() + "' AND commande.prenom = '" + this->_commande->get_prenom() + "'") != 0) {
 			throw gcnew String("Cette commande existe deja !");
 		}*/
-		this->_cad->actionRows(this->_commande->INSERT());
+		this->_cad->actionRows(this->_commande->INSERT(0));
 		/*if (this->_cad->actionRowsID("SELECT * FROM commande WHERE commande.nom = '" + this->_commande->get_nom() + "' AND commande.prenom = '" + this->_commande->get_prenom() + "'") != 0) {
 			throw gcnew bool(1);
 		}

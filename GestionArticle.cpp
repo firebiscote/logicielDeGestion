@@ -22,11 +22,11 @@ namespace Services {
 		return this->_ds;
 	}
 
-	void GestionArticle::ajouter() {
+	void GestionArticle::ajouter(void) {
 		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + this->_article->get_reference() + "' AND Article.designation = '" + this->_article->get_designation() + "'") != 0) {
 			throw gcnew String("Cet article existe deja !");
 		}
-		this->_cad->actionRows(this->_article->INSERT());
+		this->_cad->actionRows(this->_article->INSERT(0));
 		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + this->_article->get_reference() + "' AND Article.designation = '" + this->_article->get_designation() + "'") != 0) {
 			throw gcnew bool(1);
 		}

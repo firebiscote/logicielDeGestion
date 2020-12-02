@@ -29,7 +29,7 @@ namespace Composants {
 		return "SELECT reference, designation, stock, seuilDeReapprovisionnement AS seuil, CONCAT(prixHT, ' €') AS prixUHT, CONCAT(tauxDeTVA, ' %') AS TVA FROM article";
 	}
 
-	String^ MapArticle::INSERT(void) {
+	String^ MapArticle::INSERT(int choix) {
 		return "BEGIN TRANSACTION;" + 
 			"IF '" + this->get_reference() + "' NOT IN (SELECT article.reference FROM article) BEGIN" +
 			"	INSERT INTO article (reference, designation, stock, seuilDeReapprovisionnement, prixHT, tauxDeTVA) VALUES ('" + this->get_reference() + "', '" + this->get_designation() + "', '" + this->get_stock() + "', '" + this->get_seuilDeReapprovisionnement() + "', '" + this->get_prixHT() + "', '" + this->get_tauxDeTVA() + "');\nEND\n" + 

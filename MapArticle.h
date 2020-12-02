@@ -9,7 +9,7 @@ namespace Composants {
 		MapArticle(String^);
 		MapArticle(String^, String^, String^, String^, String^, String^);
 		virtual String^ SELECT(int) override;
-		virtual String^ INSERT(void) override;
+		virtual String^ INSERT(int) override;
 		virtual String^ DELETE(void) override;
 		virtual String^ UPDATE(String^) override;
 		void set_ID(int);
