@@ -1222,6 +1222,7 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 			this->bRechercheIDemploye_p1->TabIndex = 63;
 			this->bRechercheIDemploye_p1->Text = L"Rechercher";
 			this->bRechercheIDemploye_p1->UseVisualStyleBackColor = true;
+			this->bRechercheIDemploye_p1->Click += gcnew System::EventHandler(this, &Menu::bRechercheIDemploye_p1_Click);
 			// 
 			// tIDemploye_p1
 			// 
@@ -2408,6 +2409,30 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 		this->dEmploye_p1->DataMember = "Employe";
 	}
 
+	private: System::Void bRechercheIDemploye_p1_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			if (Convert::ToInt32(this->tIDemploye_p1->Text->Trim()) > 0) {
+				for (int i = 0; i < this->dEmploye_p1->RowCount; i++) {
+					if (this->tIDemploye_p1->Text->Trim() == this->dEmploye_p1->Rows[i]->Cells[0]->ToString()) {
+						this->dEmploye_p1->Rows[i]->Selected = true;
+					}
+				}
+			}
+			else {
+				this->tNom_p1->Text = this->dEmploye_p1->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[0];
+				this->tPrenom_p1->Text = this->dEmploye_p1->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[1];
+				this->tNomSuperieur_p1->Text = this->dEmploye_p1->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[0];
+				this->tPrenomSuperieur_p1->Text = this->dEmploye_p1->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[1];
+				this->tNumVoie_p1->Text = this->dEmploye_p1->CurrentRow->Cells[4]->Value->ToString()->Split(' ')[0];
+				this->tCompAdresse_p1->Text = this->dEmploye_p1->CurrentRow->Cells[4]->Value->ToString()->Split(' ')[1];
+				this->tTypeVoie_p1->Text = this->dEmploye_p1->CurrentRow->Cells[5]->Value->ToString()->Split(' ')[0];
+				this->tNomVoie_p1->Text = this->dEmploye_p1->CurrentRow->Cells[5]->Value->ToString()->Split(' ')[1];
+				this->tCodePostal_p1->Text = this->dEmploye_p1->CurrentRow->Cells[6]->Value->ToString()->Split(' ')[0];
+				this->tVille_p1->Text = this->dEmploye_p1->CurrentRow->Cells[6]->Value->ToString()->Split(' ')[1];
+			}
+		}
+	}
+
 	private: System::Void bAjouter_p1_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->resetForm();
 		try {
@@ -2427,8 +2452,6 @@ private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 		}
 		this->loadDataEmploye();
 	}
-
-
 
 	private: System::Void bSupprimer_p1_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->resetForm();

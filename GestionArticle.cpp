@@ -48,7 +48,7 @@ namespace Services {
 		}
 	}
 
-	void GestionArticle::modifier(int^ id) {
+	void GestionArticle::modifier(String^ id) {
 		this->_cad->actionRows(this->_article->UPDATE(id));
 	}
 }

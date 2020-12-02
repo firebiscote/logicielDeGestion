@@ -7,6 +7,6 @@ namespace Composants {
 		virtual String^ SELECT(int) abstract;
 		virtual String^ INSERT(void) abstract;
 		virtual String^ DELETE(void) abstract;
-		virtual String^ UPDATE(int^) abstract;
+		virtual String^ UPDATE(String^) abstract;
 	};
 }

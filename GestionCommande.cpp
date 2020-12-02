@@ -49,7 +49,7 @@ namespace Services {
 		}*/
 	}
 
-	void GestionCommande::modifier(int^ id) {
+	void GestionCommande::modifier(String^ id) {
 		this->_cad->actionRows(this->_commande->UPDATE(id));
 	}
 }

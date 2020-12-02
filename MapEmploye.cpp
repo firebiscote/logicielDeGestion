@@ -27,7 +27,7 @@ namespace Composants {
 
 	String^ MapEmploye::SELECT(int choix) {
 		return	"SELECT " +
-			"CONCAT(employe.nom, ' ', employe.prenom) AS employe, CONCAT(superieur.nom, ' ', superieur.prenom) AS superieur, date.date AS embauche, CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero) AS numero, CONCAT(adresse.typeDeVoie, ' ', adresse.nomDeVoie) AS voie, CONCAT(adresse.codePostal, ' ', adresse.nomDeCommune) AS ville " +
+			"employe.ID, CONCAT(employe.nom, ' ', employe.prenom) AS employe, CONCAT(superieur.nom, ' ', superieur.prenom) AS superieur, date.date AS embauche, CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero) AS numero, CONCAT(adresse.typeDeVoie, ' ', adresse.nomDeVoie) AS voie, CONCAT(adresse.codePostal, ' ', adresse.nomDeCommune) AS ville " +
 			"FROM employe LEFT JOIN employe AS superieur ON employe.ID_employe = superieur.ID " +
 			"LEFT JOIN adresse ON employe.ID_adresse = adresse.ID " +
 			"LEFT JOIN date ON employe.ID_date = date.ID";
@@ -56,7 +56,7 @@ namespace Composants {
 			"COMMIT";
 	}
 
-	String^ MapEmploye::UPDATE(int^ employe) {
+	String^ MapEmploye::UPDATE(String^ employe) {
 		return "";
 	}
 

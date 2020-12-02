@@ -46,7 +46,7 @@ namespace Services {
 		}
 	}
 
-	void GestionEmploye::modifier(int^ id) {
+	void GestionEmploye::modifier(String^ id) {
 		this->_cad->actionRows(this->_employe->UPDATE(id));
 	}
 }

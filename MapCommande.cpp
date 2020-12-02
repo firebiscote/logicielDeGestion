@@ -66,7 +66,7 @@ namespace Composants {
 			"COMMIT";
 	}
 
-	String^ MapCommande::UPDATE(int^ id) {
+	String^ MapCommande::UPDATE(String^ id) {
 		return "";
 	}
 

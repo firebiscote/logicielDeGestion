@@ -64,7 +64,7 @@ namespace Composants {
 			"COMMIT";
 	}
 
-	String^ MapClient::UPDATE(int^ id) {
+	String^ MapClient::UPDATE(String^ id) {
 		return "";
 	}
 

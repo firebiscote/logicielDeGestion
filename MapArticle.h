@@ -11,7 +11,7 @@ namespace Composants {
 		virtual String^ SELECT(int) override;
 		virtual String^ INSERT(void) override;
 		virtual String^ DELETE(void) override;
-		virtual String^ UPDATE(int^) override;
+		virtual String^ UPDATE(String^) override;
 		void set_ID(int);
 		void set_reference(String^);
 		void set_designation(String^);

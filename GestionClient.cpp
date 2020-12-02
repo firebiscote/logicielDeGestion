@@ -48,7 +48,7 @@ namespace Services {
 		}
 	}
 
-	void GestionClient::modifier(int^ id) {
+	void GestionClient::modifier(String^ id) {
 		this->_cad->actionRows(this->_client->UPDATE(id));
 	}
 }

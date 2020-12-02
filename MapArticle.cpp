@@ -42,7 +42,7 @@ namespace Composants {
 			"COMMIT";
 	}
 
-	String^ MapArticle::UPDATE(int^ article) {
+	String^ MapArticle::UPDATE(String^ article) {
 		return "";
 	}
 

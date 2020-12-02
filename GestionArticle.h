@@ -13,7 +13,7 @@ namespace Services {
 		virtual DataSet^ liste(int) override;
 		virtual void ajouter(void) override;
 		virtual void supprimer(void) override;
-		virtual void modifier(int^) override;
+		virtual void modifier(String^) override;
 	private:
 		Composants::MapArticle^ _article;
 	};
