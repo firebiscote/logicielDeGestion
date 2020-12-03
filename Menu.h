@@ -2827,6 +2827,9 @@ namespace logicielDeGestion {
 			this->gestion = gcnew Services::GestionClient(this->tNom_p2->Text->Trim(), this->tPrenom_p2->Text->Trim(), Convert::ToDateTime(this->tDateNaissance_p2->Text->Trim()), gcnew Adresse(this->tNumVoie_p2->Text->Trim(), this->tCompAdresse_p2->Text->Trim(), this->tTypeVoie_p2->Text->Trim(), this->tNomVoie_p2->Text->Trim(), this->tCodePostal_p2->Text->Trim(), this->tVille_p2->Text->Trim()));
 			this->gestion->ajouter();
 		}
+		catch (FormatException^) {
+			this->errorProvider1->SetError(this->bAjouter_p2, "La date n\'est pas valide !");
+		}
 		catch (String^ e) {
 			this->errorProvider1->SetError(this->bAjouter_p2, e);
 		}
@@ -3212,11 +3215,13 @@ namespace logicielDeGestion {
 
 	private: System::Void bRetour_p2_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelClient->Hide();
+		this->resetClient();
 		this->panelMenu->Show();
 	}
 
 	private: System::Void bRetour_p3_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelCommande->Hide();
+		this->resetCommande();
 		this->panelMenu->Show();
 	}
 

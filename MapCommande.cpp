@@ -51,9 +51,13 @@ namespace Composants {
 		String^ na = gcnew String("NA");
 		switch (choix) {
 		case 0:
-			return "BEGIN TRANSACTION; DECLARE @idCommande INT; DECLARE @idDateEnvois INT; DECLARE @idDatePaiement INT; DECLARE @idAdresseLivraison INT; DECLARE @idAdressePaiement INT;" +
+			return "BEGIN TRANSACTION; DECLARE @idCommande INT; DECLARE @idDateEnvois INT; DECLARE @idDatePaiement INT; DECLARE @idAdresseLivraison INT; DECLARE @idAdressePaiement INT; DECLARE @idClient INT;" +
 				"INSERT INTO commande (ID_client, reference) VALUES ((SELECT TOP(1) client.ID FROM client WHERE client.nom = '" + this->get_nomClient() + "' AND client.prenom = '" + this->get_prenomClient() + "'), '" + this->get_reference() + "');" +
 				"SET @idCommande = (SELECT TOP(1) ID FROM commande ORDER BY ID DESC);" +
+				"SET @idClient = (SELECT commande.ID_client FROM commande WHERE commande.ID_client = @idClient);" +
+				"IF (SELECT ID_client FROM daterClient WHERE ID_client = @idClient AND naissance = 0) NOT EXIST BEGIN" +
+				"	INSERT INTO date (date) VALUES (GETDATE());" +
+				"	INSERT INTO daterClient (ID_client, ID_date, naissance) VALUES (@idClient, (SELECT TOP(1) ID FROM date ORDER BY ID DESC), 0);\nEND\n" +
 				"INSERT INTO date (date) VALUES ('" + this->get_dateLivraison() + "');" +
 				"SET @idDateEnvois = (SELECT TOP(1) ID FROM date ORDER BY ID DESC);" +
 				"INSERT INTO date (date) VALUES ('" + this->get_dateDernierSolde() + "');" +
