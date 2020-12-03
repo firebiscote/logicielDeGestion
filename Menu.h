@@ -927,7 +927,7 @@ namespace logicielDeGestion {
 			this->label44->Name = L"label44";
 			this->label44->Size = System::Drawing::Size(114, 17);
 			this->label44->TabIndex = 93;
-			this->label44->Text = L"Détails Paiement";
+			this->label44->Text = L"Détails Adresses";
 			// 
 			// dDetailPaiement_p3
 			// 
@@ -1167,7 +1167,7 @@ namespace logicielDeGestion {
 			this->label42->Name = L"label42";
 			this->label42->Size = System::Drawing::Size(126, 17);
 			this->label42->TabIndex = 63;
-			this->label42->Text = L"Détails Commande";
+			this->label42->Text = L"Détails Articles";
 			// 
 			// label43
 			// 
@@ -2960,31 +2960,30 @@ namespace logicielDeGestion {
 				this->resetCommande();
 				throw gcnew String("Cette commande n\'existe pas !");
 			}
-			this->tNom_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[0];
-			this->tPrenom_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[1];
+			this->tNom_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[0];
+			this->tPrenom_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[1];
 			this->gestion = gcnew Services::GestionCommande(this->tRechercheCommande_p3->Text->Trim(), this->tNom_p3->Text->Trim(), this->tPrenom_p3->Text->Trim());
 			this->loadDataCommandeAll();
-			this->tNom_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[0];
-			this->tPrenom_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[1];
-			this->tDateLivraison_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[0];
-			this->tDatePaiement_p3->Text = this->dDetailPaiement_p3->Rows[1]->Cells[0]->Value->ToString()->Split(' ')[0];
-			this->tDernierSolde_p3->Text = this->dDetailPaiement_p3->Rows[1]->Cells[0]->Value->ToString()->Split(' ')[0];
-			this->tNumVoieFacturation_p3->Text = "";
-			this->tComplementFacturation_p3->Text = "";
-			this->tTypeVoieFacturation_p3->Text = "";
-			this->tNomVoieFacturation_p3->Text = "";
-			this->tCodePostalFacturation_p3->Text = "";
-			this->tCodePostalLivraison_p3->Text = "";
-			this->tVilleFacturation_p3->Text = "";
-			this->tNumVoieLivraison_p3->Text = "";
-			this->tComplementLivraison_p3->Text = "";
-			this->tTypeVoieLivraison_p3->Text = "";
-			this->tNomVoieLivraison_p3->Text = "";
-			this->tCodePostalLivraison_p3->Text = "";
-			this->tVilleLivraison_p3->Text = "";
+			this->tNom_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[0];
+			this->tPrenom_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[1]->Value->ToString()->Split(' ')[1];
+			this->tDateLivraison_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[2]->Value->ToString()->Split(' ')[0];
+			this->tDatePaiement_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[3]->Value->ToString()->Split(' ')[0];
+			this->tDernierSolde_p3->Text = this->dDetailCommande_p3->CurrentRow->Cells[3]->Value->ToString()->Split(' ')[0];
+			this->tNumVoieFacturation_p3->Text = this->dDetailPaiement_p3->Rows[0]->Cells[0]->Value->ToString()->Split(' ')[0];
+			this->tComplementFacturation_p3->Text = this->dDetailPaiement_p3->Rows[0]->Cells[0]->Value->ToString()->Split(' ')[1];
+			this->tTypeVoieFacturation_p3->Text = this->dDetailPaiement_p3->Rows[0]->Cells[1]->Value->ToString()->Split(' ')[0];
+			this->tNomVoieFacturation_p3->Text = this->dDetailPaiement_p3->Rows[0]->Cells[1]->Value->ToString()->Split(' ')[1];
+			this->tCodePostalFacturation_p3->Text = this->dDetailPaiement_p3->Rows[0]->Cells[2]->Value->ToString()->Split(' ')[0];
+			this->tVilleFacturation_p3->Text = this->dDetailPaiement_p3->Rows[0]->Cells[2]->Value->ToString()->Split(' ')[1];
+			this->tNumVoieLivraison_p3->Text = this->dDetailPaiement_p3->Rows[1]->Cells[0]->Value->ToString()->Split(' ')[0];
+			this->tComplementLivraison_p3->Text = this->dDetailPaiement_p3->Rows[1]->Cells[0]->Value->ToString()->Split(' ')[1];
+			this->tTypeVoieLivraison_p3->Text = this->dDetailPaiement_p3->Rows[1]->Cells[1]->Value->ToString()->Split(' ')[0];
+			this->tNomVoieLivraison_p3->Text = this->dDetailPaiement_p3->Rows[1]->Cells[1]->Value->ToString()->Split(' ')[1];
+			this->tCodePostalLivraison_p3->Text = this->dDetailPaiement_p3->Rows[1]->Cells[2]->Value->ToString()->Split(' ')[0];
+			this->tVilleLivraison_p3->Text = this->dDetailPaiement_p3->Rows[1]->Cells[2]->Value->ToString()->Split(' ')[1];
 			this->tRefArticle_p3->Text = this->dCommande->Rows[0]->Cells[0]->Value->ToString();
 			this->tQuantiteArticle_p3->Text = this->dCommande->Rows[0]->Cells[2]->Value->ToString();
-			this->tMoyenPaiement_p3->Text = this->dDetailPaiement_p3->Rows[1]->Cells[2]->Value->ToString();
+			this->tMoyenPaiement_p3->Text = this->dDetailCommande_p3->Rows[0]->Cells[4]->Value->ToString();
 		}
 		catch (String^ e) {
 			this->errorProvider1->SetError(this->bRechercherCommande_p3, e);
@@ -3002,8 +3001,11 @@ namespace logicielDeGestion {
 	private: System::Void bAjouter_p3_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->resetForm();
 		try {
-			this->gestion = gcnew Services::GestionCommande("ABC", "D", "R", Convert::ToDateTime("25/11/2020"), Convert::ToDateTime("29/11/2020"), gcnew Adresse("15", "", "rue", "ber", "33700", "mer"), gcnew Adresse("15", "", "rue", "ber", "33700", "mer"), "C16", "10", Convert::ToDateTime("25/11/2020"), "Carte");
+			this->gestion = gcnew Services::GestionCommande(this->tRechercheCommande_p3->Text->Trim(), this->tNom_p3->Text->Trim(), this->tPrenom_p3->Text->Trim(), Convert::ToDateTime(this->tDernierSolde_p3->Text->Trim()), Convert::ToDateTime(tDateLivraison_p3->Text->Trim()), gcnew Adresse(this->tNumVoieLivraison_p3->Text->Trim(), this->tComplementLivraison_p3->Text->Trim(), this->tTypeVoieLivraison_p3->Text->Trim(), this->tNomVoieLivraison_p3->Text->Trim(), this->tCodePostalLivraison_p3->Text->Trim(), this->tVilleLivraison_p3->Text->Trim()), gcnew Adresse(this->tNumVoieFacturation_p3->Text->Trim(), this->tComplementFacturation_p3->Text->Trim(), this->tTypeVoieFacturation_p3->Text->Trim(), this->tNomVoieFacturation_p3->Text->Trim(), this->tCodePostalFacturation_p3->Text->Trim(), this->tVilleFacturation_p3->Text->Trim()), this->tRefArticle_p3->Text->Trim(), this->tQuantiteArticle_p3->Text->Trim(), Convert::ToDateTime(this->tDatePaiement_p3->Text->Trim()), this->tMoyenPaiement_p3->Text->Trim());
 			this->gestion->ajouter();
+		}
+		catch (SqlException^) {
+			this->errorProvider1->SetError(this->bAjouter_p3, "Erreur de donnée !");
 		}
 		catch (String^ e) {
 			this->errorProvider1->SetError(this->bAjouter_p3, e);

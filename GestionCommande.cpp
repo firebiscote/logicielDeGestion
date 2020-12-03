@@ -27,6 +27,12 @@ namespace Services {
 			this->_cad->actionRows(this->_commande->INSERT(1));
 			throw gcnew bool(1);
 		}
+		if (this->_cad->actionRowsID("SELECT * FROM client WHERE client.nom = '" + this->_commande->get_nomClient() + "' AND client.prenom = '" + this->_commande->get_prenomClient() + "'") == 0) {
+			throw gcnew String("Ce client n\'existe pas !");
+		}
+		if (this->_cad->actionRowsID("SELECT * FROM Article WHERE Article.reference = '" + this->_commande->get_referenceObjet() + "'") == 0) {
+			throw gcnew String("Cet article n\'existe pas !");
+		}
 		this->_cad->actionRows(this->_commande->INSERT(0));
 		if (this->_cad->actionRowsID("SELECT * FROM commande WHERE commande.reference = '" + this->_commande->get_reference() + "'") != 0) {
 			throw gcnew bool(1);
