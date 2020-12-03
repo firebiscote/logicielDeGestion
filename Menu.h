@@ -2269,7 +2269,7 @@ namespace logicielDeGestion {
 			this->dValeurAchatStock_p5->Margin = System::Windows::Forms::Padding(4);
 			this->dValeurAchatStock_p5->Name = L"dValeurAchatStock_p5";
 			this->dValeurAchatStock_p5->RowHeadersWidth = 51;
-			this->dValeurAchatStock_p5->Size = System::Drawing::Size(247, 43);
+			this->dValeurAchatStock_p5->Size = System::Drawing::Size(247, 60);
 			this->dValeurAchatStock_p5->TabIndex = 96;
 			// 
 			// label86
@@ -2289,7 +2289,7 @@ namespace logicielDeGestion {
 			this->dValeurCo_p5->Margin = System::Windows::Forms::Padding(4);
 			this->dValeurCo_p5->Name = L"dValeurCo_p5";
 			this->dValeurCo_p5->RowHeadersWidth = 51;
-			this->dValeurCo_p5->Size = System::Drawing::Size(247, 43);
+			this->dValeurCo_p5->Size = System::Drawing::Size(247, 60);
 			this->dValeurCo_p5->TabIndex = 94;
 			// 
 			// dPanierMoyen_p5
@@ -2299,7 +2299,7 @@ namespace logicielDeGestion {
 			this->dPanierMoyen_p5->Margin = System::Windows::Forms::Padding(4);
 			this->dPanierMoyen_p5->Name = L"dPanierMoyen_p5";
 			this->dPanierMoyen_p5->RowHeadersWidth = 51;
-			this->dPanierMoyen_p5->Size = System::Drawing::Size(247, 43);
+			this->dPanierMoyen_p5->Size = System::Drawing::Size(247, 60);
 			this->dPanierMoyen_p5->TabIndex = 92;
 			// 
 			// bRetour_p5
@@ -2352,7 +2352,7 @@ namespace logicielDeGestion {
 			this->dChiffreAffaireMois_p5->Margin = System::Windows::Forms::Padding(4);
 			this->dChiffreAffaireMois_p5->Name = L"dChiffreAffaireMois_p5";
 			this->dChiffreAffaireMois_p5->RowHeadersWidth = 51;
-			this->dChiffreAffaireMois_p5->Size = System::Drawing::Size(247, 43);
+			this->dChiffreAffaireMois_p5->Size = System::Drawing::Size(247, 60);
 			this->dChiffreAffaireMois_p5->TabIndex = 61;
 			// 
 			// dMontantAchatClient_p5
@@ -3168,9 +3168,30 @@ namespace logicielDeGestion {
 
 	//=====================================	Reste ============================================================================
 
+	private: void loadStat(void) {
+		this->dValeurCo_p5->DataSource = this->gestion->stat1();
+		this->dValeurCo_p5->DataMember = "Article";
+		this->dValeurAchatStock_p5->DataSource = this->gestion->stat2();
+		this->dValeurAchatStock_p5->DataMember = "Article";
+		this->dPanierMoyen_p5->DataSource = this->gestion->stat3();
+		this->dPanierMoyen_p5->DataMember = "Article";
+		this->dChiffreAffaireMois_p5->DataSource = this->gestion->stat4();
+		this->dChiffreAffaireMois_p5->DataMember = "Article";
+		this->dProduitsSousSeuil_p5->DataSource = this->gestion->stat5();
+		this->dProduitsSousSeuil_p5->DataMember = "Article";
+		this->dMontantAchatClient_p5->DataSource = this->gestion->stat6();
+		this->dMontantAchatClient_p5->DataMember = "Article";
+		this->dArticlesPlusVendus_p5->DataSource = this->gestion->stat7();
+		this->dArticlesPlusVendus_p5->DataMember = "Article";
+		this->dArticlesMoinsVendus->DataSource = this->gestion->stat8();
+		this->dArticlesMoinsVendus->DataMember = "Article";
+	}
+
 	private: System::Void buttonStatistiques_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->panelMenu->Hide();
+		this->gestion = gcnew Services::GestionArticle();
 		this->panelStatistiques->Show();
+		this->loadStat();
 	}
 
 	private: System::Void buttonSimulation_Click(System::Object^ sender, System::EventArgs^ e) {
