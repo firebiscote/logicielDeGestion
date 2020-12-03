@@ -2755,6 +2755,11 @@ namespace logicielDeGestion {
 		this->panelClient->Show();
 		this->gestion = gcnew Services::GestionClient();
 		this->loadDataClient();
+		for (int i = 0; i < this->dClient_p2->RowCount - 1; i++) {
+			if (this->dClient_p2->Rows[i]->Cells[2]->Value->ToString()->Substring(0,2) == Convert::ToString(DateTime::Today)->Substring(0,2) && this->dClient_p2->Rows[i]->Cells[2]->Value->ToString()->Substring(2, 2) == Convert::ToString(DateTime::Today)->Substring(2, 2)) {
+				this->tBoxMessage_p2->Text += "C'est l'anniversaire de " + this->dClient_p2->Rows[i]->Cells[1]->Value->ToString() + " aujourd'hui !\n";
+			}
+		}
 	}
 
 	private: void loadDataClient(void) {

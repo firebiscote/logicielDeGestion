@@ -23,10 +23,10 @@ namespace Composants {
 	String^ MapClient::SELECT(int choix) {
 		switch (choix) {
 		case 0:
-			return "SELECT client.ID, CONCAT(client.nom, ' ', client.prenom) AS client, date.date AS naissance FROM client LEFT JOIN daterClient ON client.ID = daterClient.ID_client LEFT JOIN date ON daterClient.ID_date = date.ID WHERE client.ID != 1";
+			return "SELECT client.ID, CONCAT(client.nom, ' ', client.prenom) AS client, date.date AS naissance FROM client LEFT JOIN daterClient ON client.ID = daterClient.ID_client LEFT JOIN date ON daterClient.ID_date = date.ID WHERE client.ID != 1 AND naissance = 1";
 			break;
 		case 1:
-			return "SELECT client.ID, CONCAT(client.nom, ' ', client.prenom) AS client, date.date AS naissance FROM client LEFT JOIN daterClient ON client.ID = daterClient.ID_client LEFT JOIN date ON daterClient.ID_date = date.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "'AND client.ID != 1";
+			return "SELECT client.ID, CONCAT(client.nom, ' ', client.prenom) AS client, date.date AS naissance FROM client LEFT JOIN daterClient ON client.ID = daterClient.ID_client LEFT JOIN date ON daterClient.ID_date = date.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "'AND client.ID != 1 AND naissance = 1";
 			break;
 		case 2:
 			return "SELECT adresse.ID, CONCAT(adresse.numeroDeVoie, ' ', adresse.complementDeNumero) AS numero, CONCAT(adresse.typeDeVoie, ' ', adresse.nomDeVoie) AS voie, CONCAT(adresse.codePostal, ' ', adresse.nomDeCommune) AS ville FROM client LEFT JOIN localiserClient ON client.ID = localiserClient.ID_client LEFT JOIN adresse ON localiserClient.ID_adresse = adresse.ID WHERE client.nom = '" + this->get_nom() + "' AND client.prenom = '" + this->get_prenom() + "' AND client.ID != 1";
