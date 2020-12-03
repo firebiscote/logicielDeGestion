@@ -80,9 +80,8 @@ namespace Composants {
 
 	String^ MapClient::UPDATE(String^ id) {
 		return "BEGIN TRANSACTION;" +
-			//"UPDATE adresse SET numeroDeVoie = '" + this->get_adresse()->get_numeroDeVoie() + "', complementDeNumero = '" + this->get_adresse()->get_complementDeNumero() + "', typeDeVoie = '" + this->get_adresse()->get_typeDeVoie() + "', nomDeVoie = '" + this->get_adresse()->get_nomDeVoie() + "', codePostal = '" + this->get_adresse()->get_codePostal() + "', nomDeCommune = '" + this->get_adresse()->get_nomDeCommune() + "' WHERE ID = (SELECT ID_adresse FROM"
 			"UPDATE date SET date = '" + this->get_dateNaissance() + "' WHERE ID = (SELECT ID_date FROM daterClient WHERE ID_client = '" + id + "' AND naissance = 1)" +
-			"UPDATE client SET nom = '" + this->get_nom() + "', prenom = '" + this->get_prenom() + "' WHERE ID = id;" +
+			"UPDATE client SET nom = '" + this->get_nom() + "', prenom = '" + this->get_prenom() + "' WHERE ID = '" + id + "';" +
 			"COMMIT";
 	}
 

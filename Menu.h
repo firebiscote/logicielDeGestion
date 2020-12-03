@@ -464,7 +464,7 @@ namespace logicielDeGestion {
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(1332, 276);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"Bienvenu dans votre logiciel de gestion";
+			this->label1->Text = L"Bienvenue dans votre logiciel de gestion";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// label2
@@ -2863,6 +2863,9 @@ namespace logicielDeGestion {
 		}
 		catch (String^ e) {
 			this->errorProvider1->SetError(this->bAjouter_p2, e);
+		}
+		catch (SqlException^) {
+			this->errorProvider1->SetError(this->bAjouter_p2, "Ce client est liée avec certaines commandes encore existantes !");
 		}
 		catch (bool^ e) {
 			if (e) {
