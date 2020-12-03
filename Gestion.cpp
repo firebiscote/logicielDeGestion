@@ -8,7 +8,7 @@ namespace Services {
 
 	DataSet^ Gestion::stat1(void) {
 		this->_ds = gcnew DataSet();
-		this->_ds = this->_cad->getRows("SELECT CONCAT(CAST(sum(prixHT*stock*tauxDeTVA/100) as float), ' €') FROM article", "article");
+		this->_ds = this->_cad->getRows("SELECT CONCAT(CAST(sum(prixHT*stock*(100+tauxDeTVA)/100) as float), ' €') AS valeurCommerciale FROM article", "article");
 		return this->_ds;
 	}
 
@@ -20,13 +20,13 @@ namespace Services {
 
 	DataSet^ Gestion::stat3(void) {
 		this->_ds = gcnew DataSet();
-		this->_ds = this->_cad->getRows("SELECT CONCAT(CAST(avg(inter.montant) as float), ' €') AS PanierMoyen FROM (SELECT sum(prixHT*quantite*tauxDeTVA/100) AS montant FROM commande LEFT JOIN contenir ON commande.ID = contenir.ID_commande LEFT JOIN article ON contenir.ID_article = article.ID GROUP BY commande.ID) AS inter", "article");
+		this->_ds = this->_cad->getRows("SELECT CONCAT(CAST(avg(inter.montant) as float), ' €') AS PanierMoyen FROM (SELECT sum(prixHT*quantite*(100+tauxDeTVA)/100) AS montant FROM commande LEFT JOIN contenir ON commande.ID = contenir.ID_commande LEFT JOIN article ON contenir.ID_article = article.ID GROUP BY commande.ID) AS inter", "article");
 		return this->_ds;
 	}
 
 	DataSet^ Gestion::stat4(void) {
 		this->_ds = gcnew DataSet();
-		this->_ds = this->_cad->getRows("SELECT CONCAT(CAST(sum(inter.montant) as float), ' €') AS valeurVente FROM (SELECT commande.ID as ID, sum(prixHT*quantite*tauxDeTVA/100) AS montant FROM commande LEFT JOIN contenir ON commande.ID = contenir.ID_commande LEFT JOIN article ON contenir.ID_article = article.ID GROUP BY commande.ID) AS inter LEFT JOIN (SELECT daterCommande.ID_commande AS ID, date.date AS date FROM daterCommande LEFT JOIN date ON daterCommande.ID_date = date.ID) AS date ON inter.ID = date.ID WHERE MONTH(date.date) = MONTH(GETDATE())", "article");
+		this->_ds = this->_cad->getRows("SELECT CONCAT(CAST(sum(prixHT*quantite*(100+tauxDeTVA)/100) as float), ' €') AS vente FROM contenir LEFT JOIN article ON contenir.ID_article = article.ID WHERE contenir.ID_commande = (SELECT commande.ID FROM commande LEFT JOIN (SELECT ID_commande, date.date AS date FROM daterCommande LEFT JOIN date ON ID_date = ID WHERE envois = 0) AS date1 ON date1.ID_commande = commande.ID WHERE MONTH(date1.date) = MONTH(GETDATE())-1)", "article");
 		return this->_ds;
 	}
 
@@ -38,7 +38,7 @@ namespace Services {
 
 	DataSet^ Gestion::stat6(void) {
 		this->_ds = gcnew DataSet();
-		this->_ds = this->_cad->getRows("SELECT client.client, CONCAT(CAST(sum(inter.montant) as float), ' €') AS panier FROM (SELECT commande.ID as ID, sum(prixHT*quantite*tauxDeTVA/100) AS montant FROM commande LEFT JOIN contenir ON commande.ID = contenir.ID_commande LEFT JOIN article ON contenir.ID_article = article.ID GROUP BY commande.ID) AS inter LEFT JOIN (SELECT commande.ID AS ID, CONCAT(client.nom, ' ', client.prenom) AS client FROM commande LEFT JOIN client ON commande.ID_client = client.ID) AS client ON inter.ID = client.ID GROUP BY client.client", "article");
+		this->_ds = this->_cad->getRows("SELECT client.client, CONCAT(CAST(sum(inter.montant) as float), ' €') AS panier FROM (SELECT commande.ID as ID, sum(prixHT*quantite*(100+tauxDeTVA)/100) AS montant FROM commande LEFT JOIN contenir ON commande.ID = contenir.ID_commande LEFT JOIN article ON contenir.ID_article = article.ID GROUP BY commande.ID) AS inter LEFT JOIN (SELECT commande.ID AS ID, CONCAT(client.nom, ' ', client.prenom) AS client FROM commande LEFT JOIN client ON commande.ID_client = client.ID) AS client ON inter.ID = client.ID GROUP BY client.client", "article");
 		return this->_ds;
 	}
 

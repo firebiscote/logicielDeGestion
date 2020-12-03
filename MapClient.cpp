@@ -71,10 +71,10 @@ namespace Composants {
 			"SET @idClient = (SELECT ID FROM client WHERE nom = '" + this->get_nom() + "' AND prenom = '" + this->get_prenom() + "');" +
 			"UPDATE commande SET ID_client = 1 WHERE ID_client = @idClient;"
 			"DELETE FROM localiserClient WHERE ID_client = @idClient;" +
-			"DELETE FROM adresse WHERE ID NOT IN (SELECT ID_adresse FROM localiserClient) AND ID NOT IN (SELECT employe.ID_adresse FROM employe) AND ID NOT IN (SELECT ID_adresse FROM localiserCommande);" +
 			"DELETE FROM daterClient WHERE ID_client = @idClient;" +
-			"DELETE FROM date WHERE ID NOT IN (SELECT ID_date FROM daterClient) AND ID NOT IN (SELECT employe.ID_date FROM employe) AND ID NOT IN (SELECT ID_date FROM daterCommande);" +
 			"DELETE FROM client WHERE ID = @idClient;" +
+			"DELETE FROM date WHERE ID NOT IN (SELECT ID_date FROM daterClient) AND ID NOT IN (SELECT ID_date FROM daterCommande) AND ID NOT IN (SELECT ID_date FROM employe);" +
+			"DELETE FROM adresse WHERE ID NOT IN (SELECT ID_adresse FROM localiserClient) AND ID NOT IN (SELECT ID_adresse FROM localiserCommande) AND ID NOT IN (SELECT ID_adresse FROM employe);" +
 			"COMMIT";
 	}
 

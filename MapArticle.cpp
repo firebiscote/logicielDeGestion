@@ -39,6 +39,8 @@ namespace Composants {
 	String^ MapArticle::DELETE(void) {
 		return "BEGIN TRANSACTION;" + 
 			"DELETE FROM article WHERE article.reference = '" + this->get_reference() + "';" +
+			"DELETE FROM date WHERE ID NOT IN (SELECT ID_date FROM daterClient) AND ID NOT IN (SELECT ID_date FROM daterCommande) AND ID NOT IN (SELECT ID_date FROM employe);" +
+			"DELETE FROM adresse WHERE ID NOT IN (SELECT ID_adresse FROM localiserClient) AND ID NOT IN (SELECT ID_adresse FROM localiserCommande) AND ID NOT IN (SELECT ID_adresse FROM employe);" +
 			"COMMIT";
 	}
 

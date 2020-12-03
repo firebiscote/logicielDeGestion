@@ -53,6 +53,8 @@ namespace Composants {
 			"DELETE FROM employe WHERE ID = @idEmploye;" +
 			"DELETE FROM adresse WHERE ID NOT IN (SELECT ID_adresse FROM employe);" +
 			"DELETE FROM date WHERE ID NOT IN (SELECT ID_date FROM employe);" +
+			"DELETE FROM date WHERE ID NOT IN (SELECT ID_date FROM daterClient) AND ID NOT IN (SELECT ID_date FROM daterCommande) AND ID NOT IN (SELECT ID_date FROM employe);" +
+			"DELETE FROM adresse WHERE ID NOT IN (SELECT ID_adresse FROM localiserClient) AND ID NOT IN (SELECT ID_adresse FROM localiserCommande) AND ID NOT IN (SELECT ID_adresse FROM employe);" +
 			"COMMIT";
 	}
 

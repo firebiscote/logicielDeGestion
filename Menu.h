@@ -7,6 +7,11 @@
 
 namespace logicielDeGestion {
 
+	DataSet^ simulation(double TVA, double margeCommerciale, double remiseCommerciale, double demarqueInconnue, Services::Gestion^ gestion) {
+		gestion = gcnew Services::GestionArticle();
+		return gestion->simulation(TVA, margeCommerciale, remiseCommerciale, demarqueInconnue);
+	}
+
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -1037,6 +1042,7 @@ namespace logicielDeGestion {
 			this->bMaj_p3->TabIndex = 24;
 			this->bMaj_p3->Text = L"Mise à jour";
 			this->bMaj_p3->UseVisualStyleBackColor = true;
+			this->bMaj_p3->Click += gcnew System::EventHandler(this, &Menu::bMaj_p3_Click);
 			// 
 			// bSupprimer_p3
 			// 
@@ -2876,10 +2882,10 @@ namespace logicielDeGestion {
 				}
 				if (!find) {
 					this->resetClient();
-					throw gcnew String("Ce client n'existe pas !");
+					throw gcnew String("Ce client n\'existe pas !");
 				}
 				this->gestion = gcnew Services::GestionClient(this->tNom_p2->Text->Trim(), this->tPrenom_p2->Text->Trim(), Convert::ToDateTime(this->tDateNaissance_p2->Text->Trim()), gcnew Adresse(this->tNumVoie_p2->Text->Trim(), this->tCompAdresse_p2->Text->Trim(), this->tTypeVoie_p2->Text->Trim(), this->tNomVoie_p2->Text->Trim(), this->tCodePostal_p2->Text->Trim(), this->tVille_p2->Text->Trim()));
-				this->gestion->modifier(this->tNumClient_p2->Text);
+				this->gestion->modifier(this->tNumClient_p2->Text->Trim());
 			}
 		}
 		catch (String^ e) {
@@ -3042,6 +3048,36 @@ namespace logicielDeGestion {
 			}
 		}
 		this->loadDataCommande();
+	}
+
+	private: System::Void bMaj_p3_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->resetForm();
+		try {
+			bool find = 0;
+			for (int i = 0; i < this->dDetailCommande_p3->RowCount - 1; i++) {
+				if (this->tRechercheCommande_p3->Text->Trim() == this->dDetailCommande_p3->Rows[i]->Cells[0]->Value->ToString()) {
+					find = 1;
+				}
+			}
+			if (!find) {
+				this->resetCommande();
+				throw gcnew String("Cette commande n\'existe pas !");
+			}
+			this->gestion = gcnew Services::GestionCommande(this->tRechercheCommande_p3->Text->Trim(), this->tNom_p3->Text->Trim(), this->tPrenom_p3->Text->Trim(), Convert::ToDateTime(this->tDernierSolde_p3->Text->Trim()), Convert::ToDateTime(tDateLivraison_p3->Text->Trim()), gcnew Adresse(this->tNumVoieLivraison_p3->Text->Trim(), this->tComplementLivraison_p3->Text->Trim(), this->tTypeVoieLivraison_p3->Text->Trim(), this->tNomVoieLivraison_p3->Text->Trim(), this->tCodePostalLivraison_p3->Text->Trim(), this->tVilleLivraison_p3->Text->Trim()), gcnew Adresse(this->tNumVoieFacturation_p3->Text->Trim(), this->tComplementFacturation_p3->Text->Trim(), this->tTypeVoieFacturation_p3->Text->Trim(), this->tNomVoieFacturation_p3->Text->Trim(), this->tCodePostalFacturation_p3->Text->Trim(), this->tVilleFacturation_p3->Text->Trim()), this->tRefArticle_p3->Text->Trim(), this->tQuantiteArticle_p3->Text->Trim(), Convert::ToDateTime(this->tDatePaiement_p3->Text->Trim()), this->tMoyenPaiement_p3->Text->Trim());
+			this->gestion->modifier(this->tRechercheCommande_p3->Text->Trim());
+		}
+		catch (String^ e) {
+			this->errorProvider1->SetError(this->bAjouter_p3, e);
+		}
+		catch (bool^ e) {
+			if (e) {
+				this->tBoxMessage_p3->Text = "Opération réussie !";
+			}
+			else {
+				this->tBoxMessage_p3->Text = "Opération échouée !";
+			}
+		}
+		this->loadDataCommandeAll();
 	}
 
 	//=====================================	Article ============================================================================
@@ -3244,7 +3280,8 @@ namespace logicielDeGestion {
 	private: System::Void bCalcul_p6_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->resetForm();
 		try {
-			this->dSimulation_p6->DataSource = this->gestion->simulation(Convert::ToDouble(this->cbTVA_p6->SelectedItem->ToString()->Split(' ')[0]->Trim()), Convert::ToDouble(this->cbMarge_p6->SelectedItem->ToString()->Split(' ')[0]->Trim()), Convert::ToDouble(this->cbRemiseComm_p6->SelectedItem->ToString()->Split(' ')[0]->Trim()), Convert::ToDouble(this->cbDemarque_p6->SelectedItem->ToString()->Split(' ')[0]->Trim()));
+			DataSet^ (*fonction) (double, double, double, double, Services::Gestion^) = &simulation;
+			this->dSimulation_p6->DataSource = (*fonction)(Convert::ToDouble(this->cbTVA_p6->SelectedItem->ToString()->Split(' ')[0]->Trim()), Convert::ToDouble(this->cbMarge_p6->SelectedItem->ToString()->Split(' ')[0]->Trim()), Convert::ToDouble(this->cbRemiseComm_p6->SelectedItem->ToString()->Split(' ')[0]->Trim()), Convert::ToDouble(this->cbDemarque_p6->SelectedItem->ToString()->Split(' ')[0]->Trim()), this->gestion);
 			this->dSimulation_p6->DataMember = "Article";
 		}
 		catch (FormatException^) {
