@@ -73,7 +73,7 @@ namespace Composants {
 				"INSERT INTO contenir (ID_commande, ID_article, quantite) VALUES (@idCommande, (SELECT TOP(1) article.ID FROM article WHERE article.reference = '" + this->get_referenceObjet() + "'), '" + this->get_quantite() + "');" +
 				"SET @stock = (SELECT stock FROM article WHERE reference = '" + this->get_referenceObjet() + "');" +
 				"SET @quantite = '" + this->get_quantite() + "';" +
-				"UPDATE article SET stock = @stock-@quantite WHERE reference = '" + this->get_reference() + "';" +
+				"UPDATE article SET stock = @stock-@quantite WHERE reference = '" + this->get_referenceObjet() + "';" +
 				"COMMIT";
 			break;
 		case 1:
@@ -82,7 +82,7 @@ namespace Composants {
 				"INSERT INTO contenir (ID_commande, ID_article, quantite) VALUES (@idCommande, (SELECT TOP(1) article.ID FROM article WHERE article.reference = '" + this->get_referenceObjet() + "'), '" + this->get_quantite() + "');" +
 				"SET @stock = (SELECT stock FROM article WHERE reference = '" + this->get_referenceObjet() + "');" +
 				"SET @quantite = '" + this->get_quantite() + "';" +
-				"UPDATE article SET stock = @stock-@quantite WHERE reference = '" + this->get_reference() + "';" +
+				"UPDATE article SET stock = @stock-@quantite WHERE reference = '" + this->get_referenceObjet() + "';" +
 				"COMMIT";
 			break;
 		default:

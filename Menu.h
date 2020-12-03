@@ -227,6 +227,7 @@ namespace logicielDeGestion {
 	private: System::Windows::Forms::Label^ label69;
 	private: System::ComponentModel::IContainer^ components;
 	private: System::Windows::Forms::Button^ bCalcul_p6;
+	private: System::Windows::Forms::Button^ bCopie_p3;
 	private: Services::Gestion^ gestion;
 
 
@@ -429,6 +430,7 @@ namespace logicielDeGestion {
 			this->cbTVA_p6 = (gcnew System::Windows::Forms::ComboBox());
 			this->bRetour_p6 = (gcnew System::Windows::Forms::Button());
 			this->label75 = (gcnew System::Windows::Forms::Label());
+			this->bCopie_p3 = (gcnew System::Windows::Forms::Button());
 			this->panelMenu->SuspendLayout();
 			this->panelCommande->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dDetailPaiement_p3))->BeginInit();
@@ -563,6 +565,7 @@ namespace logicielDeGestion {
 			// 
 			// panelCommande
 			// 
+			this->panelCommande->Controls->Add(this->bCopie_p3);
 			this->panelCommande->Controls->Add(this->tTypeVoieFacturation_p3);
 			this->panelCommande->Controls->Add(this->label64);
 			this->panelCommande->Controls->Add(this->tVilleFacturation_p3);
@@ -764,7 +767,7 @@ namespace logicielDeGestion {
 			this->label59->Name = L"label59";
 			this->label59->Size = System::Drawing::Size(211, 17);
 			this->label59->TabIndex = 126;
-			this->label59->Text = L"Informations adresse facturation";
+			this->label59->Text = L"Informations adresse livraison";
 			// 
 			// tVilleLivraison_p3
 			// 
@@ -810,7 +813,7 @@ namespace logicielDeGestion {
 			this->label33->Name = L"label33";
 			this->label33->Size = System::Drawing::Size(196, 17);
 			this->label33->TabIndex = 115;
-			this->label33->Text = L"Informations adresse livraison";
+			this->label33->Text = L"Informations adresse facturation";
 			// 
 			// label51
 			// 
@@ -1171,7 +1174,7 @@ namespace logicielDeGestion {
 			this->label42->Location = System::Drawing::Point(551, 225);
 			this->label42->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label42->Name = L"label42";
-			this->label42->Size = System::Drawing::Size(126, 17);
+			this->label42->Size = System::Drawing::Size(101, 17);
 			this->label42->TabIndex = 63;
 			this->label42->Text = L"Détails Articles";
 			// 
@@ -2539,6 +2542,17 @@ namespace logicielDeGestion {
 			this->label75->TabIndex = 58;
 			this->label75->Text = L"Menu Simulation";
 			// 
+			// bCopie_p3
+			// 
+			this->bCopie_p3->Location = System::Drawing::Point(75, 447);
+			this->bCopie_p3->Name = L"bCopie_p3";
+			this->bCopie_p3->Size = System::Drawing::Size(75, 23);
+			this->bCopie_p3->TabIndex = 144;
+			this->bCopie_p3->Text = L"Copie";
+			this->bCopie_p3->UseVisualStyleBackColor = true;
+			this->bCopie_p3->Click += gcnew System::EventHandler(this, &Menu::bCopie_p3_Click);
+
+			// 
 			// Menu
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
@@ -2587,7 +2601,6 @@ namespace logicielDeGestion {
 			this->panelSimulation->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dSimulation_p6))->EndInit();
 			this->ResumeLayout(false);
-
 		}
 #pragma endregion
 	private: void resetForm(void) {
@@ -2960,6 +2973,15 @@ namespace logicielDeGestion {
 		this->tRefArticle_p3->Text = "";
 		this->tQuantiteArticle_p3->Text = "";
 		this->tMoyenPaiement_p3->Text = "";
+	}
+
+	private: System::Void bCopie_p3_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->tNumVoieFacturation_p3->Text = this->tNumVoieLivraison_p3->Text;
+		this->tComplementFacturation_p3->Text = this->tComplementLivraison_p3->Text;
+		this->tTypeVoieFacturation_p3->Text = this->tTypeVoieLivraison_p3->Text;
+		this->tNomVoieFacturation_p3->Text = this->tNomVoieLivraison_p3->Text;
+		this->tCodePostalFacturation_p3->Text = this->tCodePostalLivraison_p3->Text;
+		this->tVilleFacturation_p3->Text = this->tVilleLivraison_p3->Text;
 	}
 
 	private: System::Void bRechercherCommande_p3_Click(System::Object^ sender, System::EventArgs^ e) {
