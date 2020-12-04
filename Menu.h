@@ -466,7 +466,7 @@ namespace logicielDeGestion {
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(1332, 276);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"Bienvenue dans votre logiciel de gestion";
+			this->label1->Text = L"Bienvenu dans votre logiciel de gestion";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// label2
@@ -2603,6 +2603,7 @@ namespace logicielDeGestion {
 			this->ResumeLayout(false);
 		}
 #pragma endregion
+
 	private: void resetForm(void) {
 		this->errorProvider1->Clear();
 		this->tBoxMessage_p1->Text = "";
@@ -2714,6 +2715,8 @@ namespace logicielDeGestion {
 		}
 		catch (String^ e) {
 			this->errorProvider1->SetError(this->bAjouter_p1, e);
+		}
+		catch (SqlException^) {
 		}
 		catch (bool^ e) {
 			if (e) {

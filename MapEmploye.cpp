@@ -51,8 +51,6 @@ namespace Composants {
 		return	"BEGIN TRANSACTION; DECLARE @idEmploye INT;" +
 			"SET @idEmploye = (SELECT ID FROM employe WHERE nom = '" + this->get_nom() + "' AND prenom = '" + this->get_prenom() + "');" +
 			"DELETE FROM employe WHERE ID = @idEmploye;" +
-			"DELETE FROM adresse WHERE ID NOT IN (SELECT ID_adresse FROM employe);" +
-			"DELETE FROM date WHERE ID NOT IN (SELECT ID_date FROM employe);" +
 			"DELETE FROM date WHERE ID NOT IN (SELECT ID_date FROM daterClient) AND ID NOT IN (SELECT ID_date FROM daterCommande) AND ID NOT IN (SELECT ID_date FROM employe);" +
 			"DELETE FROM adresse WHERE ID NOT IN (SELECT ID_adresse FROM localiserClient) AND ID NOT IN (SELECT ID_adresse FROM localiserCommande) AND ID NOT IN (SELECT ID_adresse FROM employe);" +
 			"COMMIT";
