@@ -3072,6 +3072,8 @@ namespace logicielDeGestion {
 		catch (String^ e) {
 			this->errorProvider1->SetError(this->bAjouter_p3, e);
 		}
+		catch (SqlException^) {
+		}
 		catch (bool^ e) {
 			if (e) {
 				this->tBoxMessage_p3->Text = "Opération réussie !";
@@ -3226,6 +3228,8 @@ namespace logicielDeGestion {
 		}
 		catch (String^ e) {
 			this->errorProvider1->SetError(this->bAjouter_p1, e);
+		}
+		catch (SqlException^) {
 		}
 		catch (bool^ e) {
 			if (e) {
